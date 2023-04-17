@@ -19,9 +19,13 @@ namespace WindowsFormsApp1 {
             //thisはプロジェクト名にもある通り、Formを指す
             //単純なプログラムのthisはC#だと省略すべきとされる
 
-            int ans = int.Parse(tbNum1.Text) + int.Parse(tbNum2.Text);
+            //int ans = int.Parse(tbNum1.Text) + int.Parse(tbNum2.Text);
+            //tbAns.Text = ans.ToString();
+            //tbAns.Text = (int.Parse(tbNum1.Text) + int.Parse(tbNum2.Text)).ToString();
+            int num1 = int.Parse(tbNum1.Text);
+            int num2 = int.Parse(tbNum2.Text);
+            int ans = num1 + num2;
             tbAns.Text = ans.ToString();
-            tbAns.Text = (int.Parse(tbNum1.Text) + int.Parse(tbNum2.Text)).ToString();
         }
     }
 }
