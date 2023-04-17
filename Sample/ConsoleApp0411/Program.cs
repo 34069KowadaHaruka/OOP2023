@@ -33,12 +33,13 @@ namespace ConsoleApp0411 {
             …
             */
 
+            int change2 = payment - amount;
             //金種枚数出力(記号)
             for (int i = 0; i < MoneyKinds.Length; i++)
             {
                 Console.Write(MoneyStrings[i] + ":");
-                astOut(change / MoneyKinds[i]);
-                change %= MoneyKinds[i];
+                astOut(change2 / MoneyKinds[i]);
+                change2 %= MoneyKinds[i];
             }
         }
 
