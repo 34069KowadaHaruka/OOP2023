@@ -36,6 +36,9 @@ namespace WindowsFormsApp1 {
             tbResult.Text = result.ToString();
 
             //double result2 = Math.Pow((double)nubX.Value, (double)nubY.Value);
+            //tbResult.Texy= result2.ToString();
+
+            //for文2重にすれば足し算でもいけそう　やらないけど
         }
     }
 }
