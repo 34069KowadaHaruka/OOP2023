@@ -38,7 +38,12 @@ namespace WindowsFormsApp1 {
             //double result2 = Math.Pow((double)nubX.Value, (double)nubY.Value);
             //tbResult.Texy= result2.ToString();
 
+            //下模範解答
+            //tbResult.Text = (Math.Pow((double)nubX.Value,(double)nubY.Value)).ToString();
+
             //for文2重にすれば足し算でもいけそう　やらないけど
+
+            //nud(NumericUpDown)じゃん nubって何だ…
         }
     }
 }
