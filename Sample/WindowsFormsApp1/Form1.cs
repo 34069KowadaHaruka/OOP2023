@@ -25,5 +25,15 @@ namespace WindowsFormsApp1 {
             int ans = num1 + num2;
             tbAns.Text = ans.ToString();
         }
+
+        //イベントハンドラ
+        private void btPow_Click(object sender, EventArgs e) {
+            decimal result = 1;
+            for (int i = 0; i < nubY.Value; i++)
+            {
+                result *= nubX.Value;
+            }
+            tbResult.Text = result.ToString();
+        }
     }
 }
