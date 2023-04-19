@@ -26,10 +26,10 @@ namespace BallApp {
             do{
                 MoveX = r.Next(-20, 20);
                 MoveY = r.Next(-20, 20);
-            } while (MoveX == 0 || MoveY == 0);
+            } while (MoveX == 0 || MoveY == 0); //&&でもよかったのかも
 
             //int randX = random.Next(-15,-15);
-            //moveX = (randX != 0 ? randX : 1);
+            //moveX = (randX != 0 ? randX : 1); //何やってるかわからないのでとりあえず使わぬ
         }
 
         //property
@@ -42,7 +42,7 @@ namespace BallApp {
         //method
         public void Move() {
 
-            if (PosX >= 750 && PosY >= 520)
+            if (PosX >= 750 && PosY >= 520) //四隅のうち右下しかカバーできてない
             {
                 moveX = -moveX;
                 moveY = -moveY;
