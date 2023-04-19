@@ -4,23 +4,32 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BallApp {
     class SoccerBall {
         //field
+        Random r = new Random();
         private Image image; //画像データ
 
         private double posX; //x座標
         private double posY; //y座標
 
-        private double moveX = 5.0; //x軸方向の移動量
-        private double moveY = 3.0; //y軸方向の移動量
+        private double moveX; //x軸方向の移動量
+        private double moveY; //y軸方向の移動量
 
-        public SoccerBall() { //constructor
+        public SoccerBall(double px, double py) { //constructor
             Image = Image.FromFile(@"pic\soccer_ball.png");
-            PosX = 0.0;
-            PosY = 0.0;
-            
+            PosX = px;
+            PosY = py;
+
+            do{
+                MoveX = r.Next(-20, 20);
+                MoveY = r.Next(-20, 20);
+            } while (MoveX == 0 || MoveY == 0);
+
+            //int randX = random.Next(-15,-15);
+            //moveX = (randX != 0 ? randX : 1);
         }
 
         //property
@@ -35,16 +44,16 @@ namespace BallApp {
 
             if (PosX >= 750 && PosY >= 520)
             {
-                moveX *= -1;
-                moveY *= -1;
+                moveX = -moveX;
+                moveY = -moveY;
             }
-            else if (PosX >= 750 || PosX <= -1)
+            else if (PosX >= 750 || PosX < 0)
             {
-                moveX *= -1;
+                moveX = -moveX;
             }
-            else if (PosY >= 520 || PosY <= -1)
+            else if (PosY >= 520 || PosY < 0)
             {
-                moveY *= -1;
+                moveY = -moveY;
             }
 
             PosX += MoveX;

@@ -28,11 +28,21 @@ namespace BallApp {
             this.Size = new Size(800, 600);
             this.Text = "BallGame";
             this.BackColor = Color.Green;
+            this.MouseClick += Program_MouseClick;
             //Width,Height,Textなど、()がついていないものはプロパティ(アクセサ的なもの)
+            
+            moveTimer = new Timer();
+            moveTimer.Interval = 1; //タイマーのインターバル(ミリ秒)
+            moveTimer.Tick += MoveTimer_Tick; //デリゲート登録(タイマーにメソッド呼び出しを依頼する感じ)
+            
+            //form.ShowDialog();
+            //ShowDialogなどはメソッド
+        }
 
-
+        //マウスクリック時のイベントハンドラ
+        private void Program_MouseClick(object sender, MouseEventArgs e) {
             //ボールインスタンス生成
-            soccerBall = new SoccerBall();
+            soccerBall = new SoccerBall(e.X - 25, e.Y - 25);
             pb = new PictureBox(); //画像を表示するコントロール(部品、コンポーネント)
             pb.Image = soccerBall.Image;
             pb.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY); //画像の位置
@@ -40,15 +50,10 @@ namespace BallApp {
             pb.SizeMode = PictureBoxSizeMode.StretchImage; //画像の表示モード
             pb.Parent = this;//pbの親(Form)を登録
 
-            moveTimer = new Timer();
-            moveTimer.Interval = 1; //タイマーのインターバル(ミリ秒)
             moveTimer.Start(); //タイマースタート
-            moveTimer.Tick += MoveTimer_Tick;
-            
-            //form.ShowDialog();
-            //ShowDialogなどはメソッド
         }
 
+        //タイマータイムアウト時のイベントハンドラ
         private void MoveTimer_Tick(object sender, EventArgs e) {
             soccerBall.Move(); //移動
             pb.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY); //画像の位置
