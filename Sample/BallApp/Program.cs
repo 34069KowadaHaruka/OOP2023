@@ -52,6 +52,7 @@ namespace BallApp {
             pb.Size = new Size(50, 50); //画像の表示サイズ
             pb.SizeMode = PictureBoxSizeMode.StretchImage; //画像の表示モード
             pb.Parent = this;//pbの親(Form)を登録
+            this.Text = "BallGame：" + (balls.Count + 1);
 
             balls.Add(soccerBall);
             pbs.Add(pb);
