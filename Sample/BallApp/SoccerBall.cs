@@ -18,6 +18,8 @@ namespace BallApp {
         private double moveX; //x軸方向の移動量
         private double moveY; //y軸方向の移動量
 
+        //private static int count;
+
         public SoccerBall(double px, double py) { //constructor
             Image = Image.FromFile(@"pic\soccer_ball.png");
             PosX = px;
@@ -38,6 +40,7 @@ namespace BallApp {
         public Image Image { get => image; set => image = value; }
         public double MoveX { get => moveX; set => moveX = value; }
         public double MoveY { get => moveY; set => moveY = value; }
+        //public static int Count { get => count; set => count = value; }
 
         //method
         public void Move() {

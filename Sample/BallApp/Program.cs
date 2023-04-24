@@ -57,6 +57,8 @@ namespace BallApp {
             balls.Add(soccerBall);
             pbs.Add(pb);
 
+            //this.Text = "BallGame："+ SoccerBall.Count;
+
             moveTimer.Start(); //タイマースタート
         }
 
