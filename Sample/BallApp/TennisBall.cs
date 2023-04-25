@@ -11,10 +11,10 @@ namespace BallApp {
 
         //field
         Random r = new Random();
-        //private static int count;
+        private static int count;
         
         //property
-        //public static int Count { get => count; set => count = value; }
+        public static int Count { get => count; set => count = value; }
 
         //constructor
         public TennisBall(double px, double py)
@@ -29,6 +29,7 @@ namespace BallApp {
                 MoveY = r.Next(5, 30);
             } while (MoveX == 0 || MoveY == 0); //&&でもよかったのかも
 
+            Count++;
             //int randX = random.Next(-15,-15); //変数randXにrandomの値を入れる
             //moveX = (randX != 0 ? randX : 1); //randXが0なら1に変える？
         }
@@ -36,16 +37,12 @@ namespace BallApp {
         //method
         public override void Move() {
 
-            if (PosX >= 730 && PosY >= 520) //四隅のうち右下しかカバーできてない
-            {
-                MoveX = -MoveX;
-                MoveY = -MoveY;
-            }
-            else if (PosX >= 730 || PosX < 0)
+            if (PosX >= 740 || PosX < 0)
             {
                 MoveX = -MoveX;
             }
-            else if (PosY >= 520 || PosY < 0)
+            
+            if (PosY >= 520 || PosY < 0)
             {
                 MoveY = -MoveY;
             }
