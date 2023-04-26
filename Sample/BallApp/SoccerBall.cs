@@ -52,5 +52,9 @@ namespace BallApp {
             PosX += MoveX;
             PosY += MoveY;
         }
+
+        public override void Move(Keys direction) {
+            ;
+        }
     }
 }

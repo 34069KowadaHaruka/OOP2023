@@ -11,9 +11,8 @@ namespace BallApp {
 
         private Timer moveTimer; //Timer用
         private Bar bar;
-        //private SoccerBall soccerBall;
-        //private TennisBall tennisBall;
         private Obj ballObj;
+
         private PictureBox pb;
         private PictureBox barPb;
 
@@ -28,7 +27,7 @@ namespace BallApp {
         }
 
         public Program() {
-            //Form form = new Form();
+            //Form form = new Form(); //←Formを継承させたので、不要に
 
             //this.Width = 1200; //幅
             //this.Height = 800; //高さ
@@ -40,7 +39,8 @@ namespace BallApp {
             bar = new Bar(325, 400);
             barPb.Image = bar.Image;
             barPb.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
-            barPb.SizeMode = PictureBoxSizeMode.AutoSize; //画像の表示モード
+            barPb.Size = new Size(150, 10);
+            barPb.SizeMode = PictureBoxSizeMode.StretchImage; //画像の表示モード
             barPb.Parent = this;//pbの親(Form)を登録
 
             this.MouseClick += Program_MouseClick;
@@ -60,16 +60,8 @@ namespace BallApp {
         //キーが押されたとき
         private void Program_KeyDown(object sender, KeyEventArgs e) {
 
-            if (e.KeyCode == Keys.Right)
-            {
-                bar.Move(1);
-                barPb.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
-            }
-            else if (e.KeyCode == Keys.Left)
-            {
-                bar.Move(-1);
-                barPb.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
-            }
+            bar.Move(e.KeyData);
+            barPb.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
 
         }
 

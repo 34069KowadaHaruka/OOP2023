@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BallApp {
     abstract class Obj {
@@ -36,5 +37,6 @@ namespace BallApp {
         
         //method
         public abstract void Move(); //抽象メソッド
+        public abstract void Move(Keys direction);
     }
 }

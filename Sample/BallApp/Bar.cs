@@ -4,37 +4,34 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BallApp {
-    class Bar {
-
-        //field
-        private Image image; //画像データ
-        private double posX; //x座標
-        private double posY; //y座標
-        private double moveX; //x軸方向の移動量
-
-        //propaty
-        public double PosX { get => posX; set => posX = value; }
-        public double PosY { get => posY; set => posY = value; }
-        public Image Image { get => image; set => image = value; }
-        public double MoveX { get => moveX; set => moveX = value; }
+    class Bar : Obj {
 
         //constructor
-        public Bar(double px, double py) {
+        public Bar(double px, double py) :base(px, py, @"pic\bar.png") {
 
             this.PosX = px;
             this.PosY = py;
 
-            Image = Image.FromFile(@"pic\bar.png");
-
         }
 
         //method
-        public void Move(int direction) {
+        public override void Move(Keys direction) {
 
-            MoveX = 10;
-            MoveX *= direction;
+            if (direction == Keys.Right)
+            {
+                MoveX = 15;
+            }
+            else if (direction == Keys.Left)
+            {
+                MoveX = -15;
+            }
+            else
+            {
+                ;
+            }
             
             if ((PosX >= 630 && MoveX > 0) || PosX < 0 && MoveX < 0)
             {
@@ -43,6 +40,10 @@ namespace BallApp {
 
             PosX += MoveX;
            
+        }
+
+        public override void Move() {
+            ;
         }
     }
 }
