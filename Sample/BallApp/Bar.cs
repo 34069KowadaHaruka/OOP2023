@@ -36,7 +36,7 @@ namespace BallApp {
             MoveX = 10;
             MoveX *= direction;
             
-            if (PosX >= 650 || PosX < 100)
+            if ((PosX >= 630 && MoveX > 0) || PosX < 0 && MoveX < 0)
             {
                 MoveX = 0;
             }

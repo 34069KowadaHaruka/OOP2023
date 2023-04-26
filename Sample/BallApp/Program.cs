@@ -15,6 +15,7 @@ namespace BallApp {
         //private TennisBall tennisBall;
         private Obj ballObj;
         private PictureBox pb;
+        private PictureBox barPb;
 
         private List<Obj> balls = new List<Obj>(); //ボールインスタンス格納用
         private List<PictureBox> pbs = new List<PictureBox>(); //表示用
@@ -35,12 +36,12 @@ namespace BallApp {
             this.Text = "BallGame S:0 T:0";
             this.BackColor = Color.Green;
 
-            pb = new PictureBox(); //画像を表示するコントロール(部品、コンポーネント)
+            barPb = new PictureBox(); //画像を表示するコントロール(部品、コンポーネント)
             bar = new Bar(325, 400);
-            pb.Image = bar.Image;
-            pb.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
-            pb.SizeMode = PictureBoxSizeMode.AutoSize; //画像の表示モード
-            pb.Parent = this;//pbの親(Form)を登録
+            barPb.Image = bar.Image;
+            barPb.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
+            barPb.SizeMode = PictureBoxSizeMode.AutoSize; //画像の表示モード
+            barPb.Parent = this;//pbの親(Form)を登録
 
             this.MouseClick += Program_MouseClick;
 
@@ -62,12 +63,12 @@ namespace BallApp {
             if (e.KeyCode == Keys.Right)
             {
                 bar.Move(1);
-                pb.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
+                barPb.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
             }
             else if (e.KeyCode == Keys.Left)
             {
                 bar.Move(-1);
-                pb.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
+                barPb.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
             }
 
         }
