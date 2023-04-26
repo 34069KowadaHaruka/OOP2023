@@ -25,6 +25,7 @@ namespace BallApp {
 
         //constructor
         public Obj(double PosX, double PosY,string Path) { 
+
             this.PosX = PosX;
             this.PosY = PosY;
 

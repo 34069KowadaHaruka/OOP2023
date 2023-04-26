@@ -10,6 +10,7 @@ namespace BallApp {
     class Program :Form{
 
         private Timer moveTimer; //Timer用
+        private Bar bar;
         //private SoccerBall soccerBall;
         //private TennisBall tennisBall;
         private Obj ballObj;
@@ -33,6 +34,14 @@ namespace BallApp {
             this.Size = new Size(800, 600);
             this.Text = "BallGame S:0 T:0";
             this.BackColor = Color.Green;
+
+            pb = new PictureBox(); //画像を表示するコントロール(部品、コンポーネント)
+            bar = new Bar(325, 400);
+            pb.Image = bar.Image;
+            pb.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
+            pb.SizeMode = PictureBoxSizeMode.AutoSize; //画像の表示モード
+            pb.Parent = this;//pbの親(Form)を登録
+
             this.MouseClick += Program_MouseClick;
 
             this.KeyDown += Program_KeyDown;
@@ -49,7 +58,18 @@ namespace BallApp {
 
         //キーが押されたとき
         private void Program_KeyDown(object sender, KeyEventArgs e) {
-            
+
+            if (e.KeyCode == Keys.Right)
+            {
+                bar.Move(1);
+                pb.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
+            }
+            else if (e.KeyCode == Keys.Left)
+            {
+                bar.Move(-1);
+                pb.Location = new Point((int)bar.PosX, (int)bar.PosY); //画像の位置
+            }
+
         }
 
         //マウスクリック時のイベントハンドラ
@@ -90,6 +110,7 @@ namespace BallApp {
                 balls[i].Move();
                 pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY);
             }
+
             //soccerBall.Move(); //移動
             //pb.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY); //画像の位置
         }
