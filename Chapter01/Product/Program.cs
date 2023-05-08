@@ -16,17 +16,20 @@ namespace ProductSample {
             //    Console.WriteLine("大福もちの税込価格：" + daifuku.GetPriceIncludingTax());
             #endregion
             #region //0508演習1
-            //DateTime date = DateTime.Today;
+            #if true
+            DateTime date = DateTime.Today;
 
-            ////10日後を求める
-            //DateTime daysAfter10 = date.AddDays(10);
-            //DateTime daysBefore10 = date.AddDays(-10);
+            //10日後を求める
+            DateTime daysAfter10 = date.AddDays(10);
+            DateTime daysBefore10 = date.AddDays(-10);
 
-            //Console.WriteLine("今日の日付：" + date.ToString("yyyy年MM月dd日"));
-            //Console.WriteLine("10日後：" + daysAfter10.ToString("yyyy年MM月dd日"));
-            //Console.WriteLine("10日前：" + daysBefore10.ToString("yyyy年MM月dd日"));
+            Console.WriteLine("今日の日付：" + date.ToString("yyyy年MM月dd日"));
+            Console.WriteLine("10日後：" + daysAfter10.ToString("yyyy年MM月dd日"));
+            Console.WriteLine("10日前：" + daysBefore10.ToString("yyyy年MM月dd日"));
+            #endif
             #endregion
-
+            #region //0508演習2
+            #if false
             Console.WriteLine("誕生日を入力");
             Console.Write("西暦：");
             int year = int.Parse(Console.ReadLine());
@@ -43,6 +46,8 @@ namespace ProductSample {
 
             Console.WriteLine();
             Console.WriteLine("あなたは生まれてから今日で" + interval.TotalDays + "日です。");
+            #endif
+            #endregion
         }
     }
 }
