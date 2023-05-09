@@ -16,7 +16,7 @@ namespace ProductSample {
             //    Console.WriteLine("大福もちの税込価格：" + daifuku.GetPriceIncludingTax());
             #endregion
             #region //0508演習1
-            #if true
+#if false
             DateTime date = DateTime.Today;
 
             //10日後を求める
@@ -26,10 +26,10 @@ namespace ProductSample {
             Console.WriteLine("今日の日付：" + date.ToString("yyyy年MM月dd日"));
             Console.WriteLine("10日後：" + daysAfter10.ToString("yyyy年MM月dd日"));
             Console.WriteLine("10日前：" + daysBefore10.ToString("yyyy年MM月dd日"));
-            #endif
+#endif
             #endregion
             #region //0508演習2
-            #if false
+#if false
             Console.WriteLine("誕生日を入力");
             Console.Write("西暦：");
             int year = int.Parse(Console.ReadLine());
@@ -46,8 +46,30 @@ namespace ProductSample {
 
             Console.WriteLine();
             Console.WriteLine("あなたは生まれてから今日で" + interval.TotalDays + "日です。");
-            #endif
+#endif
             #endregion
+            #region //0509演習3
+#if true
+            string[] DowJapanese = { "日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日" };
+
+            Console.WriteLine("誕生日を入力");
+            Console.Write("西暦：");
+            int year = int.Parse(Console.ReadLine());
+            Console.Write("月：");
+            int month = int.Parse(Console.ReadLine());
+            Console.Write("日：");
+            int day = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+
+            DateTime birthDay = new DateTime(year, month, day);
+
+            Console.WriteLine();
+            Console.WriteLine("あなたは" + DowJapanese[(int)birthDay.DayOfWeek] + "に生まれました");
+
+
+#endif
+#endregion
         }
+        
     }
 }
