@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SalesCalculator {
     public class SalesCounter {
 
-        private List<Sale> _sales; //なんでprivateで仮引数も書いてないのにGPSSメソッドでこいつ使えるんだ　同じクラスだから？
+        private IEnumerable<Sale> _sales; //なんでprivateで仮引数も書いてないのにGPSSメソッドでこいつ使えるんだ　同じクラスだから？
         //アクセス修飾子の有効範囲をもう一度確認した方がよさそうですね……
 
         //コンストラクタ
@@ -17,7 +17,7 @@ namespace SalesCalculator {
         }
 
         //売上データを読み込み、Saleオブジェクトのリストを返す
-        private List<Sale> ReadSales(string filePath) {
+        private IEnumerable<Sale> ReadSales(string filePath) {
             List<Sale> sales = new List<Sale>(); //売上データを格納する
             string[] lines = File.ReadAllLines(filePath); //ファイルからすべてのデータを読み込む
 
@@ -37,8 +37,8 @@ namespace SalesCalculator {
 
 
         //店舗別売上を求める
-        public Dictionary<string, int> GetPerStoreSales() {
-            Dictionary<string, int> dict = new Dictionary<string, int>();
+        public IDictionary<string, int> GetPerStoreSales() {
+            SortedDictionary<string, int> dict = new SortedDictionary<string, int>();
             foreach (Sale sale in _sales) {
                 if (dict.ContainsKey(sale.ShopName)) {
                     dict[sale.ShopName] += sale.Amount; //店名が既に存在する(売上加算)
