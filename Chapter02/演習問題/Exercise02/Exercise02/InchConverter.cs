@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Exercise02 {
     //インチとメートルの単位変換クラス
-    class InchConverter {
-        private const double ratio = 0.0254; 
+    public static class InchConverter { 
+
+        private const double ratio = 0.0254;
 
         //メートルからインチを求める
         public static double FromMeter(double meter) {
@@ -18,5 +19,6 @@ namespace Exercise02 {
         public static double ToMeter(double inch) {
             return inch * ratio;
         }
+
     }
 }

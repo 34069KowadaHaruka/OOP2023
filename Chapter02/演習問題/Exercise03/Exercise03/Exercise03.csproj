@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{73E909AB-70F5-4185-B45A-C8BA548C5401}</ProjectGuid>
+    <ProjectGuid>{E77F6424-BBBE-4C51-87B7-AE639132122D}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Exercise02</RootNamespace>
-    <AssemblyName>Exercise02</AssemblyName>
+    <RootNamespace>Exercise03</RootNamespace>
+    <AssemblyName>Exercise03</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,12 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InchConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sale.cs" />
+    <Compile Include="SalesCounter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="data\Sales.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
