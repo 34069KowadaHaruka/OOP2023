@@ -7,9 +7,39 @@ using System.Threading.Tasks;
 namespace Exercise01 {
     class Program {
         static void Main(string[] args) {
+        #region 自分の回答
+        #if false
             int numOfSongs = 3;
             Song[] songs = SongStayOrganizing(numOfSongs);
             PrintSongs(songs, numOfSongs);
+        #endif
+        #endregion
+
+            var songs = new Song[] {
+                new Song("a","aa",243),
+                new Song("s","ss",293),
+                new Song("d","dd",276),
+                new Song("f","ff",231),
+                new Song("g","gg",273),
+            };
+            PrintSongs(songs);
+            
+            Console.WriteLine();
+
+            var lists = new List<Song>();
+            lists.Add(new Song("a", "aa", 243));
+            lists.Add(new Song("s", "ss", 293));
+            lists.Add(new Song("d", "dd", 276));
+            lists.Add(new Song("f", "ff", 231));
+            lists.Add(new Song("g", "gg", 273));
+            PrintSongs(lists);
+        }
+
+        private static void PrintSongs(IEnumerable<Song> songs) {
+            foreach (var song in songs) {
+                Console.WriteLine("{0},{1},{2:m\\:s}",
+                    song.Title, song.ArtistName, TimeSpan.FromSeconds(song.Length));
+            }
         }
 
         static Song[] SongStayOrganizing(int numOfSongs) {
@@ -39,5 +69,7 @@ namespace Exercise01 {
                 Console.WriteLine();
             }
         }
+
+        
     }
 }
