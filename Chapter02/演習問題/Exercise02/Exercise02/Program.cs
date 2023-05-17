@@ -7,19 +7,30 @@ using System.Threading.Tasks;
 namespace Exercise02 {
     class Program {
         static void Main(string[] args) {
-            if (args.Length >= 1 && args[0] == "-tom") {
-                PrintInchToMeterList(1, 10);
+            if (args.Length < 3) {
+                Console.WriteLine("適切な引数が指定されていません");
+            }
+
+            int start = int.Parse(args[1]);
+            int stop = int.Parse(args[2]);
+        #region switch-case文にしてもよい
+            if (args[0] == "-tom") {
+                PrintInchToMeterList(start, stop);
+            }
+            else if (args[0] == "-toi") {
+                PrintMeterToInchList(start, stop);
             }
             else {
-                PrintMeterToInchList(1, 10);
+                Console.WriteLine("適切な引数が指定されていません");
             }
         }
+        #endregion
 
         //フィートからメートルへの対応表を出力
         private static void PrintInchToMeterList(int start, int stop) {
             for (int inch = start; inch <= stop; inch++) {
                 double meter = InchConverter.ToMeter(inch);
-                Console.WriteLine("{0} ft = {1:0.0000}m", inch, meter);
+                Console.WriteLine("{0} inch = {1:0.0000}m", inch, meter);
             }
         }
 
@@ -27,7 +38,7 @@ namespace Exercise02 {
         private static void PrintMeterToInchList(int start, int stop) {
             for (int meter = start; meter <= stop; meter++) {
                 double inch = InchConverter.FromMeter(meter);
-                Console.WriteLine("{0} m = {1:0.0000}ft", meter, inch);
+                Console.WriteLine("{0} m = {1:0.0000}inch", meter, inch);
             }
         }
 
