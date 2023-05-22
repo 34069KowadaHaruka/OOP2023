@@ -8,31 +8,34 @@ namespace Exercise03 {
     class Program {
         static void Main(string[] args) {
             var sales = new SalesCounter(@"data\Sales.csv");
-            Console.WriteLine("**売上集計**");
-            Console.WriteLine("1:店舗別売上");
-            Console.WriteLine("2:商品カテゴリ別売上");
-            Console.Write("＞ ");
+            Console.WriteLine("** 売上集計 **");
+            Console.WriteLine("1: 店舗別売り上げ");
+            Console.WriteLine("2: 商品カテゴリ別売り上げ");
+            Console.Write(">");
             int cursor = int.Parse(Console.ReadLine());
+
+            IDictionary<String, int> amountPerX;
             do {
                 if (cursor == 1) {
-                    var amountPerStore = sales.GetPerStoreSales();
-                    foreach (var obj in amountPerStore) {
-                        Console.WriteLine("{0} {1:C}", obj.Key, obj.Value);
-                    }
+                    amountPerX = sales.GetPerStoreSales();
+                    OutputAmountPerX(amountPerX);
                     break;
                 }
                 else if (cursor == 2) {
-                    var amountPerCategory = sales.GetPerCategorySales();
-                    foreach (var obj in amountPerCategory) {
-                        Console.WriteLine("{0} {1:C}", obj.Key, obj.Value);
-                    }
+                    amountPerX = sales.GetPerCategorySales();
+                    OutputAmountPerX(amountPerX);
                     break;
                 }
                 Console.WriteLine("正しい数ではありません。再入力してください。");
-                Console.Write("＞ ");
+                Console.Write(">");
                 cursor = int.Parse(Console.ReadLine());
-            } while (cursor != 1 && cursor != 2);
-            
+            } while (true);
+        }
+
+        static void OutputAmountPerX(IDictionary<String, int> amountPerX) {
+            foreach (var obj in amountPerX) {
+                Console.WriteLine("{0} {1:C}", obj.Key, obj.Value);
+            }
         }
     }
 }
