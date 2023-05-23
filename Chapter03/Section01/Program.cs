@@ -16,7 +16,7 @@ namespace Section01 {
             //var count = numbers.Count(n => n % 5 == 0); //🔍拡張メソッド
             var sum = numbers.Sum(n => n % 2 == 0 ? n : 0);
             var sumAns = numbers.Where(n => n % 2 == 0).Sum();
-            var avg = numbers.Average(n => n % 2 != 0 ? n : 0);
+            var avg = numbers.Average(n => n % 2 == 0 ? n : 0);
             var avgAns = numbers.Where(n => n % 2 == 0).Average();
 
             Console.WriteLine("合計：" + sum);
