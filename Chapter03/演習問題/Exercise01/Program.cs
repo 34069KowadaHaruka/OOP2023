@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 namespace Exercise01 {
     class Program {
         static void Main(string[] args) {
+#if true
             var numbers = new List<int> { 12, 87, 94, 14, 53, 20, 40, 35, 76, 91, 31, 17, 48 };
+#else
+            var numbers = new List<int> { 12, 87, 94, 14, 53, 20, 4, 35, 76, 91, 31, 17, 4 };
+#endif
 
             // 3.1.1
             Exercise1_1(numbers);
@@ -26,11 +30,17 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_1(List<int> numbers) {
-            
+            var exist = numbers.Exists(n => n % 8 == 0 || n % 9 == 0);
+            if (exist) {
+                Console.WriteLine("存在しています");
+
+            }else {
+                Console.WriteLine("存在していません");
+            }
         }
 
         private static void Exercise1_2(List<int> numbers) {
-
+            numbers.ForEach(n => Console.WriteLine(((double)n / 2)));
         }
 
         private static void Exercise1_3(List<int> numbers) {
