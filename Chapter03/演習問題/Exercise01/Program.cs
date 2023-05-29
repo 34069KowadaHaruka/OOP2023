@@ -44,17 +44,11 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_3(List<int> numbers) {
-            IEnumerable<int> nums50 = numbers.Where(i => i >= 50);
-            foreach (int i in nums50) {
-                Console.WriteLine(i);
-            }
+            numbers.Where(n => n >= 50).ToList().ForEach(Console.WriteLine);
         }
 
         private static void Exercise1_4(List<int> numbers) {
-            var nums2 = numbers.Select(i => i * 2);
-            foreach (var i in nums2) {
-                Console.WriteLine(i);
-            }
+            numbers.Select(n => n * 2);
         }
     }
 }
