@@ -19,11 +19,12 @@ namespace Section04 {
             #region null合体演算子
             string code = "12345";
             var message = GetMessage(code) ?? DefaultMessage();
+            //var message = GetMessage(code) ?? "9999";
             Console.WriteLine(message);
             #endregion
         }
         private static object GetMessage(object code) {
-            return 1111;
+            return null;
         }
         private static object DefaultMessage() {
             return "Default Message";
