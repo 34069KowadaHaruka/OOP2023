@@ -16,7 +16,7 @@ namespace Exercise01 {
         }
 
         public YearMonth AddOneMonth() {
-            YearMonth addMonth = new YearMonth(Year, ++Month);
+            YearMonth addMonth = new YearMonth(Year, Month+1);
             if (addMonth.Month == 13) {
                 addMonth.Month = 1;
             }
