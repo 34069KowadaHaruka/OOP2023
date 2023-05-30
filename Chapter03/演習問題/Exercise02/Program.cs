@@ -22,11 +22,17 @@ namespace Exercise02 {
 
         private static void Exercise2_1(List<string> names) {
             Console.Write("都市名を入力してください > ");
-            Console.WriteLine(names.FindIndex(s => s == Console.ReadLine()));
+            var name = Console.ReadLine();
+            if (names.Contains(name)) {
+                Console.WriteLine(names.FindIndex(s => s == name));
+            }
+            else {
+                Console.WriteLine(-1);
+            }
         }
 
         private static void Exercise2_2(List<string> names) {
-            throw new NotImplementedException();
+            
         }
 
         private static void Exercise2_3(List<string> names) {
