@@ -14,5 +14,13 @@ namespace Exercise01 {
             Year = year;
             Month = month;
         }
+
+        public YearMonth AddOneMonth() {
+            YearMonth addMonth = new YearMonth(Year, Month + 1);
+            if (addMonth.Month == 13) {
+                addMonth.Month = 1;
+            }
+            return addMonth;
+        }
     }
 }
