@@ -16,11 +16,14 @@ namespace Exercise01 {
         }
 
         public YearMonth AddOneMonth() {
-            YearMonth addMonth = new YearMonth(Year, Month+1);
-            if (addMonth.Month == 13) {
-                addMonth.Month = 1;
+            if (Month == 12) {
+                return new YearMonth(Year + 1, 1);
             }
-            return addMonth;
+            else {
+                return new YearMonth(Year, Month + 1);
+            }
+            
+            //return new YearMonth(Month == 12 ? Year + 1 : Year, Month == 12 ? 1 : Month + 1); //わかりにくいから↑でいい
         }
 
         public override string ToString() {

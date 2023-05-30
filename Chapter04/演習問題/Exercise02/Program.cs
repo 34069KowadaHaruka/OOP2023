@@ -27,9 +27,22 @@ namespace Exercise02 {
                 new YearMonth(2003, 5),
             };
 
-            foreach (var ym in yearMonths) {
+            foreach (var ym in yearMonths) { //4-2-2
                 Console.WriteLine(ym);
             }
+
+            First21Century(yearMonths); //4-2-3
+
+            //4-2-4
+        }
+
+        public static YearMonth First21Century(YearMonth[] yearMonths) {
+            foreach (var ym in yearMonths) { 
+                if (ym.Is21Century) {
+                    return ym;
+                }
+            }
+            return null;
         }
     }
 }
