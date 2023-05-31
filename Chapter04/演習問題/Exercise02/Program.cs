@@ -20,27 +20,55 @@ namespace Exercise02 {
             #endregion
 
             YearMonth[] yearMonths = {
-                new YearMonth(1999, 1),
-                new YearMonth(2000, 2),
-                new YearMonth(2001, 3),
-                new YearMonth(2002, 4),
-                new YearMonth(2003, 5),
+                new YearMonth(1980, 1),
+                new YearMonth(1990, 4),
+                new YearMonth(2000, 7),
+                new YearMonth(2010, 9),
+                new YearMonth(2020, 12),
             };
 
-            foreach (var ym in yearMonths) { //4-2-2
+            Console.WriteLine("\n- 4.2.2 ---");
+            foreach (var ym in yearMonths) {
                 Console.WriteLine(ym);
             }
 
-            First21Century(yearMonths); //4-2-3
+            //Exercise2_2(ymCollection);
+            
+            Console.WriteLine(First21Century(yearMonths));
+            Console.WriteLine();
 
-            //4-2-4
-            Console.WriteLine(First21Century(yearMonths) ?? "21世紀のデータはありません");
+            Console.WriteLine("\n- 4.2.4 ---");
+            Console.WriteLine(First21Century(yearMonths).ToString() ?? "21世紀のデータはありません");
+
+            Console.WriteLine("\n- 4.2.5 ---");
         }
 
-        public static string First21Century(YearMonth[] yearMonths) {
+        #region メイン関数中身
+#if false
+        // 4.2.1
+        var ymCollection = new YearMonth[] {
+                
+            };
+
+        // 4.2.2
+        Console.WriteLine("\n- 4.2.2 ---");
+            Exercise2_2(ymCollection);
+        Console.WriteLine("\n- 4.2.4 ---");
+
+            // 4.2.4
+            Exercise2_4(ymCollection);
+        
+
+
+            // 4.2.5
+            Exercise2_5(ymCollection);
+#endif
+        #endregion
+
+        public static YearMonth First21Century(YearMonth[] yearMonths) { //4-2-3
             foreach (var ym in yearMonths) { 
                 if (ym.Is21Century) {
-                    return ym.ToString();
+                    return ym;
                 }
             }
             return null;
