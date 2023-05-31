@@ -14,6 +14,9 @@ namespace Exercise02 {
             if (int.TryParse(str, out num)) {
                 Console.WriteLine("{0:0.0}", num);
             }
+            else {
+                Console.WriteLine("数値文字列ではありません");
+            }
         }
     }
 }
