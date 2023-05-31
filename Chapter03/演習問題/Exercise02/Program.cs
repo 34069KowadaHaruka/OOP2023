@@ -32,7 +32,8 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_2(List<string> names) {
-            var count = Count(names, s => s.Contains('o'));
+            var count = names.Where(s => s.Contains('o')).Count();
+            Console.WriteLine(count);
         }
 
         private static void Exercise2_3(List<string> names) {
