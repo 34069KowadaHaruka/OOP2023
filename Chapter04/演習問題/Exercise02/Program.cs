@@ -34,12 +34,13 @@ namespace Exercise02 {
             First21Century(yearMonths); //4-2-3
 
             //4-2-4
+            Console.WriteLine(First21Century(yearMonths) ?? "21世紀のデータはありません");
         }
 
-        public static YearMonth First21Century(YearMonth[] yearMonths) {
+        public static string First21Century(YearMonth[] yearMonths) {
             foreach (var ym in yearMonths) { 
                 if (ym.Is21Century) {
-                    return ym;
+                    return ym.ToString();
                 }
             }
             return null;
