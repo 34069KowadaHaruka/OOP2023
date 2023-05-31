@@ -14,7 +14,7 @@ namespace Exercise01 {
             Console.Write("文字列２：");
             var str2 = Console.ReadLine();
 
-            Console.WriteLine(String.Compare(str1, str2, true) == 0 ? "等しい" : "等しくない");
+            Console.WriteLine(String.Compare(str1, str2, ignoreCase:true) == 0 ? "等しい" : "等しくない");
 
         }
     }

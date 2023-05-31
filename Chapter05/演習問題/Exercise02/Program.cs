@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 namespace Exercise02 {
     class Program {
         static void Main(string[] args) {
+            Console.Write("文字列：");
+            var str = Console.ReadLine();
+            int num;
+
+            if (int.TryParse(str, out num)) {
+                Console.WriteLine("{0:0.0}", num);
+            }
         }
     }
 }
