@@ -61,12 +61,15 @@ namespace Exercise03 {
 
         private static void Exercise3_5(string text) {
             var array = text.Split(' ').ToArray();
-            var sb = new StringBuilder(array[0]);
-            foreach (var word in array.Skip(1)) {
-                sb.Append(" " + word);
+            if (array.Length > 0) {
+                var sb = new StringBuilder(array[0]);
+                foreach (var word in array.Skip(1)) {
+                    sb.Append(" " + word);
+                }
+                var createWords = sb.ToString();
+                Console.WriteLine(createWords);
             }
-            var createWords = sb.ToString();
-            Console.WriteLine(createWords);
+            
             //TrimEndなどで空白を除くと、string文字列は2つできてしまう
         }
     }
