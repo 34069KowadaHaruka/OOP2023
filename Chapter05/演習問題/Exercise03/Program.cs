@@ -65,8 +65,7 @@ namespace Exercise03 {
             foreach (var word in array) {
                 sb.Append(word + " ");
             }
-            var createWords = sb.ToString();
-            createWords.TrimEnd();
+            var createWords = sb.ToString().TrimEnd();
             Console.WriteLine(createWords);
         }
     }
