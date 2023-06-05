@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Exercise04 {
     class NovelistInfo {
-        //店舗名
+        //作家
         public string Novelist { get; set; }
-        //商品カテゴリー
+        //代表作
         public string BestWork { get; set; }
-        //売上高
+        //誕生年
         public int Born { get; set; }
     }
 }

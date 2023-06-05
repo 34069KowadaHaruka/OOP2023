@@ -12,11 +12,11 @@ namespace Exercise02 {
                             "Paris", "Berlin", "Canberra", "Hong Kong",
             };
             Exercise2_1(names);
-            Console.WriteLine();
+            Console.WriteLine("----");
             Exercise2_2(names);
-            Console.WriteLine();
+            Console.WriteLine("----");
             Exercise2_3(names);
-            Console.WriteLine();
+            Console.WriteLine("----");
             Exercise2_4(names);
         }
 
@@ -24,7 +24,7 @@ namespace Exercise02 {
             Console.Write("都市名を入力してください > ");
             var name = Console.ReadLine();
             if (names.Contains(name)) {
-                Console.WriteLine(names.FindIndex(s => s == name));
+                Console.WriteLine(names.FindIndex(s => s == name) + 1);
             }
             else {
                 Console.WriteLine(-1);
@@ -37,7 +37,10 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_3(List<string> names) {
-            throw new NotImplementedException();
+            var cityNames = names.Where(s => s.Contains('o'));
+            foreach (var cityName in cityNames) {
+                Console.WriteLine(cityName);
+            }
         }
 
         private static void Exercise2_4(List<string> names) {
