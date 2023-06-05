@@ -50,7 +50,12 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_5(string text) {
-            throw new NotImplementedException();
+            string[] words = text.Split(' ');
+            var sb = new StringBuilder();
+            foreach (var word in words) {
+                sb.Append(word + " ");
+            }
+            Console.WriteLine(sb);
         }
     }
 }
