@@ -44,7 +44,11 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_4(List<string> names) {
-            throw new NotImplementedException();
+            var query = names.Where(s => s.FirstOrDefault() == 'B')
+                            .Select(s => s.Length);
+            foreach (var n in query) {
+                Console.Write("{0}, ", n);
+            }
         }
     }
 }
