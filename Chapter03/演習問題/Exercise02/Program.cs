@@ -19,7 +19,8 @@ namespace Exercise02 {
             Console.WriteLine("----");
             Exercise2_4(names);
         }
-
+        #region 自回答
+        #if false
         private static void Exercise2_1(List<string> names) {
             Console.Write("都市名を入力してください > ");
             var name = Console.ReadLine();
@@ -48,6 +49,42 @@ namespace Exercise02 {
                             .Select(s => s.Length);
             foreach (var n in query) {
                 Console.Write("{0}, ", n);
+            }
+        }
+#endif
+        #endregion
+
+        private static void Exercise2_1(List<string> names) {
+            Console.WriteLine("都市名を入力。空行で終了");
+            do {
+                var line = Console.ReadLine();
+                if (string.IsNullOrEmpty(line))
+                    break;
+
+                var index = names.FindIndex(s => s.Equals(line));
+                Console.WriteLine(index);
+            } while (true);
+        }
+
+        private static void Exercise2_2(List<string> names) {
+            //var count = names.Where(s => s.Contains('o')).Count();
+            var count = names.Count(s => s.Contains('o'));
+            Console.WriteLine(count);
+        }
+
+        private static void Exercise2_3(List<string> names) {
+            var selected = names.Where(s => s.Contains('o'))
+                                .ToArray();
+            foreach (var name in selected)
+                Console.WriteLine(name);
+        }
+
+        private static void Exercise2_4(List<string> names) {
+            var selected = names.Where(s => s.StartsWith("B"))
+                                .Select(s => new { s, s.Length });
+
+            foreach (var item in selected) {
+                Console.WriteLine("{0},{1}", item.s, item.Length);
             }
         }
     }
