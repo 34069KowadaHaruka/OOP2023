@@ -27,12 +27,13 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_1(string text) {
-            int count = text.Count(f => f == ' ');
-            Console.WriteLine(count);
+            int spaces = text.Count(f => f == ' ');
+            Console.WriteLine(spaces);
         }
 
         private static void Exercise3_2(string text) {
-            Console.WriteLine(text.Replace("big", "small"));
+            var replaced = text.Replace("big", "small");
+            Console.WriteLine(replaced);
         }
 
         private static void Exercise3_3(string text) {
