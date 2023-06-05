@@ -9,11 +9,12 @@ namespace Exercise04 {
         static void Main(string[] args) {
             string novelistInput = "Novelist=谷崎潤一郎;BestWork=春琴抄;Born=1886";
             string[] novelistInfoIndex = novelistInput.Split(';');
+
             for (int i = 0; i < novelistInfoIndex.Length; i++) {
-                string novelistii = novelistInfoIndex[i];
-                var index = novelistii.IndexOf("=");
-                novelistii = novelistii.Remove(0, index+1);
-                novelistInfoIndex[i] = novelistii;
+                string ni = novelistInfoIndex[i]; //ni:novelist, index
+                var index = ni.IndexOf("=");
+                ni = ni.Remove(0, index+1);
+                novelistInfoIndex[i] = ni;
             }
 
             NovelistInfo novelistInfo = new NovelistInfo {

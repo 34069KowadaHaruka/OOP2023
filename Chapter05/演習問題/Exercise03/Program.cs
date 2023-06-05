@@ -48,6 +48,7 @@ namespace Exercise03 {
             var words = text.Split(' ').Where(word => word.Length <= 4);
             foreach (var word in words)
                 Console.WriteLine(word);
+            #region 自解答foreach部分
 #if false
             foreach (var word in words) {
                 if (word.Length <= 4) {
@@ -55,6 +56,7 @@ namespace Exercise03 {
                 }
             }
 #endif
+            #endregion
         }
 
         private static void Exercise3_5(string text) {
@@ -63,7 +65,7 @@ namespace Exercise03 {
             foreach (var word in words) {
                 sb.Append(word + " ");
             }
-            Console.WriteLine(sb);
+            Console.WriteLine(sb.ToString());
         }
     }
 }
