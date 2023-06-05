@@ -66,9 +66,7 @@ namespace Exercise03 {
                 sb.Append(word + " ");
             }
             var createWords = sb.ToString();
-            if (createWords.EndsWith(" ")) {
-                createWords.Remove(createWords.Length-1, 1);
-            }
+            createWords.TrimEnd();
             Console.WriteLine(createWords);
         }
     }
