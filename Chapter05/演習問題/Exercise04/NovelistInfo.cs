@@ -12,5 +12,9 @@ namespace Exercise04 {
         public string BestWork { get; set; }
         //誕生年
         public int Born { get; set; }
+
+        public override string ToString() {
+            return base.ToString();
+        }
     }
 }

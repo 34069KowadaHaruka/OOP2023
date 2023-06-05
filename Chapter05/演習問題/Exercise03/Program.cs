@@ -60,12 +60,16 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_5(string text) {
-            string[] words = text.Split(' ');
+            var array = text.Split(' ').ToArray();
             var sb = new StringBuilder();
-            foreach (var word in words) {
+            foreach (var word in array) {
                 sb.Append(word + " ");
             }
-            Console.WriteLine(sb.ToString());
+            var createWords = sb.ToString();
+            if (createWords.EndsWith(" ")) {
+                createWords.Remove(createWords.Length-1, 1);
+            }
+            Console.WriteLine(createWords);
         }
     }
 }
