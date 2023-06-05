@@ -15,7 +15,7 @@ namespace Exercise02 {
                 Console.WriteLine("{0:0.0}", num);
             }
             else {
-                Console.WriteLine("数値文字列ではありません");
+                Console.WriteLine("int文字列ではありません");
             }
         }
     }
