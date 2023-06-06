@@ -83,7 +83,7 @@ namespace Exercise04 {
         }
 
         static void novelistOptimization(string[] novelistInput, List<NovelistInfo> novelists, int i) {
-            
+            //↓別のメソッドに分けたほうがよさそう
             string[] novelistInfoIndex = novelistInput[i].Split(';');
 
             for (int j = 0; j < novelistInfoIndex.Length; j++) { //要素以外の削除
@@ -91,6 +91,7 @@ namespace Exercise04 {
                 ni = ni.Remove(0, ni.IndexOf("=")+1);
                 novelistInfoIndex[j] = ni;
             }
+            //↑(ここまで)
 
             NovelistInfo novelistInfo = new NovelistInfo {
                 Novelist = novelistInfoIndex[0],
