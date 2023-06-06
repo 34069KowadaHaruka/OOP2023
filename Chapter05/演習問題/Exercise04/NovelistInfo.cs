@@ -14,6 +14,10 @@ namespace Exercise04 {
         public int Born { get; set; }
 
         public override string ToString() {
+            string[] novelistPropaty = { "作家　：", "代表作：", "誕生年：", };
+            Console.WriteLine(novelistPropaty[0]+ Novelist);
+            Console.WriteLine(novelistPropaty[1]+ BestWork);
+            Console.WriteLine(novelistPropaty[2]+ Born);
             return base.ToString();
         }
     }
