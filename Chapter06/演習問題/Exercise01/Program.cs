@@ -25,23 +25,36 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_1(int[] numbers) {
-            throw new NotImplementedException();
+            Console.WriteLine(numbers.Max());
         }
 
         private static void Exercise1_2(int[] numbers) {
-            throw new NotImplementedException();
+            var lastN = numbers.Skip(numbers.Length-2).ToArray();
+            foreach (var item in lastN) {
+                Console.Write(item + ", ");
+            }
+            Console.WriteLine();
         }
 
         private static void Exercise1_3(int[] numbers) {
-            throw new NotImplementedException();
+            var strNumbers = numbers.Select(n => n.ToString());
+            foreach (var item in strNumbers) {
+                Console.Write(item + ", ");
+            }
+            Console.WriteLine();
         }
 
         private static void Exercise1_4(int[] numbers) {
-            throw new NotImplementedException();
+            var orderdByNumbers = numbers.OrderBy(n => n).Take(3).ToArray();
+            foreach (var n in orderdByNumbers) {
+                Console.Write(n + ", ");
+            }
+            Console.WriteLine();
         }
 
         private static void Exercise1_5(int[] numbers) {
-            throw new NotImplementedException();
+            var over10 = numbers.Distinct().Count(n => n > 10);
+            Console.WriteLine(over10);
         }
     }
 }
