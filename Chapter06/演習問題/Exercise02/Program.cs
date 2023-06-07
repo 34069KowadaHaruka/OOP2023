@@ -56,7 +56,8 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_4(List<Book> books) {
-            throw new NotImplementedException();
+            var over4000title = books.Where(b => b.Price >= 4000).FirstOrDefault();
+            Console.WriteLine(over4000title.Title);
         }
 
         private static void Exercise2_5(List<Book> books) {
