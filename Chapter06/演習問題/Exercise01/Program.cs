@@ -29,8 +29,8 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_2(int[] numbers) {
-            var lastN = numbers.Skip(numbers.Length-2).ToArray();
-            foreach (var item in lastN) {
+            var skip = numbers.Length-2;
+            foreach (var item in numbers.Skip(skip)) {
                 Console.Write(item + ", ");
             }
             Console.WriteLine();
