@@ -18,11 +18,11 @@ namespace Section01 {
 
             Console.WriteLine();
 
-            var booksObj = books.Where(x => x.Title.Contains("物語")).Average(x => x.Pages);
-            Console.WriteLine("{0}ページ", booksObj);
-            //foreach (var book in booksObj) {
-            //    Console.WriteLine("{0} {1}円",book.Title, book.Price);
-            //}
+            var booksObj = books.Where(x => x.Title.Contains("物語"))
+                                .OrderByDescending(x => x.Price);
+            foreach (var book in booksObj) {
+                Console.WriteLine("{0} {1}円",book.Title, book.Price);
+            }
             
         }
     }
