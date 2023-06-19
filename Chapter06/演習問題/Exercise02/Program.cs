@@ -44,9 +44,8 @@ namespace Exercise02 {
 
         private static void Exercise2_1(List<Book> books) {
             var pricePages = books.Where(b => b.Title == "ワンダフル・C#ライフ");
-            foreach (var book in pricePages) {
+            foreach (var book in pricePages)
                 Console.WriteLine("{0}：{1}円 {2}ページ", book.Title, book.Price, book.Pages);
-            }
         }
 
         private static void Exercise2_2(List<Book> books) {
@@ -59,7 +58,9 @@ namespace Exercise02 {
 
         private static void Exercise2_4(List<Book> books) {
             var over4000title = books.FirstOrDefault(b => b.Price >= 4000);
-            Console.WriteLine(over4000title.Title);
+            if (over4000title != null) {
+                Console.WriteLine(over4000title.Title);
+            }
         }
 
         private static void Exercise2_5(List<Book> books) {
