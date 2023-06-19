@@ -63,8 +63,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_5(List<Book> books) {
-            var over4000andMax = books.Where(b => b.Price < 4000).Max(b => b.Pages);
-            Console.WriteLine(over4000andMax);
+            Console.WriteLine(books.Where(b => b.Price < 4000).Max(b => b.Pages));
         }
 
         private static void Exercise2_6(List<Book> books) {
