@@ -58,7 +58,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_4(List<Book> books) {
-            var over4000title = books.Where(b => b.Price >= 4000).FirstOrDefault();
+            var over4000title = books.FirstOrDefault(b => b.Price >= 4000);
             Console.WriteLine(over4000title.Title);
         }
 
