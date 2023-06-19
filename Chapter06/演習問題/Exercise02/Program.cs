@@ -43,7 +43,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_1(List<Book> books) {
-            var pricePages = books.Where(b => b.Title.Contains("ワンダフル・C#ライフ"));
+            var pricePages = books.Where(b => b.Title == "ワンダフル・C#ライフ");
             foreach (var book in pricePages) {
                 Console.WriteLine("{0}：{1}円 {2}ページ", book.Title, book.Price, book.Pages);
             }
