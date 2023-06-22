@@ -41,14 +41,14 @@ namespace Section01 {
                 Console.Write("県名：");
                 var prefecture = Console.ReadLine();
 
-                if (prefecture == "999") {
+                if (string.Compare(prefecture, "999", true) >= 0) {
 
                     break;
 
                 }
                 else if (PrefCapitalDict.ContainsKey(prefecture)) {
 
-                    Console.WriteLine("その件の県庁所在地は既に登録されています。上書きしますか？( はい / いいえ )");
+                    Console.WriteLine("その件の県庁所在地は既に登録されています。上書きしますか？ ( はい / いいえ )");
                     Console.WriteLine("登録されている{0}の県庁所在地：{1}", prefecture, PrefCapitalDict[prefecture]);
 
                     if (Console.ReadLine() == "はい") {
