@@ -32,6 +32,7 @@ namespace Section01 {
 
             #region PrefCapitalDict
 #if true
+            var ci = System.Globalization.CultureInfo.CurrentCulture.CompareInfo;
             var PrefCapitalDict = new Dictionary<string, string>();
 
             Console.WriteLine("県庁所在地の登録");
@@ -41,10 +42,8 @@ namespace Section01 {
                 Console.Write("県名：");
                 var prefecture = Console.ReadLine();
 
-                if (string.Compare(prefecture, "999", true) >= 0) {
-
+                if (ci.Compare(prefecture, "999", System.Globalization.CompareOptions.IgnoreWidth) == 0) {
                     break;
-
                 }
                 else if (PrefCapitalDict.ContainsKey(prefecture)) {
 
@@ -59,7 +58,7 @@ namespace Section01 {
                 else { 
                     Console.Write("所在地：");
                 }
-                
+                Console.WriteLine();
                 var capital = Console.ReadLine();
 
                 PrefCapitalDict[prefecture] = capital;
