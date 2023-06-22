@@ -68,14 +68,14 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_6(List<Book> books) {
-            var over400pAsc = books.Where(b => b.Pages >= 400).OrderByDescending(b => b.Price);
-            foreach (var item in over400pAsc)
+            var over400pDescByPrice = books.Where(b => b.Pages >= 400).OrderByDescending(b => b.Price);
+            foreach (var item in over400pDescByPrice)
                 Console.WriteLine("{0} \\{1}", item.Title, item.Price);
         }
 
         private static void Exercise2_7(List<Book> books) {
-            var cStringAnd500Under = books.Where(b => b.Title.Contains("C#") && b.Pages <= 500);
-            foreach (var item in cStringAnd500Under)
+            var contCsharpAnd500pUnder = books.Where(b => b.Title.Contains("C#") && b.Pages <= 500);
+            foreach (var item in contCsharpAnd500pUnder)
                 Console.WriteLine(item.Title);
         }
     }
