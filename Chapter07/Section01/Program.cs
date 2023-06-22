@@ -58,25 +58,52 @@ namespace Section01 {
                 else { 
                     Console.Write("所在地：");
                 }
-                Console.WriteLine();
                 var capital = Console.ReadLine();
+                Console.WriteLine();
 
                 PrefCapitalDict[prefecture] = capital;
             }
 
-            Console.Write("県名を入力：");
+            Console.WriteLine("1：一覧表示　2：県名指定");
+            Console.Write(">");
+            int.TryParse(Console.ReadLine(), out var num); //全角数字を変換しないのが気に入らない
+
+            switch (num) {
+
+                case 1:
+                    try {
+                        foreach (var pref in PrefCapitalDict) {
+                            Console.WriteLine("{0}({1})", pref.Key, pref.Value);
+                        }
+                    }
+                    catch (KeyNotFoundException) {
+                        Console.WriteLine("コレクションにはデータがありません");
+                    }
+                    break;
+
+                case 2:
+                    try {
+                        Console.Write("県名を入力：");
+                        var getCapitalPref = Console.ReadLine();
+                        Console.WriteLine(PrefCapitalDict[getCapitalPref] + "です");
+                    }
+                    catch (KeyNotFoundException) {
+                        Console.WriteLine("コレクションにそのデータはありません");
+                    }
+                    break;
+
+            }
+
             
-            try {
-                var getCapitalPref = Console.ReadLine();
-                Console.WriteLine(PrefCapitalDict[getCapitalPref] + "です");
-            }
-            catch (KeyNotFoundException) {
-                Console.WriteLine("コレクションにそのデータはありません");
-            }
             
 #endif
             #endregion
 
         }
+    }
+
+    class CityInfo {
+        string City { get; set; }
+        string Population { get; set; }
     }
 }
