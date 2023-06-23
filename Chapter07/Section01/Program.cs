@@ -53,6 +53,9 @@ namespace Section01 {
                     if (Console.ReadLine() == "はい") {
                         Console.Write("所在地：");
                     }
+                    else {
+                        continue;
+                    }
 
                 }
                 else { 
