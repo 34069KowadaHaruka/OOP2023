@@ -72,13 +72,14 @@ namespace Section01 {
 
             Console.WriteLine("1：一覧表示　2：県名指定");
             Console.Write(">");
-            var num = Strings.StrConv(Console.ReadLine(), VbStrConv.Narrow, 0);
+            //var num = 
+                int.TryParse(Strings.StrConv(Console.ReadLine(), VbStrConv.Narrow, 0), out var num);
             //intになってから実行
             switch (num) {
 
-                case "1":
+                case 1:
                     try {
-                        foreach (var pref in PrefCapitalDict) {
+                        foreach (var pref in PrefCapitalDict.OrderByDescending(x => x.Value.Population)) {
                             if (PrefCapitalDict.Keys == null) {
                                 Console.WriteLine("コレクションにはデータがありません");
                                 break;
@@ -91,7 +92,7 @@ namespace Section01 {
                     }
                     break;
 
-                case "2":
+                case 2:
                     try {
                         Console.Write("県名を入力：");
                         var getCapitalPref = Console.ReadLine();
