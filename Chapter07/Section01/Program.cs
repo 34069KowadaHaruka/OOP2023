@@ -72,18 +72,14 @@ namespace Section01 {
 
             Console.WriteLine("1：一覧表示　2：県名指定");
             Console.Write(">");
-            //var num = 
-                int.TryParse(Strings.StrConv(Console.ReadLine(), VbStrConv.Narrow, 0), out var num);
-            //intになってから実行
+
+            //↓ null→0に
+            int.TryParse(Strings.StrConv(Console.ReadLine(), VbStrConv.Narrow, 0), out var num);
             switch (num) {
 
                 case 1:
                     try {
                         foreach (var pref in PrefCapitalDict.OrderByDescending(x => x.Value.Population)) {
-                            if (PrefCapitalDict.Keys == null) {
-                                Console.WriteLine("コレクションにはデータがありません");
-                                break;
-                            }
                             Console.WriteLine("{0}({1}, 人口：{2}人)", pref.Key, pref.Value.City, pref.Value.Population);
                         }
                     }
