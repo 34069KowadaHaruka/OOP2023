@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +34,7 @@ namespace Section01 {
             #region PrefCapitalDict
 #if true
             var ci = System.Globalization.CultureInfo.CurrentCulture.CompareInfo;
-            var PrefCapitalDict = new Dictionary<string, string>();
+            var PrefCapitalDict = new Dictionary<string, CityInfo>();
 
             Console.WriteLine("県庁所在地の登録");
 
@@ -41,6 +42,7 @@ namespace Section01 {
 
                 Console.Write("県名：");
                 var prefecture = Console.ReadLine();
+                CityInfo cityInfo;
 
                 if (ci.Compare(prefecture, "999", System.Globalization.CompareOptions.IgnoreWidth) == 0) {
                     break;
@@ -48,35 +50,40 @@ namespace Section01 {
                 else if (PrefCapitalDict.ContainsKey(prefecture)) {
 
                     Console.WriteLine("その件の県庁所在地は既に登録されています。上書きしますか？ ( はい / いいえ )");
-                    Console.WriteLine("登録されている{0}の県庁所在地：{1}", prefecture, PrefCapitalDict[prefecture]);
+                    Console.WriteLine("登録されている{0}の県庁所在地：{1}({2}人)",
+                                    prefecture, PrefCapitalDict[prefecture].City, PrefCapitalDict[prefecture].Population);
 
                     if (Console.ReadLine() == "はい") {
-                        Console.Write("所在地：");
+                        cityInfo = InputCity();
                     }
                     else {
                         continue;
                     }
 
                 }
-                else { 
-                    Console.Write("所在地：");
+                else {
+                    cityInfo = InputCity();
                 }
-                var capital = Console.ReadLine();
+                
                 Console.WriteLine();
 
-                PrefCapitalDict[prefecture] = capital;
+                PrefCapitalDict[prefecture] = cityInfo;
             }
 
             Console.WriteLine("1：一覧表示　2：県名指定");
             Console.Write(">");
-            int.TryParse(Console.ReadLine(), out var num); //全角数字を変換しないのが気に入らない
-
+            var num = Strings.StrConv(Console.ReadLine(), VbStrConv.Narrow, 0);
+            //intになってから実行
             switch (num) {
 
-                case 1:
+                case "1":
                     try {
                         foreach (var pref in PrefCapitalDict) {
-                            Console.WriteLine("{0}({1})", pref.Key, pref.Value);
+                            if (PrefCapitalDict.Keys == null) {
+                                Console.WriteLine("コレクションにはデータがありません");
+                                break;
+                            }
+                            Console.WriteLine("{0}({1}, 人口：{2}人)", pref.Key, pref.Value.City, pref.Value.Population);
                         }
                     }
                     catch (KeyNotFoundException) {
@@ -84,11 +91,12 @@ namespace Section01 {
                     }
                     break;
 
-                case 2:
+                case "2":
                     try {
                         Console.Write("県名を入力：");
                         var getCapitalPref = Console.ReadLine();
-                        Console.WriteLine(PrefCapitalDict[getCapitalPref] + "です");
+                        Console.WriteLine("{0} (人口：{1}人)です", PrefCapitalDict[getCapitalPref].City,
+                                            PrefCapitalDict[getCapitalPref].Population);
                     }
                     catch (KeyNotFoundException) {
                         Console.WriteLine("コレクションにそのデータはありません");
@@ -97,16 +105,31 @@ namespace Section01 {
 
             }
 
-            
-            
 #endif
             #endregion
 
         }
+
+        public static CityInfo InputCity() {
+            string city;
+            int population;
+
+            Console.Write("所在地：");
+            city = Console.ReadLine();
+            Console.Write("所在地の人口：");
+            population = int.Parse(Strings.StrConv(Console.ReadLine(), VbStrConv.Narrow, 0));
+
+            var cityInfo = new CityInfo {
+                City = city, 
+                Population = population, 
+            };
+
+            return cityInfo;
+        }
     }
 
     class CityInfo {
-        string City { get; set; }
-        string Population { get; set; }
+        public string City { get; set; }
+        public int Population { get; set; }
     }
 }
