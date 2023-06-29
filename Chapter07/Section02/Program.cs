@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Section01 {
+namespace Section02 {
     class Program {
         static void Main(string[] args) {
             #region flowerDict
@@ -34,11 +34,12 @@ namespace Section01 {
             #region PrefCapitalDict
 #if true
             var ci = System.Globalization.CultureInfo.CurrentCulture.CompareInfo;
-            var prefCapitalDict = new Dictionary<string, CityInfo>();
+            var cityList = new List<CityInfo>();　
+            var prefCapitalDict = new Dictionary<string, List<CityInfo>>();
 
-            Console.WriteLine("県庁所在地の登録");
+            Console.WriteLine("都市の登録");
 
-            while(true){
+            while (true) {
 
                 Console.Write("県名：");
                 var prefecture = Console.ReadLine();
@@ -49,10 +50,12 @@ namespace Section01 {
                 }
                 else if (prefCapitalDict.ContainsKey(prefecture)) {
 
-                    Console.WriteLine("その件の県庁所在地は既に登録されています。上書きしますか？ ( はい / いいえ )");
-                    Console.WriteLine("登録されている{0}の県庁所在地：{1}({2}人)",
-                                    prefecture, prefCapitalDict[prefecture].City, prefCapitalDict[prefecture].Population);
-
+                    Console.WriteLine("その県の都市は既に登録されています。追加しますか？ ( はい / いいえ )");
+                    Console.Write("登録されている{0}の都市", prefecture);
+                    foreach (var city in prefCapitalDict[prefecture]) {
+                        Console.WriteLine("{0}({1}人) ", city.City, city.Population);
+                    }
+                    
                     if (Console.ReadLine() == "はい") {
                         cityInfo = InputCity();
                     }
@@ -64,10 +67,10 @@ namespace Section01 {
                 else {
                     cityInfo = InputCity();
                 }
-                
+
                 Console.WriteLine();
 
-                prefCapitalDict[prefecture] = cityInfo;
+                prefCapitalDict[prefecture].Add(InputCity());
             }
 
             Console.WriteLine("1：一覧表示　2：県名指定");
@@ -79,8 +82,8 @@ namespace Section01 {
 
                 case 1:
                     try { //一つもデータを登録しなかったとき、エラーにならず、KeyをStringにしてみても、nullともEmptyとも判定されない。何も出ずに終了となるのが嫌
-                        foreach (var pref in prefCapitalDict.OrderByDescending(x => x.Value.Population)) {
-                            Console.WriteLine("{0}({1}, 人口：{2}人)", pref.Key, pref.Value.City, pref.Value.Population);
+                        foreach (var pref in prefCapitalDict) {
+                            Console.WriteLine("{0}({1}, 人口：{2}人)", pref.Key);
                         }
                     }
                     catch (KeyNotFoundException) {
@@ -92,8 +95,9 @@ namespace Section01 {
                     try {
                         Console.Write("県名を入力：");
                         var getCapitalPref = Console.ReadLine();
-                        Console.WriteLine("{0} (人口：{1}人)です", prefCapitalDict[getCapitalPref].City,
-                                            prefCapitalDict[getCapitalPref].Population);
+                        foreach (var city in prefCapitalDict[getCapitalPref]) {
+                            Console.Write("{0}({1}人) ", city.City, city.Population);
+                        }
                     }
                     catch (KeyNotFoundException) {
                         Console.WriteLine("コレクションにそのデータはありません");
@@ -111,14 +115,14 @@ namespace Section01 {
             string city;
             int population;
 
-            Console.Write("所在地：");
+            Console.Write("都市名：");
             city = Console.ReadLine();
-            Console.Write("所在地の人口：");
+            Console.Write("都市の人口：");
             population = int.Parse(Strings.StrConv(Console.ReadLine(), VbStrConv.Narrow, 0));
 
             var cityInfo = new CityInfo {
-                City = city, 
-                Population = population, 
+                City = city,
+                Population = population,
             };
 
             return cityInfo;
@@ -130,3 +134,4 @@ namespace Section01 {
         public int Population { get; set; }
     }
 }
+
