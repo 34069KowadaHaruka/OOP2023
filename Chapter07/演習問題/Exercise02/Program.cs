@@ -41,7 +41,7 @@ namespace Exercise02 {
 
             Console.WriteLine("---Exercise02---");
 
-            Console.WriteLine(abbrs.CountWords());
+            Console.WriteLine(abbrs.Count);
             Console.WriteLine();
             Console.WriteLine(abbrs.Remove("FIFA"));
             /*
@@ -50,9 +50,7 @@ namespace Exercise02 {
             }
             */
             Console.WriteLine();
-            foreach (var item in abbrs.OnlyThreeAbbr()) {
-                Console.WriteLine("{0}={1}", item.Key, item.Value);
-            }
+            abbrs.OnlyThreeAbbr();
 
         }
     }

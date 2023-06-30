@@ -45,9 +45,8 @@ namespace Exercise02 {
 
         // 7.2.1
         // 登録されている用語の数を返す
-        public int CountWords() {
-            return _dict.Keys.Count();
-        }
+        public int Count{ get {return _dict.Count();} }
+
         // 7.2.2
         // 略語を引数に受け取り、削除する
         public bool Remove(string abber) {
@@ -64,8 +63,8 @@ namespace Exercise02 {
         public Dictionary<string, string> OnlyThreeAbbr() {
             var dict = _dict;
             foreach (var item in dict) {
-                if (item.Key.Length != 3) {
-                    dict.Remove(item.Value);
+                if (item.Key.Length == 3) {
+                    Console.WriteLine("{0}={1}", item.Key, item.Value);
                 }
             }
             return dict;
