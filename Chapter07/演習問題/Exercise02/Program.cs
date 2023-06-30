@@ -43,15 +43,24 @@ namespace Exercise02 {
 
             Console.WriteLine(abbrs.Count);
             Console.WriteLine();
-            Console.WriteLine(abbrs.Remove("FIFA"));
+            //Console.WriteLine(abbrs.Remove("FIFA"));
+            if (abbrs.Remove("ASEAN")) {
+                Console.WriteLine(abbrs.Count);
+            }
+            if (!abbrs.Remove("ASEAN")) {
+                Console.WriteLine("削除できません");
+            }
             /*
             foreach (var item in abbrs.FindAll("")) {
                 Console.WriteLine("{0}={1}", item.Key, item.Value);
             }
             */
             Console.WriteLine();
-            abbrs.OnlyThreeAbbr();
-
+            foreach (var item in abbrs.Where(x => x.Key.Length == 3)) {
+                Console.WriteLine("{0}={1}", item.Key, item.Value);
+            }
+            //Console.WriteLine();
+            //abbrs.OnlyThreeAbbr(); //IEnumerable実装前
         }
     }
 }
