@@ -28,11 +28,8 @@ namespace Exercise01 {
         private static void DisplayDatePattern3(DateTime dateTime) {
             var culture = new CultureInfo("ja-JP");
             culture.DateTimeFormat.Calendar = new JapaneseCalendar();
-
-            var dayOfWeek = culture.DateTimeFormat.GetDayName(dateTime.DayOfWeek);
-            
-            var str = dateTime.ToString("ggyy年 M月d日", culture);
-            Console.WriteLine(str + "({0})", dayOfWeek);
+            var str = dateTime.ToString("ggyy年 M月d日(dddd)", culture);
+            Console.WriteLine(str);
         }
 
         private static void DisplayDatePattern3_2(DateTime dateTime) {
