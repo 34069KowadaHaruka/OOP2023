@@ -34,7 +34,6 @@ namespace Section02 {
             #region PrefCapitalDict
 #if true
             var ci = System.Globalization.CultureInfo.CurrentCulture.CompareInfo;
-            var cityList = new List<CityInfo>();　
             var prefCapitalDict = new Dictionary<string, List<CityInfo>>();
 
             Console.WriteLine("都市の登録");
@@ -51,9 +50,10 @@ namespace Section02 {
                 else if (prefCapitalDict.ContainsKey(prefecture)) {
 
                     Console.WriteLine("その県の都市は既に登録されています。追加しますか？ ( はい / いいえ )");
-                    Console.Write("登録されている{0}の都市", prefecture);
+                    Console.WriteLine();
+                    Console.WriteLine("登録されている{0}の都市", prefecture);
                     foreach (var city in prefCapitalDict[prefecture]) {
-                        Console.WriteLine("{0}({1}人) ", city.City, city.Population);
+                        Console.WriteLine("・{0}({1}人) ", city.City, city.Population);
                     }
                     
                     if (Console.ReadLine() == "はい") {
@@ -65,12 +65,13 @@ namespace Section02 {
 
                 }
                 else {
+                    prefCapitalDict[prefecture] = new List<CityInfo>();
                     cityInfo = InputCity();
                 }
 
                 Console.WriteLine();
 
-                prefCapitalDict[prefecture].Add(InputCity());
+                prefCapitalDict[prefecture].Add(cityInfo);
             }
 
             Console.WriteLine("1：一覧表示　2：県名指定");
@@ -83,7 +84,9 @@ namespace Section02 {
                 case 1:
                     try { //一つもデータを登録しなかったとき、エラーにならず、KeyをStringにしてみても、nullともEmptyとも判定されない。何も出ずに終了となるのが嫌
                         foreach (var pref in prefCapitalDict) {
-                            Console.WriteLine("{0}({1}, 人口：{2}人)", pref.Key);
+                            foreach (var city in pref.Value) {
+                                Console.WriteLine("{0}({1}, 人口：{2}人)", pref.Key, city.City, city.Population);
+                            }
                         }
                     }
                     catch (KeyNotFoundException) {
