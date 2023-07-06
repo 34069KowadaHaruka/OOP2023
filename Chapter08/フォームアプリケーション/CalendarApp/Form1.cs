@@ -22,10 +22,13 @@ namespace CalendarApp {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            //tbTimeNow_TextChanged();
+            tbTimeNow.Text = DateTime.Now.ToString("yyyy年M月d日(dddd)　HH:mm:ss");
+            tmTimeDisp.Start();
         }
 
         private void btAge_Click(object sender, EventArgs e) {
+            #region
+#if false
             var dtp = dtpDate.Value;
             var now = DateTime.Now;
             int range;
@@ -44,11 +47,36 @@ namespace CalendarApp {
                 }
                 tbMessage.Text = range + "歳です";
             }
+#endif
+            #endregion
+            var dtp = dtpDate.Value;
+            var age = GetAge(dtp, DateTime.Now);
+            tbMessage.Text = age+"歳です";
         }
 
-        private void tbTimeNow_TextChanged(object sender, EventArgs e) {
-            var now = DateTime.Now;
-            tbTimeNow.Text = now.ToString();
+        public static int GetAge(DateTime birthday, DateTime targetDay) {
+            var age = targetDay.Year - birthday.Year;
+            if (targetDay < birthday.AddYears(age)) {
+                age--;
+            }
+            return age;
+        }
+
+        //タイマーイベントハンドラ
+        private void tmTimeDisp_Tick(object sender, EventArgs e) {
+            tbTimeNow.Text = DateTime.Now.ToString("yyyy年M月d日(dddd)　HH:mm:ss");
+        }
+
+        private void btNextYear_Click(object sender, EventArgs e) {
+            tbMessage.Text = "一年後：" + dtpDate.Value.AddYears(1);
+        }
+
+        private void btNextMonth_Click(object sender, EventArgs e) {
+            tbMessage.Text = "一ヵ月後：" + dtpDate.Value.AddMonths(1);
+        }
+
+        private void btNextDay_Click(object sender, EventArgs e) {
+            tbMessage.Text = "一日後：" + dtpDate.Value.AddDays(1);
         }
     }
 }

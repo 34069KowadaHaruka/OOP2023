@@ -24,6 +24,7 @@ namespace CalendarApp {
         /// コード エディターで変更しないでください。
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.btDayCalc = new System.Windows.Forms.Button();
@@ -37,6 +38,7 @@ namespace CalendarApp {
             this.label2 = new System.Windows.Forms.Label();
             this.tbTimeNow = new System.Windows.Forms.TextBox();
             this.btAge = new System.Windows.Forms.Button();
+            this.tmTimeDisp = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -159,9 +161,8 @@ namespace CalendarApp {
             this.tbTimeNow.Location = new System.Drawing.Point(152, 345);
             this.tbTimeNow.Multiline = true;
             this.tbTimeNow.Name = "tbTimeNow";
-            this.tbTimeNow.Size = new System.Drawing.Size(266, 36);
+            this.tbTimeNow.Size = new System.Drawing.Size(580, 36);
             this.tbTimeNow.TabIndex = 3;
-            this.tbTimeNow.TextChanged += new System.EventHandler(this.tbTimeNow_TextChanged);
             // 
             // btAge
             // 
@@ -173,6 +174,11 @@ namespace CalendarApp {
             this.btAge.Text = "年齢";
             this.btAge.UseVisualStyleBackColor = true;
             this.btAge.Click += new System.EventHandler(this.btAge_Click);
+            // 
+            // tmTimeDisp
+            // 
+            this.tmTimeDisp.Interval = 500;
+            this.tmTimeDisp.Tick += new System.EventHandler(this.tmTimeDisp_Tick);
             // 
             // Form1
             // 
@@ -215,6 +221,7 @@ namespace CalendarApp {
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbTimeNow;
         private System.Windows.Forms.Button btAge;
+        private System.Windows.Forms.Timer tmTimeDisp;
     }
 }
 
