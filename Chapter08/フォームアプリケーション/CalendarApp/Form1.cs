@@ -67,8 +67,14 @@ namespace CalendarApp {
             tbTimeNow.Text = DateTime.Now.ToString("yyyy年M月d日(dddd)　HH:mm:ss");
         }
 
+        #region Formのボタン群が違うところに接続されているので、消して作り直す
+#if false
         private void btNextYear_Click(object sender, EventArgs e) {
             tbMessage.Text = "一年後：" + dtpDate.Value.AddYears(1);
+        }
+
+        private void btForwardYear_Click(object sender, EventArgs e) {
+            tbMessage.Text = "一年後：" + dtpDate.Value.AddYears(-1);
         }
 
         private void btNextMonth_Click(object sender, EventArgs e) {
@@ -78,5 +84,7 @@ namespace CalendarApp {
         private void btNextDay_Click(object sender, EventArgs e) {
             tbMessage.Text = "一日後：" + dtpDate.Value.AddDays(1);
         }
+#endif
+        #endregion
     }
 }
