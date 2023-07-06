@@ -12,7 +12,7 @@ namespace Exercise01 {
             DisplayDatePattern1(dateTime);
             DisplayDatePattern2(dateTime);
             DisplayDatePattern3(dateTime);
-            DisplayDatePattern3_2(dateTime);
+            //DisplayDatePattern3_2(dateTime);
         }
 
         private static void DisplayDatePattern1(DateTime dateTime) {
@@ -32,8 +32,8 @@ namespace Exercise01 {
             Console.WriteLine(str);
         }
 
-        private static void DisplayDatePattern3_2(DateTime dateTime) {
-            throw new NotImplementedException();
-        }
+        //private static void DisplayDatePattern3_2(DateTime dateTime) {
+        //    throw new NotImplementedException();
+        //}
     }
 }

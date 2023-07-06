@@ -36,6 +36,7 @@ namespace CalendarApp {
             this.btNextYear = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tbTimeNow = new System.Windows.Forms.TextBox();
+            this.btAge = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -79,7 +80,7 @@ namespace CalendarApp {
             // btForwardDay
             // 
             this.btForwardDay.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btForwardDay.Location = new System.Drawing.Point(94, 212);
+            this.btForwardDay.Location = new System.Drawing.Point(94, 266);
             this.btForwardDay.Name = "btForwardDay";
             this.btForwardDay.Size = new System.Drawing.Size(95, 43);
             this.btForwardDay.TabIndex = 2;
@@ -90,7 +91,7 @@ namespace CalendarApp {
             // btNextDay
             // 
             this.btNextDay.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btNextDay.Location = new System.Drawing.Point(199, 212);
+            this.btNextDay.Location = new System.Drawing.Point(199, 266);
             this.btNextDay.Name = "btNextDay";
             this.btNextDay.Size = new System.Drawing.Size(95, 43);
             this.btNextDay.TabIndex = 2;
@@ -101,7 +102,7 @@ namespace CalendarApp {
             // btNextMonth
             // 
             this.btNextMonth.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btNextMonth.Location = new System.Drawing.Point(199, 163);
+            this.btNextMonth.Location = new System.Drawing.Point(199, 217);
             this.btNextMonth.Name = "btNextMonth";
             this.btNextMonth.Size = new System.Drawing.Size(95, 43);
             this.btNextMonth.TabIndex = 2;
@@ -112,7 +113,7 @@ namespace CalendarApp {
             // btForwardMonth
             // 
             this.btForwardMonth.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btForwardMonth.Location = new System.Drawing.Point(94, 163);
+            this.btForwardMonth.Location = new System.Drawing.Point(94, 217);
             this.btForwardMonth.Name = "btForwardMonth";
             this.btForwardMonth.Size = new System.Drawing.Size(95, 43);
             this.btForwardMonth.TabIndex = 2;
@@ -123,7 +124,7 @@ namespace CalendarApp {
             // btForwardYear
             // 
             this.btForwardYear.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btForwardYear.Location = new System.Drawing.Point(94, 114);
+            this.btForwardYear.Location = new System.Drawing.Point(94, 168);
             this.btForwardYear.Name = "btForwardYear";
             this.btForwardYear.Size = new System.Drawing.Size(95, 43);
             this.btForwardYear.TabIndex = 2;
@@ -134,7 +135,7 @@ namespace CalendarApp {
             // btNextYear
             // 
             this.btNextYear.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btNextYear.Location = new System.Drawing.Point(199, 114);
+            this.btNextYear.Location = new System.Drawing.Point(199, 168);
             this.btNextYear.Name = "btNextYear";
             this.btNextYear.Size = new System.Drawing.Size(95, 43);
             this.btNextYear.TabIndex = 2;
@@ -160,12 +161,25 @@ namespace CalendarApp {
             this.tbTimeNow.Name = "tbTimeNow";
             this.tbTimeNow.Size = new System.Drawing.Size(266, 36);
             this.tbTimeNow.TabIndex = 3;
+            this.tbTimeNow.TextChanged += new System.EventHandler(this.tbTimeNow_TextChanged);
+            // 
+            // btAge
+            // 
+            this.btAge.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btAge.Location = new System.Drawing.Point(94, 98);
+            this.btAge.Name = "btAge";
+            this.btAge.Size = new System.Drawing.Size(126, 42);
+            this.btAge.TabIndex = 4;
+            this.btAge.Text = "年齢";
+            this.btAge.UseVisualStyleBackColor = true;
+            this.btAge.Click += new System.EventHandler(this.btAge_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(744, 383);
+            this.Controls.Add(this.btAge);
             this.Controls.Add(this.tbTimeNow);
             this.Controls.Add(this.tbMessage);
             this.Controls.Add(this.btNextYear);
@@ -200,6 +214,7 @@ namespace CalendarApp {
         private System.Windows.Forms.Button btNextYear;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbTimeNow;
+        private System.Windows.Forms.Button btAge;
     }
 }
 
