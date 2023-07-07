@@ -29,17 +29,14 @@ namespace CarReportSystem {
                 CarImage = pbCarImage.Image, 
             };
             CarReports.Add(carReport);
-            dgvCarReports.Update();
+            //dgvCarReports.Update();
             
         }
 
-        public static CarReport.MakerGroup getSelectedMaker() {
-            CarReport.MakerGroup makerGroup = CarReport.MakerGroup.トヨタ;
-
-            //switch (gbMaker) {
-            //    case トヨタ:
-            //        break;
-            //}
+        public CarReport.MakerGroup getSelectedMaker() {
+            CarReport.MakerGroup makerGroup;
+            
+            makerGroup = CarReport.MakerGroup.その他;
             return makerGroup;
         }
     }
