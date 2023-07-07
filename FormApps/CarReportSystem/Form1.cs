@@ -10,9 +10,37 @@ using System.Windows.Forms;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
+        //管理用データ
+        BindingList<CarReport> CarReports = new BindingList<CarReport>();
+
         public Form1() {
             InitializeComponent();
+            dgvCarReports.DataSource = CarReports; //Binding
         }
 
+        //レポート追加
+        private void btAddReport_Click(object sender, EventArgs e) {
+            CarReport carReport = new CarReport {
+                Date = dtpDate.Value, 
+                Author = cbAuthor.Text, 
+                Maker = getSelectedMaker() , 
+                CarName = cbCarName.Text, 
+                Report =  tbReport.Text, 
+                CarImage = pbCarImage.Image, 
+            };
+            CarReports.Add(carReport);
+            dgvCarReports.Update();
+            
+        }
+
+        public static CarReport.MakerGroup getSelectedMaker() {
+            CarReport.MakerGroup makerGroup = CarReport.MakerGroup.トヨタ;
+
+            //switch (gbMaker) {
+            //    case トヨタ:
+            //        break;
+            //}
+            return makerGroup;
+        }
     }
 }
