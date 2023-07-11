@@ -91,10 +91,13 @@ namespace CarReportSystem {
                 Report = tbReport.Text,
                 CarImage = pbCarImage.Image,
             };
+
+            //dgvCarReports.Refresh(); //インスタンスそのまま、中身の上書きにしたとき　一覧更新
         }
 
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false;
+            btModifyReport.Enabled = false; //マスクする
         }
 
         //データグリッドビュー クリック
