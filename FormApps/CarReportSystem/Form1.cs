@@ -18,7 +18,7 @@ namespace CarReportSystem {
             dgvCarReports.DataSource = CarReports; //Binding
         }
 
-        //レポート追加
+        //追加ボタンイベントハンドラ
         private void btAddReport_Click(object sender, EventArgs e) {
             CarReport carReport = new CarReport {
                 Date = dtpDate.Value, 
@@ -70,23 +70,26 @@ namespace CarReportSystem {
 #endregion
         }
 
+        //画像開く...イベントハンドラ
         private void btImageOpen_Click(object sender, EventArgs e) {
             ofdImageFileOpen.ShowDialog();
             pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
         }
 
+        //削除ボタンイベントハンドラ
         private void btDeleteReport_Click(object sender, EventArgs e) {
             CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
         }
         
+        //修正ボタンイベントハンドラ
         private void btModifyReport_Click(object sender, EventArgs e) {
             CarReports[dgvCarReports.CurrentRow.Index] = new CarReport {
-                Date = dtpDate.Value, 
-                Author = cbAuthor.Text, 
-                Maker = getSelectedMaker() , 
-                CarName = cbCarName.Text, 
-                Report = tbReport.Text, 
-                CarImage = pbCarImage.Image, 
+                Date = dtpDate.Value,
+                Author = cbAuthor.Text,
+                Maker = getSelectedMaker(), 
+                CarName = cbCarName.Text,
+                Report = tbReport.Text,
+                CarImage = pbCarImage.Image,
             };
         }
 
@@ -94,13 +97,14 @@ namespace CarReportSystem {
             dgvCarReports.Columns[5].Visible = false;
         }
 
+        //データグリッドビュー クリック
         private void dgvCarReports_Click(object sender, EventArgs e) {
-            dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
-            cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
+            dtpDate.Value = CarReports[dgvCarReports.CurrentRow.Index].Date;
+            cbAuthor.Text = CarReports[dgvCarReports.CurrentRow.Index].Author;
             setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
-            cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
-            tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
-            pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+            cbCarName.Text = CarReports[dgvCarReports.CurrentRow.Index].CarName;
+            tbReport.Text = CarReports[dgvCarReports.CurrentRow.Index].Report;
+            pbCarImage.Image = CarReports[dgvCarReports.CurrentRow.Index].CarImage;
         }
 
         //指定したメーカーのラジオボタンを押す
