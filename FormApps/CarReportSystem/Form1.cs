@@ -79,11 +79,25 @@ namespace CarReportSystem {
         private void btDeleteReport_Click(object sender, EventArgs e) {
             CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
         }
+        
+        private void btModifyReport_Click(object sender, EventArgs e) {
+
+        }
 
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false;
         }
 
-
+        private void dgvCarReports_Click(object sender, EventArgs e) {
+            dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
+            cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
+            var maker = dgvCarReports.CurrentRow.Cells[2].Value.ToString();
+            foreach (var item in CarReports) {
+                //(CarReport.MakerGroup)int.Parse(maker.Tag.ToString());
+            }
+            cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
+            tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+            pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
+        }
     }
 }

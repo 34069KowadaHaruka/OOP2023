@@ -108,7 +108,7 @@ namespace CarReportSystem {
             this.cbAuthor.Location = new System.Drawing.Point(73, 80);
             this.cbAuthor.Name = "cbAuthor";
             this.cbAuthor.Size = new System.Drawing.Size(200, 20);
-            this.cbAuthor.TabIndex = 4;
+            this.cbAuthor.TabIndex = 2;
             // 
             // gbMaker
             // 
@@ -124,7 +124,7 @@ namespace CarReportSystem {
             this.gbMaker.Location = new System.Drawing.Point(73, 106);
             this.gbMaker.Name = "gbMaker";
             this.gbMaker.Size = new System.Drawing.Size(244, 66);
-            this.gbMaker.TabIndex = 5;
+            this.gbMaker.TabIndex = 3;
             this.gbMaker.TabStop = false;
             // 
             // rbOther
@@ -239,7 +239,7 @@ namespace CarReportSystem {
             this.cbCarName.Location = new System.Drawing.Point(73, 178);
             this.cbCarName.Name = "cbCarName";
             this.cbCarName.Size = new System.Drawing.Size(200, 20);
-            this.cbCarName.TabIndex = 7;
+            this.cbCarName.TabIndex = 4;
             // 
             // label5
             // 
@@ -257,7 +257,7 @@ namespace CarReportSystem {
             this.tbReport.Multiline = true;
             this.tbReport.Name = "tbReport";
             this.tbReport.Size = new System.Drawing.Size(244, 92);
-            this.tbReport.TabIndex = 9;
+            this.tbReport.TabIndex = 5;
             // 
             // dgvCarReports
             // 
@@ -271,7 +271,8 @@ namespace CarReportSystem {
             this.dgvCarReports.RowTemplate.Height = 21;
             this.dgvCarReports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCarReports.Size = new System.Drawing.Size(531, 162);
-            this.dgvCarReports.TabIndex = 10;
+            this.dgvCarReports.TabIndex = 11;
+            this.dgvCarReports.Click += new System.EventHandler(this.dgvCarReports_Click);
             // 
             // label6
             // 
@@ -298,7 +299,7 @@ namespace CarReportSystem {
             this.btImageOpen.Location = new System.Drawing.Point(376, 42);
             this.btImageOpen.Name = "btImageOpen";
             this.btImageOpen.Size = new System.Drawing.Size(75, 23);
-            this.btImageOpen.TabIndex = 11;
+            this.btImageOpen.TabIndex = 6;
             this.btImageOpen.Text = "開く...";
             this.btImageOpen.UseVisualStyleBackColor = true;
             this.btImageOpen.Click += new System.EventHandler(this.btImageOpen_Click);
@@ -308,7 +309,7 @@ namespace CarReportSystem {
             this.btImageDelete.Location = new System.Drawing.Point(457, 42);
             this.btImageDelete.Name = "btImageDelete";
             this.btImageDelete.Size = new System.Drawing.Size(75, 23);
-            this.btImageDelete.TabIndex = 12;
+            this.btImageDelete.TabIndex = 7;
             this.btImageDelete.Text = "削除";
             this.btImageDelete.UseVisualStyleBackColor = true;
             // 
@@ -328,7 +329,7 @@ namespace CarReportSystem {
             this.btAddReport.Location = new System.Drawing.Point(346, 239);
             this.btAddReport.Name = "btAddReport";
             this.btAddReport.Size = new System.Drawing.Size(82, 57);
-            this.btAddReport.TabIndex = 14;
+            this.btAddReport.TabIndex = 8;
             this.btAddReport.Text = "追加";
             this.btAddReport.UseVisualStyleBackColor = false;
             this.btAddReport.Click += new System.EventHandler(this.btAddReport_Click);
@@ -339,7 +340,7 @@ namespace CarReportSystem {
             this.btDeleteReport.Location = new System.Drawing.Point(522, 239);
             this.btDeleteReport.Name = "btDeleteReport";
             this.btDeleteReport.Size = new System.Drawing.Size(82, 57);
-            this.btDeleteReport.TabIndex = 14;
+            this.btDeleteReport.TabIndex = 10;
             this.btDeleteReport.Text = "削除";
             this.btDeleteReport.UseVisualStyleBackColor = false;
             this.btDeleteReport.Click += new System.EventHandler(this.btDeleteReport_Click);
@@ -350,9 +351,10 @@ namespace CarReportSystem {
             this.btModifyReport.Location = new System.Drawing.Point(434, 239);
             this.btModifyReport.Name = "btModifyReport";
             this.btModifyReport.Size = new System.Drawing.Size(82, 57);
-            this.btModifyReport.TabIndex = 15;
+            this.btModifyReport.TabIndex = 9;
             this.btModifyReport.Text = "修正";
             this.btModifyReport.UseVisualStyleBackColor = false;
+            this.btModifyReport.Click += new System.EventHandler(this.btModifyReport_Click);
             // 
             // menuStrip1
             // 
