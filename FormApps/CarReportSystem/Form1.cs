@@ -18,10 +18,20 @@ namespace CarReportSystem {
             dgvCarReports.DataSource = CarReports; //Binding
         }
 
+        //ステータスラベルのテキスト表示・非表示
+        private void statusLabelDisp(string msg = "") { //←オプション引数
+            tsInfoText.Text = msg;
+            //MessageBox.Show(msg);
+        }
+
         //追加ボタンイベントハンドラ
         private void btAddReport_Click(object sender, EventArgs e) {
-            if (cbAuthor.Text == "" || cbCarName.Text == "") {
-                tsInfoText.Text = "記録者、または車名が入力されていません";
+            if (cbAuthor.Text == "") {
+                statusLabelDisp("記録者が入力されていません");
+                return;
+            }
+            else if (cbCarName.Text == "") {
+                statusLabelDisp("車名が入力されていません");
                 return;
             }
 
@@ -35,7 +45,10 @@ namespace CarReportSystem {
             };
             CarReports.Add(carReport);
 
+            //コンボボックスに追加
+            if(cbAuthor.FindStringExact(cbAuthor.Text) < 0)
             cbAuthor.Items.Add(cbAuthor.Text);
+            if(cbCarName.FindStringExact(cbCarName.Text) < 0)
             cbCarName.Items.Add(cbCarName.Text);
 
             if (CarReports.Count == 1) {
