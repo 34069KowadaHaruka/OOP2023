@@ -91,6 +91,10 @@ namespace CarReportSystem {
         //削除ボタンイベントハンドラ
         private void btDeleteReport_Click(object sender, EventArgs e) {
             CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
+            if (CarReports.Count <= 0) {
+                btModifyReport.Enabled = false;
+                btDeleteReport.Enabled = false;
+            }
         }
         
         //修正ボタンイベントハンドラ
@@ -103,8 +107,11 @@ namespace CarReportSystem {
                 Report = tbReport.Text,
                 CarImage = pbCarImage.Image,
             };
-
             //dgvCarReports.Refresh(); //インスタンスそのまま、中身の上書きにしたとき　一覧更新
+            if (CarReports.Count <= 0) {
+                btModifyReport.Enabled = false;
+                btDeleteReport.Enabled = false;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e) {
