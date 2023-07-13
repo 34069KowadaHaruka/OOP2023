@@ -312,6 +312,7 @@ namespace CarReportSystem {
             this.btImageDelete.TabIndex = 7;
             this.btImageDelete.Text = "削除";
             this.btImageDelete.UseVisualStyleBackColor = true;
+            this.btImageDelete.Click += new System.EventHandler(this.btImageDelete_Click);
             // 
             // pbCarImage
             // 

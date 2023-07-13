@@ -29,6 +29,10 @@ namespace CarReportSystem {
                 CarImage = pbCarImage.Image, 
             };
             CarReports.Add(carReport);
+            if (CarReports.Count == 1) {
+                btModifyReport.Enabled = true;
+                btDeleteReport.Enabled = true;
+            }
         }
 
         //ラジオボタンで選択されているメーカーを返す
@@ -76,6 +80,14 @@ namespace CarReportSystem {
             pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
         }
 
+        //画像削除イベントハンドラ
+        private void btImageDelete_Click(object sender, EventArgs e) {
+            if (pbCarImage.Image != null) {
+                pbCarImage.Image.Dispose();
+                pbCarImage.Image = null;
+            }
+        }
+
         //削除ボタンイベントハンドラ
         private void btDeleteReport_Click(object sender, EventArgs e) {
             CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
@@ -98,6 +110,7 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false;
             btModifyReport.Enabled = false; //マスクする
+            btDeleteReport.Enabled = false;
         }
 
         //データグリッドビュー クリック
@@ -143,5 +156,7 @@ namespace CarReportSystem {
                     break;
             }
         }
+
+        //追加時dgvクリアメソッド
     }
 }
