@@ -59,10 +59,13 @@ namespace CarReportSystem {
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.終了XToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdImageFileOpen = new System.Windows.Forms.OpenFileDialog();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tsInfoText = new System.Windows.Forms.ToolStripStatusLabel();
             this.gbMaker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarImage)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -383,25 +386,25 @@ namespace CarReportSystem {
             // 
             this.開くToolStripMenuItem.Name = "開くToolStripMenuItem";
             this.開くToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.開くToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.開くToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.開くToolStripMenuItem.Text = "開く...(&O)";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(158, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // 保存ToolStripMenuItem
             // 
             this.保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
             this.保存ToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.保存ToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.保存ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.保存ToolStripMenuItem.Text = "保存...(&S)";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(158, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // 終了XToolStripMenuItem
             // 
@@ -415,12 +418,28 @@ namespace CarReportSystem {
             // 
             this.ofdImageFileOpen.FileName = "openFileDialog1";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsInfoText});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 475);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(660, 22);
+            this.statusStrip1.TabIndex = 18;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tsInfoText
+            // 
+            this.tsInfoText.Name = "tsInfoText";
+            this.tsInfoText.Size = new System.Drawing.Size(0, 17);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(660, 476);
+            this.ClientSize = new System.Drawing.Size(660, 497);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btModifyReport);
             this.Controls.Add(this.btDeleteReport);
             this.Controls.Add(this.btAddReport);
@@ -451,6 +470,8 @@ namespace CarReportSystem {
             ((System.ComponentModel.ISupportInitialize)(this.pbCarImage)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -493,6 +514,8 @@ namespace CarReportSystem {
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.OpenFileDialog ofdImageFileOpen;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel tsInfoText;
     }
 }
 

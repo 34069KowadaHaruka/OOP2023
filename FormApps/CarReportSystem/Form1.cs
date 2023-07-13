@@ -20,15 +20,24 @@ namespace CarReportSystem {
 
         //追加ボタンイベントハンドラ
         private void btAddReport_Click(object sender, EventArgs e) {
+            if (cbAuthor.Text == "" || cbCarName.Text == "") {
+                tsInfoText.Text = "記録者、または車名が入力されていません";
+                return;
+            }
+
             CarReport carReport = new CarReport {
                 Date = dtpDate.Value, 
                 Author = cbAuthor.Text, 
-                Maker = getSelectedMaker() , 
+                Maker = getSelectedMaker(), 
                 CarName = cbCarName.Text, 
                 Report =  tbReport.Text, 
                 CarImage = pbCarImage.Image, 
             };
             CarReports.Add(carReport);
+
+            cbAuthor.Items.Add(cbAuthor.Text);
+            cbCarName.Items.Add(cbCarName.Text);
+
             if (CarReports.Count == 1) {
                 btModifyReport.Enabled = true;
                 btDeleteReport.Enabled = true;
@@ -168,14 +177,14 @@ namespace CarReportSystem {
         //追加時コントロールクリアメソッド
         private void ControlsClear() {
             dtpDate.Value = DateTime.Today;
-            cbAuthor.Text = null;
+            cbAuthor.Text = "";
             foreach (RadioButton maker in gbMaker.Controls) {
                 if (maker.Checked) {
                     maker.Checked = false;
                 }
             }
-            cbCarName.Text = null;
-            tbReport.Text = null;
+            cbCarName.Text = "";
+            tbReport.Text = "";
             pbCarImage.Image = null;
         }
 
