@@ -142,6 +142,8 @@ namespace CarReportSystem {
 
         //データグリッドビュー クリック
         private void dgvCarReports_Click(object sender, EventArgs e) {
+            if (CarReports.Count() <= 0)
+                return;
             dtpDate.Value = CarReports[dgvCarReports.CurrentRow.Index].Date;
             cbAuthor.Text = CarReports[dgvCarReports.CurrentRow.Index].Author;
             setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
