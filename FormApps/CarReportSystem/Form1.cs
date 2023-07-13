@@ -26,11 +26,11 @@ namespace CarReportSystem {
 
         //追加ボタンイベントハンドラ
         private void btAddReport_Click(object sender, EventArgs e) {
-            if (cbAuthor.Text == "") {
+            if (cbAuthor.Text.Equals("")) {
                 statusLabelDisp("記録者が入力されていません");
                 return;
             }
-            else if (cbCarName.Text == "") {
+            else if (cbCarName.Text.Equals("")) {
                 statusLabelDisp("車名が入力されていません");
                 return;
             }
@@ -44,6 +44,7 @@ namespace CarReportSystem {
                 CarImage = pbCarImage.Image, 
             };
             CarReports.Add(carReport);
+            dgvCarReports.Rows[CarReports.Count() - 1].Selected = true;
 
             //コンボボックスに追加
             if(cbAuthor.FindStringExact(cbAuthor.Text) < 0)
@@ -131,10 +132,6 @@ namespace CarReportSystem {
                 CarImage = pbCarImage.Image,
             };
             //dgvCarReports.Refresh(); //インスタンスそのまま、中身の上書きにしたとき　一覧更新
-            if (CarReports.Count <= 0) {
-                btModifyReport.Enabled = false;
-                btDeleteReport.Enabled = false;
-            }
         }
 
         private void Form1_Load(object sender, EventArgs e) {
