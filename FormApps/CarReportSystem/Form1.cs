@@ -33,6 +33,7 @@ namespace CarReportSystem {
                 btModifyReport.Enabled = true;
                 btDeleteReport.Enabled = true;
             }
+            ControlsClear();
         }
 
         //ラジオボタンで選択されているメーカーを返す
@@ -164,6 +165,23 @@ namespace CarReportSystem {
             }
         }
 
-        //追加時dgvクリアメソッド
+        //追加時コントロールクリアメソッド
+        private void ControlsClear() {
+            dtpDate.Value = DateTime.Today;
+            cbAuthor.Text = null;
+            foreach (RadioButton maker in gbMaker.Controls) {
+                if (maker.Checked) {
+                    maker.Checked = false;
+                }
+            }
+            cbCarName.Text = null;
+            tbReport.Text = null;
+            pbCarImage.Image = null;
+        }
+
+        //終了
+        private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
+            Application.Exit();
+        }
     }
 }
