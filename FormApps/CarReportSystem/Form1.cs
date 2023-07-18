@@ -48,11 +48,21 @@ namespace CarReportSystem {
             CarReports.Add(carReport);
             //dgvCarReports.Rows[CarReports.Count() - 1].Selected = true;
 
-            //コンボボックスに追加
+            #region //コンボボックスに追加
+#if true
             if(cbAuthor.FindStringExact(cbAuthor.Text) < 0)
-            cbAuthor.Items.Add(cbAuthor.Text);
+                cbAuthor.Items.Add(cbAuthor.Text);
             if(cbCarName.FindStringExact(cbCarName.Text) < 0)
-            cbCarName.Items.Add(cbCarName.Text);
+                cbCarName.Items.Add(cbCarName.Text);
+#else
+
+            if (!cbAuthor.Items.Contains(cbAuthor.Text))
+                cbAuthor.Items.Add(cbAuthor.Text);
+            if (!cbCarName.Items.Contains(cbCarName.Text))
+                cbCarName.Items.Add(cbCarName.Text);
+#endif
+            #endregion
+
 
             //GridView選択解除・項目クリア処理・マスク処理
             //dgvCarReports.Rows[CarReports.Count()-1].Selected = false;
@@ -61,7 +71,7 @@ namespace CarReportSystem {
 
         //ラジオボタンで選択されているメーカーを返す
         public CarReport.MakerGroup getSelectedMaker() {
-            #region メーカーグループチェックボックス
+#region メーカーグループチェックボックス
 #if true
             foreach (RadioButton maker in gbMaker.Controls) {
                 if (maker.Checked) {

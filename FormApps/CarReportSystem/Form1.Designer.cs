@@ -65,6 +65,7 @@ namespace CarReportSystem {
             this.statusDisp = new System.Windows.Forms.StatusStrip();
             this.tsInfoText = new System.Windows.Forms.ToolStripStatusLabel();
             this.cdColor = new System.Windows.Forms.ColorDialog();
+            this.tsClock = new System.Windows.Forms.ToolStrip();
             this.gbMaker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarImage)).BeginInit();
@@ -364,14 +365,14 @@ namespace CarReportSystem {
             this.btModifyReport.UseVisualStyleBackColor = false;
             this.btModifyReport.Click += new System.EventHandler(this.btModifyReport_Click);
             // 
-            // menuStrip1
+            // menuItems
             // 
             this.menuItems.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ファイルToolStripMenuItem,
             this.編集EToolStripMenuItem,
             this.ヘルプHToolStripMenuItem});
             this.menuItems.Location = new System.Drawing.Point(0, 0);
-            this.menuItems.Name = "menuStrip1";
+            this.menuItems.Name = "menuItems";
             this.menuItems.Size = new System.Drawing.Size(660, 24);
             this.menuItems.TabIndex = 17;
             this.menuItems.Text = "menuStrip1";
@@ -425,7 +426,7 @@ namespace CarReportSystem {
             // 背景色設定ToolStripMenuItem
             // 
             this.背景色設定ToolStripMenuItem.Name = "背景色設定ToolStripMenuItem";
-            this.背景色設定ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.背景色設定ToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.背景色設定ToolStripMenuItem.Text = "背景色設定...";
             this.背景色設定ToolStripMenuItem.Click += new System.EventHandler(this.背景色設定ToolStripMenuItem_Click);
             // 
@@ -448,12 +449,12 @@ namespace CarReportSystem {
             // 
             this.ofdImageFileOpen.FileName = "openFileDialog1";
             // 
-            // statusStrip1
+            // statusDisp
             // 
             this.statusDisp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsInfoText});
             this.statusDisp.Location = new System.Drawing.Point(0, 475);
-            this.statusDisp.Name = "statusStrip1";
+            this.statusDisp.Name = "statusDisp";
             this.statusDisp.Size = new System.Drawing.Size(660, 22);
             this.statusDisp.SizingGrip = false;
             this.statusDisp.TabIndex = 18;
@@ -464,12 +465,21 @@ namespace CarReportSystem {
             this.tsInfoText.Name = "tsInfoText";
             this.tsInfoText.Size = new System.Drawing.Size(0, 17);
             // 
+            // tsClock
+            // 
+            this.tsClock.Location = new System.Drawing.Point(0, 24);
+            this.tsClock.Name = "tsClock";
+            this.tsClock.Size = new System.Drawing.Size(660, 25);
+            this.tsClock.TabIndex = 19;
+            this.tsClock.Text = "toolStrip1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(660, 497);
+            this.Controls.Add(this.tsClock);
             this.Controls.Add(this.statusDisp);
             this.Controls.Add(this.btModifyReport);
             this.Controls.Add(this.btDeleteReport);
@@ -553,6 +563,7 @@ namespace CarReportSystem {
         private System.Windows.Forms.ToolStripMenuItem ヘルプHToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem バージョン情報ToolStripMenuItem;
         private System.Windows.Forms.ColorDialog cdColor;
+        private System.Windows.Forms.ToolStrip tsClock;
     }
 }
 
