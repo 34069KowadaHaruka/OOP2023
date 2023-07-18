@@ -36,6 +36,7 @@ namespace CarReportSystem {
             }
             statusLabelDisp();
 
+
             CarReport carReport = new CarReport {
                 Date = dtpDate.Value, 
                 Author = cbAuthor.Text, 
@@ -45,7 +46,7 @@ namespace CarReportSystem {
                 CarImage = pbCarImage.Image, 
             };
             CarReports.Add(carReport);
-            dgvCarReports.Rows[CarReports.Count() - 1].Selected = true;
+            //dgvCarReports.Rows[CarReports.Count() - 1].Selected = true;
 
             //コンボボックスに追加
             if(cbAuthor.FindStringExact(cbAuthor.Text) < 0)
@@ -53,12 +54,8 @@ namespace CarReportSystem {
             if(cbCarName.FindStringExact(cbCarName.Text) < 0)
             cbCarName.Items.Add(cbCarName.Text);
 
-            dgvCarReports.Rows[CarReports.Count()-1].Selected = false;
-
-            if (CarReports.Count() > 0) {
-                btModifyReport.Enabled = true;
-                btDeleteReport.Enabled = true;
-            }
+            //GridView選択解除・項目クリア処理・マスク処理
+            //dgvCarReports.Rows[CarReports.Count()-1].Selected = false;
             ControlsClear();
         }
 
@@ -118,12 +115,13 @@ namespace CarReportSystem {
         //削除ボタンイベントハンドラ
         private void btDeleteReport_Click(object sender, EventArgs e) {
             CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
-            if (CarReports.Count <= 0) {
-                btModifyReport.Enabled = false;
-                btDeleteReport.Enabled = false;
-            }
+#if true
+            ControlsClear();
+#else
+            //次に選択されるところのデータをコントロールに反映させる
+#endif
         }
-        
+
         //修正ボタンイベントハンドラ
         private void btModifyReport_Click(object sender, EventArgs e) {
             if (cbAuthor.Text.Equals("")) {
@@ -145,14 +143,14 @@ namespace CarReportSystem {
                 CarImage = pbCarImage.Image,
             };
             //dgvCarReports.Refresh(); //インスタンスそのまま、中身の上書きにしたとき　一覧更新
+
+            ControlsClear();
         }
 
+        //Form1をロード
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false;
-            btModifyReport.Enabled = false; //マスクする
-            btDeleteReport.Enabled = false;
-
-
+            DeleteModifyMasking();
         }
 
         //データグリッドビュー クリック
@@ -166,6 +164,12 @@ namespace CarReportSystem {
             cbCarName.Text = CarReports[dgvCarReports.CurrentRow.Index].CarName;
             tbReport.Text = CarReports[dgvCarReports.CurrentRow.Index].Report;
             pbCarImage.Image = CarReports[dgvCarReports.CurrentRow.Index].CarImage;
+
+            //修正・削除ボタンマスク解除
+            if (CarReports.Count() > 0) {
+                btModifyReport.Enabled = true;
+                btDeleteReport.Enabled = true;
+            }
         }
 
         //指定したメーカーのラジオボタンを押す
@@ -202,7 +206,7 @@ namespace CarReportSystem {
             }
         }
 
-        //追加時コントロールクリアメソッド
+        //コントロールクリアメソッド
         private void ControlsClear() {
             dtpDate.Value = DateTime.Today;
             cbAuthor.Text = "";
@@ -214,6 +218,16 @@ namespace CarReportSystem {
             cbCarName.Text = "";
             tbReport.Text = "";
             pbCarImage.Image = null;
+
+            dgvCarReports.ClearSelection();
+
+            DeleteModifyMasking();
+        }
+
+        //修正ボタン・削除ボタンをマスクする
+        private void DeleteModifyMasking() {
+            btModifyReport.Enabled = false;
+            btDeleteReport.Enabled = false;
         }
 
         //終了
