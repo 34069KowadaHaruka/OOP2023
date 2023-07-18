@@ -34,6 +34,7 @@ namespace CarReportSystem {
                 statusLabelDisp("車名が入力されていません");
                 return;
             }
+            statusLabelDisp();
 
             CarReport carReport = new CarReport {
                 Date = dtpDate.Value, 
@@ -52,7 +53,9 @@ namespace CarReportSystem {
             if(cbCarName.FindStringExact(cbCarName.Text) < 0)
             cbCarName.Items.Add(cbCarName.Text);
 
-            if (CarReports.Count == 1) {
+            dgvCarReports.Rows[CarReports.Count()-1].Selected = false;
+
+            if (CarReports.Count() > 0) {
                 btModifyReport.Enabled = true;
                 btDeleteReport.Enabled = true;
             }
@@ -123,6 +126,16 @@ namespace CarReportSystem {
         
         //修正ボタンイベントハンドラ
         private void btModifyReport_Click(object sender, EventArgs e) {
+            if (cbAuthor.Text.Equals("")) {
+                statusLabelDisp("記録者が入力されていません");
+                return;
+            }
+            else if (cbCarName.Text.Equals("")) {
+                statusLabelDisp("車名が入力されていません");
+                return;
+            }
+            statusLabelDisp();
+
             CarReports[dgvCarReports.CurrentRow.Index] = new CarReport {
                 Date = dtpDate.Value,
                 Author = cbAuthor.Text,
@@ -138,12 +151,15 @@ namespace CarReportSystem {
             dgvCarReports.Columns[5].Visible = false;
             btModifyReport.Enabled = false; //マスクする
             btDeleteReport.Enabled = false;
+
+
         }
 
         //データグリッドビュー クリック
         private void dgvCarReports_Click(object sender, EventArgs e) {
             if (CarReports.Count() <= 0)
                 return;
+
             dtpDate.Value = CarReports[dgvCarReports.CurrentRow.Index].Date;
             cbAuthor.Text = CarReports[dgvCarReports.CurrentRow.Index].Author;
             setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
@@ -203,6 +219,18 @@ namespace CarReportSystem {
         //終了
         private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
             Application.Exit();
+        }
+
+        private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e) {
+            var vf = new VersionForm();
+            vf.ShowDialog(); //モーダルダイアログとして表示
+        }
+
+        private void 背景色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+            DialogResult dr = cdColor.ShowDialog();
+            if (dr == DialogResult.OK) {
+                BackColor = cdColor.Color;
+            }
         }
     }
 }
