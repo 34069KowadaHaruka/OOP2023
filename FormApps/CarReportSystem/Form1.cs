@@ -110,8 +110,9 @@ namespace CarReportSystem {
 
         //画像開く...イベントハンドラ
         private void btImageOpen_Click(object sender, EventArgs e) {
-            ofdImageFileOpen.ShowDialog();
-            pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
+            if (ofdImageFileOpen.ShowDialog() == DialogResult.OK) {
+                pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
+            }
         }
 
         //画像削除イベントハンドラ
@@ -255,6 +256,25 @@ namespace CarReportSystem {
             if (dr == DialogResult.OK) {
                 BackColor = cdColor.Color;
             }
+        }
+
+        //画像サイズ変更
+        private void btScaleChange_Click(object sender, EventArgs e) {
+            int mode = (int)pbCarImage.SizeMode;
+            mode = mode < 4 ? ++mode : 0;
+            mode = mode == 2 ? ++mode : mode;
+            pbCarImage.SizeMode = (PictureBoxSizeMode)mode;
+            /*
+            if (mode + 1 == 5) {
+                pbCarImage.SizeMode = 0;
+            }
+            else if (mode + 1 == 2) {
+                pbCarImage.SizeMode += 2;
+            }
+            else {
+                pbCarImage.SizeMode++;
+            }
+            */
         }
     }
 }

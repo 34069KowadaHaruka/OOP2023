@@ -65,7 +65,7 @@ namespace CarReportSystem {
             this.statusDisp = new System.Windows.Forms.StatusStrip();
             this.tsInfoText = new System.Windows.Forms.ToolStripStatusLabel();
             this.cdColor = new System.Windows.Forms.ColorDialog();
-            this.tsClock = new System.Windows.Forms.ToolStrip();
+            this.btScaleChange = new System.Windows.Forms.Button();
             this.gbMaker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarImage)).BeginInit();
@@ -142,7 +142,6 @@ namespace CarReportSystem {
             this.rbOther.Name = "rbOther";
             this.rbOther.Size = new System.Drawing.Size(54, 16);
             this.rbOther.TabIndex = 10;
-            this.rbOther.TabStop = true;
             this.rbOther.Tag = "7";
             this.rbOther.Text = "その他";
             this.rbOther.UseVisualStyleBackColor = true;
@@ -154,7 +153,6 @@ namespace CarReportSystem {
             this.rbImported.Name = "rbImported";
             this.rbImported.Size = new System.Drawing.Size(59, 16);
             this.rbImported.TabIndex = 11;
-            this.rbImported.TabStop = true;
             this.rbImported.Tag = "3";
             this.rbImported.Text = "輸入車";
             this.rbImported.UseVisualStyleBackColor = true;
@@ -166,7 +164,6 @@ namespace CarReportSystem {
             this.rbDaihatsu.Name = "rbDaihatsu";
             this.rbDaihatsu.Size = new System.Drawing.Size(60, 16);
             this.rbDaihatsu.TabIndex = 9;
-            this.rbDaihatsu.TabStop = true;
             this.rbDaihatsu.Tag = "6";
             this.rbDaihatsu.Text = "ダイハツ";
             this.rbDaihatsu.UseVisualStyleBackColor = true;
@@ -178,7 +175,6 @@ namespace CarReportSystem {
             this.rbSuzuki.Name = "rbSuzuki";
             this.rbSuzuki.Size = new System.Drawing.Size(52, 16);
             this.rbSuzuki.TabIndex = 6;
-            this.rbSuzuki.TabStop = true;
             this.rbSuzuki.Tag = "5";
             this.rbSuzuki.Text = "スズキ";
             this.rbSuzuki.UseVisualStyleBackColor = true;
@@ -190,7 +186,6 @@ namespace CarReportSystem {
             this.rbSubaru.Name = "rbSubaru";
             this.rbSubaru.Size = new System.Drawing.Size(52, 16);
             this.rbSubaru.TabIndex = 7;
-            this.rbSubaru.TabStop = true;
             this.rbSubaru.Tag = "4";
             this.rbSubaru.Text = "スバル";
             this.rbSubaru.UseVisualStyleBackColor = true;
@@ -202,7 +197,6 @@ namespace CarReportSystem {
             this.rbHonda.Name = "rbHonda";
             this.rbHonda.Size = new System.Drawing.Size(51, 16);
             this.rbHonda.TabIndex = 8;
-            this.rbHonda.TabStop = true;
             this.rbHonda.Tag = "2";
             this.rbHonda.Text = "ホンダ";
             this.rbHonda.UseVisualStyleBackColor = true;
@@ -214,7 +208,6 @@ namespace CarReportSystem {
             this.rbNissan.Name = "rbNissan";
             this.rbNissan.Size = new System.Drawing.Size(47, 16);
             this.rbNissan.TabIndex = 1;
-            this.rbNissan.TabStop = true;
             this.rbNissan.Tag = "1";
             this.rbNissan.Text = "日産";
             this.rbNissan.UseVisualStyleBackColor = true;
@@ -222,6 +215,7 @@ namespace CarReportSystem {
             // rbToyota
             // 
             this.rbToyota.AutoSize = true;
+            this.rbToyota.Checked = true;
             this.rbToyota.Location = new System.Drawing.Point(5, 14);
             this.rbToyota.Name = "rbToyota";
             this.rbToyota.Size = new System.Drawing.Size(47, 16);
@@ -465,13 +459,15 @@ namespace CarReportSystem {
             this.tsInfoText.Name = "tsInfoText";
             this.tsInfoText.Size = new System.Drawing.Size(0, 17);
             // 
-            // tsClock
+            // btScaleChange
             // 
-            this.tsClock.Location = new System.Drawing.Point(0, 24);
-            this.tsClock.Name = "tsClock";
-            this.tsClock.Size = new System.Drawing.Size(660, 25);
-            this.tsClock.TabIndex = 19;
-            this.tsClock.Text = "toolStrip1";
+            this.btScaleChange.Location = new System.Drawing.Point(539, 42);
+            this.btScaleChange.Name = "btScaleChange";
+            this.btScaleChange.Size = new System.Drawing.Size(75, 23);
+            this.btScaleChange.TabIndex = 20;
+            this.btScaleChange.Text = "サイズ変更";
+            this.btScaleChange.UseVisualStyleBackColor = true;
+            this.btScaleChange.Click += new System.EventHandler(this.btScaleChange_Click);
             // 
             // Form1
             // 
@@ -479,7 +475,7 @@ namespace CarReportSystem {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(660, 497);
-            this.Controls.Add(this.tsClock);
+            this.Controls.Add(this.btScaleChange);
             this.Controls.Add(this.statusDisp);
             this.Controls.Add(this.btModifyReport);
             this.Controls.Add(this.btDeleteReport);
@@ -563,7 +559,7 @@ namespace CarReportSystem {
         private System.Windows.Forms.ToolStripMenuItem ヘルプHToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem バージョン情報ToolStripMenuItem;
         private System.Windows.Forms.ColorDialog cdColor;
-        private System.Windows.Forms.ToolStrip tsClock;
+        private System.Windows.Forms.Button btScaleChange;
     }
 }
 
