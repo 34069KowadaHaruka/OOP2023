@@ -275,6 +275,7 @@ namespace CarReportSystem {
                 pbCarImage.SizeMode++;
             }
             */
+            //pbCarImageの表示方法についての変更であり、CarReportsに保存される画像が変わるわけではない
         }
     }
 }
