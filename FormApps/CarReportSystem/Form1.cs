@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
         //管理用データ
         BindingList<CarReport> CarReports = new BindingList<CarReport>();
+
+        //設定情報保存用オブジェクト
+        Settings settings = new Settings();
 
         public Form1() {
             InitializeComponent();
@@ -162,6 +167,19 @@ namespace CarReportSystem {
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false;
             DeleteModifyMasking();
+
+            //設定ファイルを逆シリアル化して背景を設定
+            try {
+                using (var reader = XmlReader.Create("settings.xml")) {
+                    var serializer = new XmlSerializer(typeof(Settings));
+                    settings = serializer.Deserialize(reader) as Settings;
+                    BackColor = Color.FromArgb(settings.MainFormColor);
+                }
+            }
+            catch (System.ArgumentException) {
+
+            }
+            
         }
 
         //データグリッドビュー クリック
@@ -252,17 +270,24 @@ namespace CarReportSystem {
         }
 
         private void 背景色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
-            DialogResult dr = cdColor.ShowDialog();
-            if (dr == DialogResult.OK) {
+            if (cdColor.ShowDialog() == DialogResult.OK) {
                 BackColor = cdColor.Color;
+                settings.MainFormColor = cdColor.Color.ToArgb();
             }
         }
 
         //画像サイズ変更
         private void btScaleChange_Click(object sender, EventArgs e) {
+#if false
+            PictureBoxSizeMode mode;
+            pbCarImage.SizeMode = mode < PictureBoxSizeMode.Zoom ? ((mode == PictureBoxSizeMode.StretchImage) ? PictureBoxSizeMode.CenterImage : ++mode) : PictureBoxSizeMode.Normal;
+#else
             int mode = (int)pbCarImage.SizeMode;
-            mode = mode < 4 ? ++mode : 0;
-            mode = mode == 2 ? ++mode : mode;
+            //mode = mode < 4 ? ++mode : 0;
+            //mode = mode == 2 ? ++mode : mode;
+
+            mode = mode < 4 ? ((mode == 1) ? 3 : ++mode) : 0;
+
             pbCarImage.SizeMode = (PictureBoxSizeMode)mode;
             /*
             if (mode + 1 == 5) {
@@ -276,6 +301,15 @@ namespace CarReportSystem {
             }
             */
             //pbCarImageの表示方法についての変更であり、CarReportsに保存される画像が変わるわけではない
+#endif
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            //設定ファイルのシリアル化
+            using (var writer = XmlWriter.Create("settings.xml")) {
+                var serializer = new XmlSerializer(settings.GetType());
+                serializer.Serialize(writer, settings);
+            }
         }
     }
 }
