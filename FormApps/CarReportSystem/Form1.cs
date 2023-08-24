@@ -18,6 +18,9 @@ namespace CarReportSystem {
         //設定情報保存用オブジェクト
         Settings settings = new Settings();
 
+        Timer timer;
+        DateTime dt;
+
         public Form1() {
             InitializeComponent();
             dgvCarReports.DataSource = CarReports; //Binding
@@ -182,7 +185,21 @@ namespace CarReportSystem {
             catch (System.IO.FileNotFoundException) {
                 
             }
-            
+
+            #region Timer
+            dt = DateTime.Now;
+            tsslTimeLabel.Text = string.Format("{0:0000}/{1:00}/{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
+
+
+            // timerの設定
+            timer = new Timer();
+            timer.Interval = 100;
+            timer.Enabled = true;
+            timer.Tick += Timer_Tick;
+
+
+            //Controls.Add(tsslTimeLabel);
+            #endregion
         }
 
         //データグリッドビュー クリック
@@ -314,5 +331,11 @@ namespace CarReportSystem {
                 serializer.Serialize(writer, settings);
             }
         }
+
+        private void Timer_Tick(object sender, EventArgs e) {
+            dt = DateTime.Now;
+            tsslTimeLabel.Text = string.Format("{0:0000}/{1:00}/{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
+        }
+
     }
 }
