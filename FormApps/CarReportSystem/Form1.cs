@@ -18,7 +18,6 @@ namespace CarReportSystem {
         //設定情報保存用オブジェクト
         Settings settings = new Settings();
 
-        Timer timer;
         DateTime dt;
 
         public Form1() {
@@ -28,7 +27,7 @@ namespace CarReportSystem {
 
         //ステータスラベルのテキスト表示・非表示
         private void statusLabelDisp(string msg = "") { //←オプション引数
-            tsInfoText.Text = msg;
+            tsslInformation.Text = msg;
             //MessageBox.Show(msg);
         }
 
@@ -189,7 +188,7 @@ namespace CarReportSystem {
 
             #region Timer
             dt = DateTime.Now;
-            tsslTimeLabel.Text = string.Format("{0:0000}/{1:00}/{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
+            //tsslTimeLabel.Text = string.Format("{0:0000}/{1:00}/{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
             tmTimeUpdate.Start();
 
             //Controls.Add(tsslTimeLabel);
