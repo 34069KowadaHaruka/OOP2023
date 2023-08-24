@@ -179,6 +179,9 @@ namespace CarReportSystem {
             catch (System.ArgumentException) {
 
             }
+            catch (System.IO.FileNotFoundException) {
+                
+            }
             
         }
 

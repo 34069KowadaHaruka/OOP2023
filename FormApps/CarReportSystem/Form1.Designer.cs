@@ -120,7 +120,7 @@ namespace CarReportSystem {
             // 
             // gbMaker
             // 
-            this.gbMaker.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.gbMaker.BackColor = System.Drawing.Color.Transparent;
             this.gbMaker.Controls.Add(this.rbOther);
             this.gbMaker.Controls.Add(this.rbImported);
             this.gbMaker.Controls.Add(this.rbDaihatsu);
@@ -220,6 +220,7 @@ namespace CarReportSystem {
             this.rbToyota.Name = "rbToyota";
             this.rbToyota.Size = new System.Drawing.Size(47, 16);
             this.rbToyota.TabIndex = 0;
+            this.rbToyota.TabStop = true;
             this.rbToyota.Tag = "0";
             this.rbToyota.Text = "トヨタ";
             this.rbToyota.UseVisualStyleBackColor = true;
