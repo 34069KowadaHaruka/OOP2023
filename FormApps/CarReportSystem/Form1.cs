@@ -329,5 +329,17 @@ namespace CarReportSystem {
             dt = DateTime.Now;
             tsslTimeLabel.Text = string.Format("{0:0000}/{1:00}/{2:00} {3:00}:{4:00}:{5:00}", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
         }
+
+        private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
+                
+            }
+        }
+
+        private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (ofdCarRepoOpen.ShowDialog() == DialogResult.OK) { 
+                
+            }
+        }
     }
 }
