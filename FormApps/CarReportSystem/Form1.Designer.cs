@@ -69,6 +69,8 @@ namespace CarReportSystem {
             this.cdColor = new System.Windows.Forms.ColorDialog();
             this.btScaleChange = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tsslInformation = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tmTimeUpdate = new System.Windows.Forms.Timer(this.components);
             this.gbMaker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarImage)).BeginInit();
@@ -452,7 +454,8 @@ namespace CarReportSystem {
             // 
             this.statusDisp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsInfoText,
-            this.tsslTimeLabel});
+            this.tsslTimeLabel,
+            this.tsslInformation});
             this.statusDisp.Location = new System.Drawing.Point(0, 475);
             this.statusDisp.Name = "statusDisp";
             this.statusDisp.Size = new System.Drawing.Size(660, 22);
@@ -469,7 +472,8 @@ namespace CarReportSystem {
             // 
             this.tsslTimeLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsslTimeLabel.Name = "tsslTimeLabel";
-            this.tsslTimeLabel.Size = new System.Drawing.Size(0, 17);
+            this.tsslTimeLabel.Size = new System.Drawing.Size(39, 17);
+            this.tsslTimeLabel.Text = "(時計)";
             // 
             // btScaleChange
             // 
@@ -480,6 +484,16 @@ namespace CarReportSystem {
             this.btScaleChange.Text = "サイズ変更";
             this.btScaleChange.UseVisualStyleBackColor = true;
             this.btScaleChange.Click += new System.EventHandler(this.btScaleChange_Click);
+            // 
+            // tsslInformation
+            // 
+            this.tsslInformation.Name = "tsslInformation";
+            this.tsslInformation.Size = new System.Drawing.Size(36, 17);
+            this.tsslInformation.Text = "(info)";
+            // 
+            // tmTimeUpdate
+            // 
+            this.tmTimeUpdate.Tick += new System.EventHandler(this.tmTimeUpdate_Tick);
             // 
             // Form1
             // 
@@ -576,6 +590,8 @@ namespace CarReportSystem {
         private System.Windows.Forms.Button btScaleChange;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ToolStripStatusLabel tsslTimeLabel;
+        private System.Windows.Forms.ToolStripStatusLabel tsslInformation;
+        private System.Windows.Forms.Timer tmTimeUpdate;
     }
 }
 
