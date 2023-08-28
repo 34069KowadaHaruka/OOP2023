@@ -179,11 +179,8 @@ namespace CarReportSystem {
                     BackColor = Color.FromArgb(settings.MainFormColor);
                 }
             }
-            catch (System.ArgumentException) {
-
-            }
-            catch (System.IO.FileNotFoundException) {
-                
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
             }
 
             #region Timer
@@ -193,6 +190,7 @@ namespace CarReportSystem {
 
             //Controls.Add(tsslTimeLabel);
             #endregion
+
         }
 
         //データグリッドビュー クリック
