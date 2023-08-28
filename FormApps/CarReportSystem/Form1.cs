@@ -356,6 +356,11 @@ namespace CarReportSystem {
 
                         dgvCarReports.DataSource = null;
                         dgvCarReports.DataSource = CarReports;
+                        dgvCarReports.Columns[5].Visible = false;
+
+                        cbAuthor.Items.Clear();
+                        cbCarName.Items.Clear();
+
                         foreach (var carReport in CarReports) {
                             if (cbAuthor.FindStringExact(cbAuthor.Text) < 0)
                                 cbAuthor.Items.Add(carReport.Author);
