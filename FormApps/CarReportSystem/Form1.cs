@@ -172,6 +172,8 @@ namespace CarReportSystem {
             dgvCarReports.Columns[5].Visible = false;
             DeleteModifyMasking();
             tsslInformation.Text = ""; //情報表示領域のテキストを初期化
+            rbOther.Checked = true;
+
             dgvCarReports.RowsDefaultCellStyle.BackColor = Color.PeachPuff;
             dgvCarReports.AlternatingRowsDefaultCellStyle.BackColor = Color.AntiqueWhite;
 
@@ -254,11 +256,7 @@ namespace CarReportSystem {
         private void ControlsClear() {
             dtpDate.Value = DateTime.Today;
             cbAuthor.Text = "";
-            foreach (RadioButton maker in gbMaker.Controls) {
-                if (maker.Checked) {
-                    maker.Checked = false;
-                }
-            }
+            rbOther.Checked = true;
             cbCarName.Text = "";
             tbReport.Text = "";
             pbCarImage.Image = null;
