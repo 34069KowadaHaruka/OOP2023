@@ -172,6 +172,8 @@ namespace CarReportSystem {
             dgvCarReports.Columns[5].Visible = false;
             DeleteModifyMasking();
             tsslInformation.Text = ""; //情報表示領域のテキストを初期化
+            dgvCarReports.RowsDefaultCellStyle.BackColor = Color.PeachPuff;
+            dgvCarReports.AlternatingRowsDefaultCellStyle.BackColor = Color.AntiqueWhite;
 
             //設定ファイルを逆シリアル化して背景を設定
             try {
