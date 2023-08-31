@@ -197,21 +197,21 @@ namespace CarReportSystem {
 
         //データグリッドビュー クリック
         private void dgvCarReports_Click(object sender, EventArgs e) {
-            if (CarReports.Count() <= 0)
-                return;
+            //if (CarReports.Count() <= 0)
+            //    return;
 
-            dtpDate.Value = CarReports[dgvCarReports.CurrentRow.Index].Date;
-            cbAuthor.Text = CarReports[dgvCarReports.CurrentRow.Index].Author;
-            setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
-            cbCarName.Text = CarReports[dgvCarReports.CurrentRow.Index].CarName;
-            tbReport.Text = CarReports[dgvCarReports.CurrentRow.Index].Report;
-            pbCarImage.Image = CarReports[dgvCarReports.CurrentRow.Index].CarImage;
+            //dtpDate.Value = CarReports[dgvCarReports.CurrentRow.Index].Date;
+            //cbAuthor.Text = CarReports[dgvCarReports.CurrentRow.Index].Author;
+            //setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
+            //cbCarName.Text = CarReports[dgvCarReports.CurrentRow.Index].CarName;
+            //tbReport.Text = CarReports[dgvCarReports.CurrentRow.Index].Report;
+            //pbCarImage.Image = CarReports[dgvCarReports.CurrentRow.Index].CarImage;
 
-            //修正・削除ボタンマスク解除
-            if (CarReports.Count() > 0) {
-                btModifyReport.Enabled = true;
-                btDeleteReport.Enabled = true;
-            }
+            ////修正・削除ボタンマスク解除
+            //if (CarReports.Count() > 0) {
+            //    btModifyReport.Enabled = true;
+            //    btDeleteReport.Enabled = true;
+            //}
         }
 
         //指定したメーカーのラジオボタンを押す
@@ -379,6 +379,25 @@ namespace CarReportSystem {
                 catch (Exception ex) {
                     MessageBox.Show(ex.Message);
                 }
+            }
+        }
+
+        //dgvセルクリック(セル以外のクリックを無視)
+        private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
+            if (CarReports.Count() <= 0)
+                return;
+
+            dtpDate.Value = CarReports[dgvCarReports.CurrentRow.Index].Date;
+            cbAuthor.Text = CarReports[dgvCarReports.CurrentRow.Index].Author;
+            setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
+            cbCarName.Text = CarReports[dgvCarReports.CurrentRow.Index].CarName;
+            tbReport.Text = CarReports[dgvCarReports.CurrentRow.Index].Report;
+            pbCarImage.Image = CarReports[dgvCarReports.CurrentRow.Index].CarImage;
+
+            //修正・削除ボタンマスク解除
+            if (CarReports.Count() > 0) {
+                btModifyReport.Enabled = true;
+                btDeleteReport.Enabled = true;
             }
         }
     }
