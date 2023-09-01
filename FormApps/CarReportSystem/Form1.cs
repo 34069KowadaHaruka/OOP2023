@@ -24,7 +24,7 @@ namespace CarReportSystem {
 
         public Form1() {
             InitializeComponent();
-            dgvCarReports.DataSource = CarReports; //Binding
+            //dgvCarReports.DataSource = CarReports; //Binding
         }
 
         //ステータスラベルのテキスト表示・非表示
@@ -399,6 +399,12 @@ namespace CarReportSystem {
                 btModifyReport.Enabled = true;
                 btDeleteReport.Enabled = true;
             }
+        }
+
+        //データベースに接続するボタン イベントハンドラ
+        private void btConnection_Click(object sender, EventArgs e) {
+            // TODO: このコード行はデータを 'infosys202330DataSet.CarReportTable' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            this.carReportTableTableAdapter.Fill(this.infosys202330DataSet.CarReportTable);
         }
     }
 }
