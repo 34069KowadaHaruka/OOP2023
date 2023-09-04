@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace Exercise01 {
     class Program {
@@ -22,16 +24,31 @@ namespace Exercise01 {
             Exercise1_4("employees.json");
 
             // これは確認用
-            Console.WriteLine(File.ReadAllText("employees.json"));
+            //Console.WriteLine(File.ReadAllText("employees.json"));
         }
 
         private static void Exercise1_1(string v) {
+            var employee = new Employee {
+                Id = 1,
+                Name = "a",
+                HireDate = DateTime.Today
+            };
 
+            //シリアル化
+            using (var writer = XmlWriter.Create(v)) {
+                var serializer = new XmlSerializer(employee.GetType());
+                serializer.Serialize(writer, employee);
+            }
 
+            //逆シリアル化
+            using (var reader = XmlReader.Create(v)) {
+                var serializer = new XmlSerializer(typeof(Employee));
+                employee = serializer.Deserialize(reader) as Employee;
+                Console.WriteLine(employee);
+            }
         }
 
         private static void Exercise1_2(string v) {
-
 
         }
 
@@ -46,4 +63,3 @@ namespace Exercise01 {
         }
     }
 }
-
