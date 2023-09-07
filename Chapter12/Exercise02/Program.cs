@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 namespace Exercise02 {
     class Program {
@@ -22,8 +24,8 @@ namespace Exercise02 {
             Console.WriteLine();
 
             // これは確認のためのコード 12.2.2
-            //Console.WriteLine(File.ReadAllText("novelist.json"));
-            //Console.WriteLine();
+            Console.WriteLine(File.ReadAllText("novelist.json"));
+            Console.WriteLine();
         }
 
         private static Novelist Exercise2_1(string v) {
@@ -35,7 +37,13 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_2(object novelist, string v) {
-
+            using (var stream = new FileStream(v, FileMode.Create, FileAccess.Write)) {
+                var serializer = new DataContractJsonSerializer(novelist.GetType(),
+                                    new DataContractJsonSerializerSettings {
+                                        DateTimeFormat = new DateTimeFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                                    });
+                serializer.WriteObject(stream, novelist);
+            }
         }
     }
 }
