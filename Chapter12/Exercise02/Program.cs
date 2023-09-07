@@ -21,7 +21,7 @@ namespace Exercise02 {
             }
             Console.WriteLine();
 
-            //// これは確認のためのコード 12.2.2
+            // これは確認のためのコード 12.2.2
             //Console.WriteLine(File.ReadAllText("novelist.json"));
             //Console.WriteLine();
         }

@@ -8,10 +8,10 @@ using System.Xml.Serialization;
 
 namespace Exercise02 {
     [XmlRoot("novelist")]
-    [DataContract(Name = "novelist")]
+    [DataContract(Name = "novelist")] //(Name = "novelist")はあってもなくてもよい
     public class Novelist {
 
-        [XmlElement("name")]
+        [XmlElement("name")] //p309.
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
@@ -19,7 +19,8 @@ namespace Exercise02 {
         [DataMember(Name = "birth")]
         public DateTime Birth { get; set; }
 
-        [XmlElement("masterpieces")]
+        [XmlArray("masterpieces")]
+        [XmlArrayItem("title", typeof(string))]
         [DataMember(Name = "masterpieces")]
         public string[] Masterpieces { get; set; }
     }
