@@ -387,21 +387,14 @@ namespace CarReportSystem {
 
         //dgvセルクリック(セル以外のクリックを無視)
         private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
-            //if (CarReports.Count() <= 0)
-            //    return;
-
             dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[1].Value;
             cbAuthor.Text = dgvCarReports.CurrentRow.Cells[2].Value.ToString();
             setSelectedMaker(dgvCarReports.CurrentRow.Cells[3].Value.ToString());
             cbCarName.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
             tbReport.Text = dgvCarReports.CurrentRow.Cells[5].Value.ToString();
-            if (dgvCarReports.CurrentRow.Cells[6].Value != DBNull.Value) {
-                pbCarImage.Image = ByteArrayToImage((byte[])dgvCarReports.CurrentRow.Cells[6].Value);
-            }
-            else {
-                pbCarImage.Image = null;
-            }
-
+            pbCarImage.Image = !dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value) ?
+                                pbCarImage.Image = ByteArrayToImage((byte[])dgvCarReports.CurrentRow.Cells[6].Value) : null;
+            
             //修正・削除ボタンマスク解除
             btModifyReport.Enabled = true;
             btDeleteReport.Enabled = true;
