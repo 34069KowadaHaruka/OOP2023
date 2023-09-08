@@ -35,31 +35,20 @@ namespace CarReportSystem {
 
         //追加ボタンイベントハンドラ
         private void btAddReport_Click(object sender, EventArgs e) {
-            if (cbAuthor.Text.Equals("")) {
-                statusLabelDisp("記録者が入力されていません");
+            DataLackCaution();
+            if (tsslInformation.Text != "")
                 return;
-            }
-            else if (cbCarName.Text.Equals("")) {
-                statusLabelDisp("車名が入力されていません");
-                return;
-            }
-            statusLabelDisp();
 
-
-            CarReport carReport = new CarReport {
-                Date = dtpDate.Value, 
-                Author = cbAuthor.Text, 
-                Maker = getSelectedMaker(), 
-                CarName = cbCarName.Text, 
-                Report =  tbReport.Text, 
-                CarImage = pbCarImage.Image, 
-            };
-            CarReports.Add(carReport);
+            DgvRenewal();
             //dgvCarReports.Rows[CarReports.Count() - 1].Selected = true;
+
+            this.Validate();
+            this.carReportTableBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202330DataSet);
 
             #region //コンボボックスに追加
 #if true
-            if(cbAuthor.FindStringExact(cbAuthor.Text) < 0)
+            if (cbAuthor.FindStringExact(cbAuthor.Text) < 0)
                 cbAuthor.Items.Add(cbAuthor.Text);
             if(cbCarName.FindStringExact(cbCarName.Text) < 0)
                 cbCarName.Items.Add(cbCarName.Text);
@@ -144,32 +133,22 @@ namespace CarReportSystem {
 
         //修正ボタンイベントハンドラ
         private void btModifyReport_Click(object sender, EventArgs e) {
-            if (cbAuthor.Text.Equals("")) {
-                statusLabelDisp("記録者が入力されていません");
+            DataLackCaution();
+            if (tsslInformation.Text != "")
                 return;
-            }
-            else if (cbCarName.Text.Equals("")) {
-                statusLabelDisp("車名が入力されていません");
-                return;
-            }
-            statusLabelDisp();
 
-            CarReports[dgvCarReports.CurrentRow.Index] = new CarReport {
-                Date = dtpDate.Value,
-                Author = cbAuthor.Text,
-                Maker = getSelectedMaker(), 
-                CarName = cbCarName.Text,
-                Report = tbReport.Text,
-                CarImage = pbCarImage.Image,
-            };
-            //dgvCarReports.Refresh(); //インスタンスそのまま、中身の上書きにしたとき　一覧更新
+            DgvRenewal();
+
+            this.Validate();
+            this.carReportTableBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202330DataSet);
 
             ControlsClear();
         }
 
         //Form1をロード
         private void Form1_Load(object sender, EventArgs e) {
-            dgvCarReports.Columns[5].Visible = false;
+            dgvCarReports.Columns[6].Visible = false;
             DeleteModifyMasking();
             tsslInformation.Text = ""; //情報表示領域のテキストを初期化
             rbOther.Checked = true;
@@ -219,31 +198,32 @@ namespace CarReportSystem {
         }
 
         //指定したメーカーのラジオボタンを押す
-        private void setSelectedMaker(CarReport.MakerGroup maker) {
+
+        private void setSelectedMaker(string maker) {
 
             switch (maker) {
-                case CarReport.MakerGroup.トヨタ:
+                case "トヨタ":
                     rbToyota.Checked = true;
                     break;
-                case CarReport.MakerGroup.日産:
+                case "日産":
                     rbNissan.Checked = true;
                     break;
-                case CarReport.MakerGroup.ホンダ:
+                case "ホンダ":
                     rbHonda.Checked = true;
                     break;
-                case CarReport.MakerGroup.輸入車:
+                case "輸入車":
                     rbImported.Checked = true;
                     break;
-                case CarReport.MakerGroup.スバル:
+                case "スバル":
                     rbSubaru.Checked = true;
                     break;
-                case CarReport.MakerGroup.スズキ:
+                case "スズキ":
                     rbSuzuki.Checked = true;
                     break;
-                case CarReport.MakerGroup.ダイハツ:
+                case "ダイハツ":
                     rbDaihatsu.Checked = true;
                     break;
-                case CarReport.MakerGroup.その他:
+                case "その他":
                     rbOther.Checked = true;
                     break;
                 default:
@@ -270,6 +250,29 @@ namespace CarReportSystem {
         private void DeleteModifyMasking() {
             btModifyReport.Enabled = false;
             btDeleteReport.Enabled = false;
+        }
+
+        //記録者や車名が抜けているときステータスラベルで知らせる
+        private void DataLackCaution() {
+            if (cbAuthor.Text.Equals("")) {
+                statusLabelDisp("記録者が入力されていません");
+                return;
+            }
+            else if (cbCarName.Text.Equals("")) {
+                statusLabelDisp("車名が入力されていません");
+                return;
+            }
+            statusLabelDisp();
+        }
+
+        private void DgvRenewal() {
+            dgvCarReports.CurrentRow.Cells[1].Value = dtpDate.Value;
+            dgvCarReports.CurrentRow.Cells[2].Value = cbAuthor.Text;
+            dgvCarReports.CurrentRow.Cells[3].Value = getSelectedMaker();
+            dgvCarReports.CurrentRow.Cells[4].Value = cbCarName.Text;
+            dgvCarReports.CurrentRow.Cells[5].Value = tbReport.Text;
+            dgvCarReports.CurrentRow.Cells[6].Value = pbCarImage.Image;
+            //dgvCarReports.Refresh(); //インスタンスそのまま、中身の上書きにしたとき　一覧更新
         }
 
         //終了
@@ -356,7 +359,7 @@ namespace CarReportSystem {
 
                         dgvCarReports.DataSource = null;
                         dgvCarReports.DataSource = CarReports;
-                        dgvCarReports.Columns[5].Visible = false;
+                        dgvCarReports.Columns[6].Visible = false;
 
                         cbAuthor.Items.Clear();
                         cbCarName.Items.Clear();
@@ -384,27 +387,46 @@ namespace CarReportSystem {
 
         //dgvセルクリック(セル以外のクリックを無視)
         private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
-            if (CarReports.Count() <= 0)
-                return;
+            //if (CarReports.Count() <= 0)
+            //    return;
 
-            dtpDate.Value = CarReports[dgvCarReports.CurrentRow.Index].Date;
-            cbAuthor.Text = CarReports[dgvCarReports.CurrentRow.Index].Author;
-            setSelectedMaker((CarReport.MakerGroup)dgvCarReports.CurrentRow.Cells[2].Value);
-            cbCarName.Text = CarReports[dgvCarReports.CurrentRow.Index].CarName;
-            tbReport.Text = CarReports[dgvCarReports.CurrentRow.Index].Report;
-            pbCarImage.Image = CarReports[dgvCarReports.CurrentRow.Index].CarImage;
+            dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[1].Value;
+            cbAuthor.Text = dgvCarReports.CurrentRow.Cells[2].Value.ToString();
+            setSelectedMaker(dgvCarReports.CurrentRow.Cells[3].Value.ToString());
+            cbCarName.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+            tbReport.Text = dgvCarReports.CurrentRow.Cells[5].Value.ToString();
+            if (dgvCarReports.CurrentRow.Cells[6].Value != DBNull.Value) {
+                pbCarImage.Image = ByteArrayToImage((byte[])dgvCarReports.CurrentRow.Cells[6].Value);
+            }
+            else {
+                pbCarImage.Image = null;
+            }
 
             //修正・削除ボタンマスク解除
-            if (CarReports.Count() > 0) {
-                btModifyReport.Enabled = true;
-                btDeleteReport.Enabled = true;
-            }
+            btModifyReport.Enabled = true;
+            btDeleteReport.Enabled = true;
         }
 
         //データベースに接続するボタン イベントハンドラ
         private void btConnection_Click(object sender, EventArgs e) {
             // TODO: このコード行はデータを 'infosys202330DataSet.CarReportTable' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportTableTableAdapter.Fill(this.infosys202330DataSet.CarReportTable);
+            dgvCarReports.ClearSelection();
         }
+
+        // バイト配列をImageオブジェクトに変換
+        public static Image ByteArrayToImage(byte[] b) {
+            ImageConverter imgconv = new ImageConverter();
+            Image img = (Image)imgconv.ConvertFrom(b);
+            return img;
+        }
+
+        // Imageオブジェクトをバイト配列に変換
+        public static byte[] ImageToByteArray(Image img) {
+            ImageConverter imgconv = new ImageConverter();
+            byte[] b = (byte[])imgconv.ConvertTo(img, typeof(byte[]));
+            return b;
+        }
+
     }
 }
