@@ -10,6 +10,8 @@
 
 #pragma warning disable 1591
 
+using System;
+
 namespace CarReportSystem {
     
     
@@ -1646,7 +1648,7 @@ SELECT Id, Date, Author, Maker, CarName, Report, Image FROM CarReportTable WHERE
             }
             return false;
         }
-        
+
         /// <summary>
         ///Update Order Option
         ///</summary>

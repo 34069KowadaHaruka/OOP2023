@@ -39,12 +39,16 @@ namespace CarReportSystem {
             if (tsslInformation.Text != "")
                 return;
 
-            DgvRenewal();
-            //dgvCarReports.Rows[CarReports.Count() - 1].Selected = true;
+            DataRow newRow = infosys202330DataSet.CarReportTable.NewRow();
+            newRow[1] = dtpDate.Value;
+            newRow[2] = cbAuthor.Text;
+            newRow[3] = getSelectedMaker();
+            newRow[4] = cbCarName.Text;
+            newRow[5] = tbReport.Text;
+            newRow[6] = ImageToByteArray(pbCarImage.Image);
 
-            this.Validate();
-            this.carReportTableBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.infosys202330DataSet);
+            infosys202330DataSet.CarReportTable.Rows.Add(newRow);
+            this.carReportTableTableAdapter.Update(infosys202330DataSet.CarReportTable);
 
             #region //コンボボックスに追加
 #if true
