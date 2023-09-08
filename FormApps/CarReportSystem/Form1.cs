@@ -15,7 +15,7 @@ using System.Xml.Serialization;
 namespace CarReportSystem {
     public partial class Form1 : Form {
         //管理用データ
-        BindingList<CarReport> CarReports = new BindingList<CarReport>();
+        //BindingList<CarReport> CarReports = new BindingList<CarReport>();
 
         //設定情報保存用オブジェクト
         Settings settings = Settings.getInstance();
@@ -127,7 +127,8 @@ namespace CarReportSystem {
 
         //削除ボタンイベントハンドラ
         private void btDeleteReport_Click(object sender, EventArgs e) {
-            CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
+            dgvCarReports.Rows.RemoveAt(dgvCarReports.CurrentRow.Index);
+            this.carReportTableTableAdapter.Update(infosys202330DataSet.CarReportTable);
 #if true
             ControlsClear();
 #else
@@ -338,55 +339,55 @@ namespace CarReportSystem {
         }
 
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
-                try {
-                    //バイナリ形式でシリアル化
-                    var bf = new BinaryFormatter();
-                    using (FileStream fs = File.Open(sfdCarRepoSave.FileName, FileMode.Create)) {
-                        bf.Serialize(fs, CarReports);
-                    }
-                }
-                catch (Exception ex) {
-                    MessageBox.Show(ex.Message);
-                }
+            //if (sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
+            //    try {
+            //        //バイナリ形式でシリアル化
+            //        var bf = new BinaryFormatter();
+            //        using (FileStream fs = File.Open(sfdCarRepoSave.FileName, FileMode.Create)) {
+            //            bf.Serialize(fs, CarReports);
+            //        }
+            //    }
+            //    catch (Exception ex) {
+            //        MessageBox.Show(ex.Message);
+            //    }
                 
-            }
+            //}
         }
 
         private void 開くToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (ofdCarRepoOpen.ShowDialog() == DialogResult.OK) {
-                try {
-                    //バイナリ形式から逆シリアル化
-                    var bf = new BinaryFormatter();
-                    using (FileStream fs = File.Open(ofdCarRepoOpen.FileName, FileMode.Open,FileAccess.Read)) {
-                        CarReports = (BindingList<CarReport>)bf.Deserialize(fs);
+            //if (ofdCarRepoOpen.ShowDialog() == DialogResult.OK) {
+            //    try {
+            //        //バイナリ形式から逆シリアル化
+            //        var bf = new BinaryFormatter();
+            //        using (FileStream fs = File.Open(ofdCarRepoOpen.FileName, FileMode.Open,FileAccess.Read)) {
+            //            CarReports = (BindingList<CarReport>)bf.Deserialize(fs);
 
-                        dgvCarReports.DataSource = null;
-                        dgvCarReports.DataSource = CarReports;
-                        dgvCarReports.Columns[6].Visible = false;
+            //            dgvCarReports.DataSource = null;
+            //            dgvCarReports.DataSource = CarReports;
+            //            dgvCarReports.Columns[6].Visible = false;
 
-                        cbAuthor.Items.Clear();
-                        cbCarName.Items.Clear();
+            //            cbAuthor.Items.Clear();
+            //            cbCarName.Items.Clear();
 
-                        foreach (var carReport in CarReports) {
-                            if (cbAuthor.FindStringExact(cbAuthor.Text) < 0)
-                                cbAuthor.Items.Add(carReport.Author);
-                            if (cbCarName.FindStringExact(cbCarName.Text) < 0)
-                                cbCarName.Items.Add(carReport.CarName);
-                        }
-                        /*
-                        foreach (var author in CarReports.Select(p => p.Author)) {
-                            setCbAuthor(author);
-                        }
-                        */
+            //            foreach (var carReport in CarReports) {
+            //                if (cbAuthor.FindStringExact(cbAuthor.Text) < 0)
+            //                    cbAuthor.Items.Add(carReport.Author);
+            //                if (cbCarName.FindStringExact(cbCarName.Text) < 0)
+            //                    cbCarName.Items.Add(carReport.CarName);
+            //            }
+            //            /*
+            //            foreach (var author in CarReports.Select(p => p.Author)) {
+            //                setCbAuthor(author);
+            //            }
+            //            */
 
-                        ControlsClear();
-                    }
-                }
-                catch (Exception ex) {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            //            ControlsClear();
+            //        }
+            //    }
+            //    catch (Exception ex) {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
         }
 
         //dgvセルクリック(セル以外のクリックを無視)
