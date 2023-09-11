@@ -382,7 +382,7 @@ namespace CarReportSystem {
 
         private void btDtpSearch_Click(object sender, EventArgs e) {
             //DgvRenewal();
-            carReportTableTableAdapter.FillByDate(this.infosys202330DataSet.CarReportTable, dtpDateSearch.Text);
+            carReportTableTableAdapter.FillByDate(this.infosys202330DataSet.CarReportTable, dtpDateSearchA.Text);
         }
     }
 }

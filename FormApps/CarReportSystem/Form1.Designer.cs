@@ -75,7 +75,7 @@ namespace CarReportSystem {
             this.lavel8 = new System.Windows.Forms.Label();
             this.gbSearch = new System.Windows.Forms.GroupBox();
             this.btDtpSearch = new System.Windows.Forms.Button();
-            this.dtpDateSearch = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateSearchA = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.btCarNameSearch = new System.Windows.Forms.Button();
             this.tbCarNameSearch = new System.Windows.Forms.TextBox();
@@ -93,6 +93,7 @@ namespace CarReportSystem {
             this.infosys202330DataSet = new CarReportSystem.infosys202330DataSet();
             this.carReportTableTableAdapter = new CarReportSystem.infosys202330DataSetTableAdapters.CarReportTableTableAdapter();
             this.tableAdapterManager = new CarReportSystem.infosys202330DataSetTableAdapters.TableAdapterManager();
+            this.dtpDateSearchB = new System.Windows.Forms.DateTimePicker();
             this.gbMaker.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarReports)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbCarImage)).BeginInit();
@@ -539,8 +540,9 @@ namespace CarReportSystem {
             // 
             // gbSearch
             // 
+            this.gbSearch.Controls.Add(this.dtpDateSearchB);
             this.gbSearch.Controls.Add(this.btDtpSearch);
-            this.gbSearch.Controls.Add(this.dtpDateSearch);
+            this.gbSearch.Controls.Add(this.dtpDateSearchA);
             this.gbSearch.Controls.Add(this.label8);
             this.gbSearch.Controls.Add(this.btCarNameSearch);
             this.gbSearch.Controls.Add(this.tbCarNameSearch);
@@ -553,24 +555,23 @@ namespace CarReportSystem {
             this.gbSearch.Size = new System.Drawing.Size(605, 165);
             this.gbSearch.TabIndex = 19;
             this.gbSearch.TabStop = false;
-            this.gbSearch.Text = "検索";
             // 
             // btDtpSearch
             // 
-            this.btDtpSearch.Location = new System.Drawing.Point(210, 74);
+            this.btDtpSearch.Location = new System.Drawing.Point(210, 77);
             this.btDtpSearch.Name = "btDtpSearch";
-            this.btDtpSearch.Size = new System.Drawing.Size(92, 19);
+            this.btDtpSearch.Size = new System.Drawing.Size(92, 32);
             this.btDtpSearch.TabIndex = 23;
             this.btDtpSearch.Text = "日付で検索";
             this.btDtpSearch.UseVisualStyleBackColor = true;
             this.btDtpSearch.Click += new System.EventHandler(this.btDtpSearch_Click);
             // 
-            // dtpDateSearch
+            // dtpDateSearchA
             // 
-            this.dtpDateSearch.Location = new System.Drawing.Point(64, 72);
-            this.dtpDateSearch.Name = "dtpDateSearch";
-            this.dtpDateSearch.Size = new System.Drawing.Size(140, 19);
-            this.dtpDateSearch.TabIndex = 22;
+            this.dtpDateSearchA.Location = new System.Drawing.Point(64, 72);
+            this.dtpDateSearchA.Name = "dtpDateSearchA";
+            this.dtpDateSearchA.Size = new System.Drawing.Size(140, 19);
+            this.dtpDateSearchA.TabIndex = 22;
             // 
             // label8
             // 
@@ -692,6 +693,13 @@ namespace CarReportSystem {
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CarReportTableTableAdapter = this.carReportTableTableAdapter;
             this.tableAdapterManager.UpdateOrder = CarReportSystem.infosys202330DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // dtpDateSearchB
+            // 
+            this.dtpDateSearchB.Location = new System.Drawing.Point(64, 97);
+            this.dtpDateSearchB.Name = "dtpDateSearchB";
+            this.dtpDateSearchB.Size = new System.Drawing.Size(140, 19);
+            this.dtpDateSearchB.TabIndex = 24;
             // 
             // Form1
             // 
@@ -815,8 +823,9 @@ namespace CarReportSystem {
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox tbAuthorSearch;
         private System.Windows.Forms.Button btDtpSearch;
-        private System.Windows.Forms.DateTimePicker dtpDateSearch;
+        private System.Windows.Forms.DateTimePicker dtpDateSearchA;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dtpDateSearchB;
     }
 }
 
