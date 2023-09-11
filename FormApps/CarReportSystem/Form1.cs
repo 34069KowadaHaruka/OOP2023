@@ -150,6 +150,7 @@ namespace CarReportSystem {
 
         //Form1をロード
         private void Form1_Load(object sender, EventArgs e) {
+            dgvCarReports.Columns[0].Visible = false;
             dgvCarReports.Columns[6].Visible = false;
             DeleteModifyMasking();
             tsslInformation.Text = ""; //情報表示領域のテキストを初期化
@@ -318,6 +319,9 @@ namespace CarReportSystem {
 
         //dgvセルクリック(セル以外のクリックを無視)
         private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
+            if(dgvCarReports.CurrentRow == null)
+                return;
+
             dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[1].Value;
             cbAuthor.Text = dgvCarReports.CurrentRow.Cells[2].Value.ToString();
             setSelectedMaker(dgvCarReports.CurrentRow.Cells[3].Value.ToString());
@@ -364,6 +368,21 @@ namespace CarReportSystem {
             }
 
             dgvCarReports.ClearSelection();
+        }
+
+        private void btAuthorSearch_Click(object sender, EventArgs e) {
+            //DgvRenewal();
+            carReportTableTableAdapter.FillByAuthor(this.infosys202330DataSet.CarReportTable, tbAuthorSearch.Text);
+        }
+
+        private void btCarNameSearch_Click(object sender, EventArgs e) {
+            //DgvRenewal();
+            carReportTableTableAdapter.FillByCarName(this.infosys202330DataSet.CarReportTable, tbCarNameSearch.Text);
+        }
+
+        private void btDtpSearch_Click(object sender, EventArgs e) {
+            //DgvRenewal();
+            carReportTableTableAdapter.FillByDate(this.infosys202330DataSet.CarReportTable, dtpDateSearch.Text);
         }
     }
 }
