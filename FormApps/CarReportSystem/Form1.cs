@@ -45,7 +45,7 @@ namespace CarReportSystem {
             newRow[3] = getSelectedMaker();
             newRow[4] = cbCarName.Text;
             newRow[5] = tbReport.Text;
-            newRow[6] = ImageToByteArray(pbCarImage.Image);
+            //newRow[6] = !pbCarImage.Image.Equals(null)?ImageToByteArray(pbCarImage.Image):null;
 
             infosys202330DataSet.CarReportTable.Rows.Add(newRow);
             this.carReportTableTableAdapter.Update(infosys202330DataSet.CarReportTable);
@@ -398,7 +398,7 @@ namespace CarReportSystem {
             cbCarName.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
             tbReport.Text = dgvCarReports.CurrentRow.Cells[5].Value.ToString();
             pbCarImage.Image = !dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value) ?
-                                pbCarImage.Image = ByteArrayToImage((byte[])dgvCarReports.CurrentRow.Cells[6].Value) : null;
+                                ByteArrayToImage((byte[])dgvCarReports.CurrentRow.Cells[6].Value) : null;
             
             //修正・削除ボタンマスク解除
             btModifyReport.Enabled = true;
@@ -409,7 +409,22 @@ namespace CarReportSystem {
         private void btConnection_Click(object sender, EventArgs e) {
             // TODO: このコード行はデータを 'infosys202330DataSet.CarReportTable' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportTableTableAdapter.Fill(this.infosys202330DataSet.CarReportTable);
+
+            foreach (var CarReports in infosys202330DataSet.CarReportTable) {
+                ComboBoxAdds(CarReports.Author, CarReports.CarName);
+            }
+            
+
             dgvCarReports.ClearSelection();
+        }
+
+        public void ComboBoxAdds(string Author, string CarName) {
+            if (!cbAuthor.Items.Contains(Author)) {
+                cbAuthor.Items.Add(Author);
+            }
+            if (!cbCarName.Items.Contains(CarName)) {
+                cbCarName.Items.Add(CarName);
+            }
         }
 
         // バイト配列をImageオブジェクトに変換
