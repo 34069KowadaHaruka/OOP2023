@@ -382,7 +382,25 @@ namespace CarReportSystem {
 
         private void btDtpSearch_Click(object sender, EventArgs e) {
             //DgvRenewal();
-            carReportTableTableAdapter.FillByDate(this.infosys202330DataSet.CarReportTable, dtpDateSearchA.Text);
+            if (dtpDateSearchStart.Value > dtpDateSearchEnd.Value) {
+                DateTime dtWork;
+                dtWork = dtpDateSearchStart.Value;
+                dtpDateSearchStart.Value = dtpDateSearchEnd.Value;
+                dtpDateSearchEnd.Value = dtWork;
+            }
+            carReportTableTableAdapter.FillByDate(this.infosys202330DataSet.CarReportTable, dtpDateSearchStart.Text, dtpDateSearchEnd.Text);
+        }
+
+        private void btSearchReset_Click(object sender, EventArgs e) {
+            carReportTableTableAdapter.Fill(this.infosys202330DataSet.CarReportTable);
+            tbAuthorSearch.Clear();
+            tbCarNameSearch.Clear();
+            dtpDateSearchStart.Value = DateTime.Today;
+            dtpDateSearchEnd.Value = DateTime.Today;
+        }
+
+        private void dtpDateSearchStart_ValueChanged(object sender, EventArgs e) {
+            dtpDateSearchEnd.Value = dtpDateSearchStart.Value;
         }
     }
 }
