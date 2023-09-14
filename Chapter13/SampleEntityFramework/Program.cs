@@ -79,10 +79,10 @@ namespace SampleEntityFramework {
         private static void Exercise1_5() {
             var books = GetBooks().GroupBy(b => b.Author)
                                .OrderByDescending(a => a.Key.Birthday.Month).ThenBy(a => a.Key.Birthday.Day);
-            foreach (var book in books) {
-                Console.WriteLine($"{book.Key.Name}");
-                foreach (var b in book) {
-                    Console.WriteLine($"{b.PublishedYear}『{b.Title}』");
+            foreach (var b in books) {
+                Console.WriteLine($"{b.Key.Name}");
+                foreach (var book in b) {
+                    Console.WriteLine($"{book.PublishedYear}『{book.Title}』");
                 }
             }
         }
