@@ -84,7 +84,7 @@ namespace SampleEntityFramework {
             var books = GetBooks().GroupBy(b => b.Author)
                                .OrderByDescending(a => a.Key.Birthday.Month).ThenByDescending(a => a.Key.Birthday.Day);
             foreach (var b in books) {
-                Console.WriteLine($"{b.Key.Name}");
+                Console.WriteLine($"{b.Key.Name}, {b.Key.Birthday}");
                 foreach (var book in b) {
                     Console.WriteLine($"{book.PublishedYear}『{book.Title}』");
                 }
