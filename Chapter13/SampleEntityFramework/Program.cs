@@ -70,15 +70,19 @@ namespace SampleEntityFramework {
 
         private static void Exercise1_4() {
             var books = GetBooks();
-            var oldBooks = books.OrderBy(x => x.PublishedYear).ToArray();
-            for (int i = 0; i < 3; i++) {
-                Console.WriteLine(oldBooks[i].Author.Name+ "『"+oldBooks[i].Title+"』");
+            //var oldBooks = books.OrderBy(x => x.PublishedYear).ToArray();
+            var oldBooks = books.OrderBy(x => x.PublishedYear).Take(3).ToArray();
+            //for (int i = 0; i < 3; i++) {
+            //    Console.WriteLine(oldBooks[i].Author.Name+ "『"+oldBooks[i].Title+"』");
+            //}
+            foreach (var book in oldBooks) {
+                Console.WriteLine(book.Author.Name + "『" + book.Title + "』");
             }
         }
 
         private static void Exercise1_5() {
             var books = GetBooks().GroupBy(b => b.Author)
-                               .OrderByDescending(a => a.Key.Birthday.Month).ThenBy(a => a.Key.Birthday.Day);
+                               .OrderByDescending(a => a.Key.Birthday.Month).ThenByDescending(a => a.Key.Birthday.Day);
             foreach (var b in books) {
                 Console.WriteLine($"{b.Key.Name}");
                 foreach (var book in b) {
