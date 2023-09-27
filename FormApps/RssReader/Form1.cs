@@ -23,8 +23,7 @@ namespace RssReader {
 
                 var nodes = xdoc.Root.Descendants("title");
                 foreach (var node in nodes) {
-                    lbRssTitle.Items.Add(node.ToString());
-                    Console.WriteLine();
+                    lbRssTitle.Items.Add(node);
                 }
             }
         }
