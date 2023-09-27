@@ -11,7 +11,7 @@ namespace Section02 {
             var wc = new WebClient();
             var url = new Uri(@"https://www.rimarts.jp/downloads/B2/bk28104j.zip");
             var filename = @"C:\temp\example.zip";
-            wc.DownloadProgressChanged += wc_DownloadProgressChanged;
+            wc.DownloadProgressChanged += wc_DownloadProgressChanged; //デリゲート登録
             wc.DownloadFileCompleted += wc_DownloadFileCompleted;
             wc.DownloadFileAsync(url, filename);
             Console.ReadLine();
