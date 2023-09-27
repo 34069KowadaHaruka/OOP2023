@@ -20,10 +20,12 @@ namespace RssReader {
             using (var wc = new WebClient()) {
                 var url = wc.OpenRead(tbUrl.Text);
                 XDocument xdoc = XDocument.Load(url);
+                
+                var nodes = xdoc.Root.Descendants("item").Elements("title"); //RootのDescendants(子孫)であるitemのElements(要素)title
+                //T:子孫の要素　がわかりやすいだけでtitleはitemの子孫でもあるからRootの子孫の子孫でも通じる　要素の要素は通じないらしい
 
-                var nodes = xdoc.Root.Descendants("title");
                 foreach (var node in nodes) {
-                    lbRssTitle.Items.Add(node);
+                    lbRssTitle.Items.Add(node.Value);
                 }
             }
         }
