@@ -12,6 +12,9 @@ using System.Xml.Linq;
 
 namespace RssReader {
     public partial class Form1 : Form {
+
+        List<ItemData> nodes;
+
         public Form1() {
             InitializeComponent();
         }
@@ -21,13 +24,23 @@ namespace RssReader {
                 var url = wc.OpenRead(tbUrl.Text);
                 XDocument xdoc = XDocument.Load(url);
 
-                var nodes = xdoc.Root.Descendants("item").Select(x => new ItemData {
-                                                              Title = (string)x.Element("title")
-                                                          });
+                nodes = xdoc.Root.Descendants("item").Select(x => new ItemData {
+                    Title = (string)x.Element("title"),
+                    Link = (string)x.Element("link")
+                }).ToList();
+
+                //nodesの各要素にはRssReader.ItemDataが入っていて、Itemの要素としてTitleがあるので、Titleを指定すればよい
 
                 foreach (var node in nodes) {
                     lbRssTitle.Items.Add(node.Title);
                 }
+            }
+        }
+
+        private void lbRssTitle_DoubleClick(object sender, EventArgs e) {
+            using (var wc = new WebClient()) {
+                var target = lbRssTitle.SelectedIndex;
+                wbBrowser.Navigate(nodes[target].Link);
             }
         }
     }
