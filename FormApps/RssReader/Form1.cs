@@ -20,6 +20,10 @@ namespace RssReader {
         }
 
         private void btGet_Click(object sender, EventArgs e) {
+            lbRssTitle.Items.Clear();
+            if (!tbUrl.Text.Contains(".xml"))
+                return;
+
             using (var wc = new WebClient()) {
                 var url = wc.OpenRead(tbUrl.Text);
                 XDocument xdoc = XDocument.Load(url);
@@ -42,6 +46,19 @@ namespace RssReader {
                 var target = lbRssTitle.SelectedIndex;
                 wbBrowser.Navigate(nodes[target].Link);
             }
+        }
+
+        private void btAddComboBox_Click(object sender, EventArgs e) {
+            if (tbUrl.Text == "")
+                return;
+            
+            if (cbLink.FindStringExact(tbUrl.Text) < 0)
+                cbLink.Items.Add(tbUrl.Text);
+                
+        }
+
+        private void cbLink_SelectedIndexChanged(object sender, EventArgs e) {
+            tbUrl.Text = (string)cbLink.SelectedItem;
         }
     }
 }
