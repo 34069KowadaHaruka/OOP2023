@@ -31,7 +31,7 @@ namespace Section02 {
         //インスタンスメソッドを使用した場合
         private static void IsMatch02() {
             var text = "private List<string> results = new List<string>();";
-            var regex = new Regex(@"List<\w+>"); //@を逐語的リテラル
+            var regex = new Regex(@"List<\w+>"); //@ 逐語的リテラル
             bool isMatch = regex.IsMatch(text);
             //Regex型があって、それに使いたい正規表現を入れておくと検証条件が使いまわせるよ、ってことかね
             //なんか、キャッシュされないから同じ正規表現のコンパイルが複数回発生するらしい 固定的な正規表現を使うなら静的メソッドがおすすめらしいです
