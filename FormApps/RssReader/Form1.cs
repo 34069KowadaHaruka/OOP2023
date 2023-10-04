@@ -21,8 +21,8 @@ namespace RssReader {
 
         private void btGet_Click(object sender, EventArgs e) {
             lbRssTitle.Items.Clear();
-            if (!tbUrl.Text.Contains(".xml"))
-                return;
+            //if (!Uri.IsWellFormedUriString(tbUrl.Text, UriKind.))
+            //    return;
 
             using (var wc = new WebClient()) {
                 var url = wc.OpenRead(tbUrl.Text);
@@ -42,23 +42,43 @@ namespace RssReader {
         }
 
         private void lbRssTitle_DoubleClick(object sender, EventArgs e) {
-            using (var wc = new WebClient()) {
+            if (nodes != null) {
                 var target = lbRssTitle.SelectedIndex;
-                wbBrowser.Navigate(nodes[target].Link);
+
+                if (target >= 0 && target < lbRssTitle.Items.Count)
+                    wbBrowser.Navigate(nodes[target].Link);
+
+            }
+            else {
+                return;
             }
         }
 
         private void btAddComboBox_Click(object sender, EventArgs e) {
+
             if (tbUrl.Text == "")
                 return;
-            
+            if (!tbUrl.Text.Contains(".xml"))
+                return;
+
+            using (var wc = new WebClient()) {
+                var url = wc.OpenRead(tbUrl.Text);
+                XDocument xdoc = XDocument.Load(url);
+                //ChannelData channelData = new ChannelData {
+                //    Title = (string),
+                //    Link = (string)
+                //};
+            }
             if (cbLink.FindStringExact(tbUrl.Text) < 0)
                 cbLink.Items.Add(tbUrl.Text);
-                
+            
+            //ここ
+            //ChannelData型にTitle情報を入れて、登録コンボボックスでのみ使う　URL入力画面ではURLに戻る
         }
 
         private void cbLink_SelectedIndexChanged(object sender, EventArgs e) {
             tbUrl.Text = (string)cbLink.SelectedItem;
+            //ここも
         }
     }
 }
