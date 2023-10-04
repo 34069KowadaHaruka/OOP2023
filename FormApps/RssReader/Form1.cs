@@ -20,6 +20,12 @@ namespace RssReader {
         }
 
         private void btGet_Click(object sender, EventArgs e) {
+
+            if (tbUrl.Text == "")
+                return;
+            if (!tbUrl.Text.Contains(".xml"))
+                return;
+
             lbRssTitle.Items.Clear();
             //if (!Uri.IsWellFormedUriString(tbUrl.Text, UriKind.))
             //    return;
