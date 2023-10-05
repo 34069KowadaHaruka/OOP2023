@@ -13,7 +13,7 @@ namespace Exercise02 {
         }
 
         private static void Pickup3DigitNumber(string file) {
-#if true
+#if false
             var regex = new Regex(@"^\d{3,}$");
             foreach (var line in File.ReadLines(file)) {
                 var words = line.Split( );
@@ -26,12 +26,9 @@ namespace Exercise02 {
             }
 #else
             var line = File.ReadAllText(file);
-            var words = line.Split( );
-            foreach (var word in words) {
-                var matches = Regex.Matches(word, @"^\d{3,}$");
-                foreach (Match match in matches) {
-                    Console.WriteLine(match);
-                }
+            var matches = Regex.Matches(line, @"\b\d{3,}\b");
+            foreach (Match match in matches) {
+                Console.WriteLine(match);
             }
 #endif
         }
