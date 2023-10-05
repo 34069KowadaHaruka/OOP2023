@@ -10,16 +10,15 @@ namespace Exercise04 {
     class Program {
         static void Main(string[] args) {
             var lines = File.ReadAllLines("sample.txt");
+            var pattern = @"\s*=\s*";
+            var sb = new StringBuilder();
             foreach (var line in lines) {
+                var replaced = Regex.Replace(line, pattern, "=");
                 var replaced = Regex.Replace(line, @"[Vv]ersion=""v4.0""", @"version=""v5.0""");
             }
             
-
-
-
-
-
-            // これ以降は確認用
+            File.WriteAllText("sample.txt", lines);
+             // これ以降は確認用
             var text = File.ReadAllText("sample.txt");
             Console.WriteLine(text);
         }

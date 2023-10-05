@@ -17,7 +17,7 @@ namespace Exercise03 {
 
             Match match;
             foreach (var text in texts) {
-                match = Regex.Match(text, @"\b[Tt][Ii][Mm][Ee]\b");
+                match = Regex.Match(text, @"\btime\b", RegexOptions.IgnoreCase);
                 if (match.Success)
                     Console.WriteLine("{0}：{1}", text, match.Index);
             }
