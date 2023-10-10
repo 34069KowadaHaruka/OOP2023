@@ -17,8 +17,13 @@ namespace Exercise05 {
             var sb = new StringBuilder();
 
             foreach (var line in lines) {
-                sb.AppendLine(Regex.Replace(line, @"<[^<>][A-Z]+[^<>]>", @"<[^<>]\l$1[^<>]>"));
-                                                                  //↑ここに何か入れないと属性にも反映されそう
+                var s = Regex.Replace(line, @"<(/?)([A-Z][A-Z0-9]*)(.*?)>", 
+                    m => {
+                        return string.Format("<{0}{1}{2}>", 
+                        m.Groups[1].Value, m.Groups[2].Value.ToLower(), m.Groups[3].Value);
+                        //あれば/をそのまま、([A-Z][A-Z0-9]*)は小文字にして、以降何かしらの文字があればそのまま表示する
+                    });
+                sb.AppendLine(s);
             }
 
             //ファイル出力
