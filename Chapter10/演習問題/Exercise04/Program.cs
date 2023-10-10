@@ -11,13 +11,14 @@ namespace Exercise04 {
         static void Main(string[] args) {
             var lines = File.ReadAllLines("sample.txt");
             var pattern = @"\s*=\s*";
-            var sb = new StringBuilder();
-            foreach (var line in lines) {
-                var replaced = Regex.Replace(line, pattern, "=");
-                var replaced = Regex.Replace(line, @"[Vv]ersion=""v4.0""", @"version=""v5.0""");
-            }
+            string result = string.Join(Environment.NewLine, lines);
+            result.Replace(result, Regex.Replace(result, pattern, "="));
+            result.Replace(result, Regex.Replace(result, @"[Vv]ersion=""v4.0""", @"version=""v5.0"""));
             
-            File.WriteAllText("sample.txt", lines);
+            //var newLine = lines.
+
+            //File.WriteAllLines("sample.txt",newLine);
+
              // これ以降は確認用
             var text = File.ReadAllText("sample.txt");
             Console.WriteLine(text);
