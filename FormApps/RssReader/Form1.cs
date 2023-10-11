@@ -23,26 +23,26 @@ namespace RssReader {
 
             if (tbUrl.Text == "")
                 return;
-            if (!tbUrl.Text.Contains(".xml"))
-                return;
+            if (tbUrl.Text.Contains(".xml") || tbUrl.Text.Contains("/feed")) {
 
-            lbRssTitle.Items.Clear();
-            //if (!Uri.IsWellFormedUriString(tbUrl.Text, UriKind.))
-            //    return;
+                lbRssTitle.Items.Clear();
+                //if (!Uri.IsWellFormedUriString(tbUrl.Text, UriKind.))
+                //    return;
 
-            using (var wc = new WebClient()) {
-                var url = wc.OpenRead(tbUrl.Text);
-                XDocument xdoc = XDocument.Load(url);
+                using (var wc = new WebClient()) {
+                    var url = wc.OpenRead(tbUrl.Text);
+                    XDocument xdoc = XDocument.Load(url);
 
-                nodes = xdoc.Root.Descendants("item").Select(x => new ItemData {
-                    Title = (string)x.Element("title"),
-                    Link = (string)x.Element("link")
-                }).ToList();
+                    nodes = xdoc.Root.Descendants("item").Select(x => new ItemData {
+                        Title = (string)x.Element("title"),
+                        Link = (string)x.Element("link")
+                    }).ToList();
 
-                //nodesの各要素にはRssReader.ItemDataが入っていて、Itemの要素としてTitleがあるので、Titleを指定すればよい
+                    //nodesの各要素にはRssReader.ItemDataが入っていて、Itemの要素としてTitleがあるので、Titleを指定すればよい
 
-                foreach (var node in nodes) {
-                    lbRssTitle.Items.Add(node.Title);
+                    foreach (var node in nodes) {
+                        lbRssTitle.Items.Add(node.Title);
+                    }
                 }
             }
         }
@@ -64,20 +64,18 @@ namespace RssReader {
 
             if (tbUrl.Text == "")
                 return;
-            if (!tbUrl.Text.Contains(".xml"))
-                return;
+            if (!tbUrl.Text.Contains(".xml") || tbUrl.Text.Contains("/feed")) {
 
-            using (var wc = new WebClient()) {
-                var url = wc.OpenRead(tbUrl.Text);
-                XDocument xdoc = XDocument.Load(url);
-                //ChannelData channelData = new ChannelData {
-                //    Title = (string),
-                //    Link = (string)
-                //};
+                if (cbLink.FindStringExact(tbUrl.Text) < 0) {
+                    var acn = new AddContentName();
+                    acn.ShowDialog(); //モーダルダイアログとして表示
+                    ChannelData cData = new ChannelData {
+                        //Title = AddContentName.tbrRegisteredName.Text, //staticを探して外す
+                        Url = tbUrl.Text
+                    };
+                    cbLink.Items.Add(tbUrl.Text);
+                }
             }
-            if (cbLink.FindStringExact(tbUrl.Text) < 0)
-                cbLink.Items.Add(tbUrl.Text);
-            
             //ここ
             //ChannelData型にTitle情報を入れて、登録コンボボックスでのみ使う　URL入力画面ではURLに戻る
         }
