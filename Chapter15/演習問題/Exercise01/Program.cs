@@ -48,15 +48,23 @@ namespace Exercise01 {
         private static void Exercise1_4() {
             var books = Library.Books
                                .OrderByDescending(b => b.PublishedYear)
-                               .ThenByDescending(b => b.Price);
+                               .ThenByDescending(b => b.Price)
+                               .Join(Library.Categories,
+                                        book => book.CategoryId,
+                                        category => category.Id,
+                                        (book, category) => new {
+                                            Title = book.Title,
+                                            Category= category.Name,
+                                            Price = book.Price,
+                                            PublishedYear = book.PublishedYear
+                                        });
             foreach (var book in books) {
-                Console.WriteLine("{0}年 {1}円 {2}({3})"
+                Console.WriteLine("{0}年 {1}円 {2} ({3})"
                                     ,book.PublishedYear
                                     ,book.Price
                                     ,book.Title
-                                    ,Library.Categories.Where(c => c.Id.Equals(book.CategoryId)).Select(c => c.Name));
+                                    ,book.Category);
             }
-            //カテゴリーネームが表示できてない
         }
 
         private static void Exercise1_5() {
