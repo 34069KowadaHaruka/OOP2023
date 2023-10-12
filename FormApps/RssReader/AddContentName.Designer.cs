@@ -54,6 +54,7 @@ namespace RssReader {
             this.Controls.Add(this.tbrRegisteredName);
             this.Controls.Add(this.annotation);
             this.Name = "AddContentName";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "AddContentName";
             this.ResumeLayout(false);
             this.PerformLayout();

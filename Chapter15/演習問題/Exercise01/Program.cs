@@ -60,10 +60,11 @@ namespace Exercise01 {
                                         category => category.Id,
                                         (book, category) => new {
                                             Title = book.Title,
-                                            Category= category.Name,
+                                            Category = category.Name,
                                             Price = book.Price,
                                             PublishedYear = book.PublishedYear
-                                        })
+                                        }
+                                )
                                .OrderByDescending(b => b.PublishedYear)
                                .ThenByDescending(b => b.Price);
             foreach (var book in books) {
@@ -77,13 +78,13 @@ namespace Exercise01 {
 
         private static void Exercise1_5() {
             var books = Library.Books
+                               .Where(b => b.PublishedYear == 2016) //これを先に持ってくればPublishedYearをJoinで取ってこなくて良くなる
                                .Join(Library.Categories,
                                     book => book.CategoryId,
                                     category => category.Id,
                                     (book, category) => new {
-                                        Category = category.Name,
-                                        PublishedYear = book.PublishedYear
-                                    }).Distinct().Where(b => b.PublishedYear == 2016);
+                                        Category = category.Name
+                                    }).Distinct();
             Console.WriteLine("2016年に発行された書籍のカテゴリ一覧");
             foreach (var book in books) {
                 Console.WriteLine(book.Category);
@@ -91,21 +92,21 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_6() {
-            var categories = Library.Categories.GroupBy(c => c.Name).OrderBy(c => c.Key);
-            var books = Library.Books
+            var query = Library.Books
                                .Join(Library.Categories,
                                         book => book.CategoryId,
                                         category => category.Id,
                                         (book, category) => new {
                                             Title = book.Title,
-                                            Category = category.Name,
-                                         });
-            foreach (var category in categories) {
-                Console.WriteLine("#"+category.Key);
-                foreach (var book in books) {
-                    if (book.Category == category.Key) {
-                        Console.WriteLine("  " + book.Title);
-                    }
+                                            PublishedYear = book.PublishedYear,
+                                            Price = book.Price,
+                                            Category = category.Name
+                                         })
+                               .GroupBy(c => c.Category).OrderBy(c => c.Key);
+            foreach (var group in query) {
+                Console.WriteLine("#{0}", group.Key);
+                foreach (var book in group) {
+                    Console.WriteLine("  {0}", book.Title);
                 }
             }
         }

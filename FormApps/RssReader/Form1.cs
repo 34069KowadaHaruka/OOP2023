@@ -66,25 +66,52 @@ namespace RssReader {
             if (tbUrl.Text == "")
                 return;
             if (!tbUrl.Text.Contains(".xml") || tbUrl.Text.Contains("/feed")) {
-
-                if (cbLink.FindStringExact(tbUrl.Text) < 0) {
+                var sameData = cbLink.FindStringExact(tbUrl.Text);
+                if (sameData >= 0) { //登録名の更新
+                    var acn = new AddContentName();
+                    acn.ShowDialog(); //モーダルダイアログとして表示
+                    //acn.tbrRegisteredName.Text = cbLink.
+                }else if (sameData < 0) {
                     var acn = new AddContentName();
                     acn.ShowDialog(); //モーダルダイアログとして表示
                     cData = new ChannelData {
                         Title = acn.tbrRegisteredName.Text,
                         Url = tbUrl.Text
                     };
-                    cbLink.Items.Add(cData);
+                    cbLink.Items.Add(cData).ToString();
                 }
             }
         }
 
         private void cbLink_SelectedIndexChanged(object sender, EventArgs e) {
-            tbUrl.Text = (string)cbLink.SelectedItem;
+            var url = (ChannelData)cbLink.SelectedItem;
+            tbUrl.Text = url.Url;
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            cbLink.Items.Add();
+            cData = new ChannelData {
+                Title = "Yahoo 国内ニュース",
+                Url = @"https://news.yahoo.co.jp/rss/categories/domestic.xml"
+            };
+            cbLink.Items.Add(cData).ToString();
+
+            cData = new ChannelData {
+                Title = "Yahoo 国際ニュース",
+                Url = @"https://news.yahoo.co.jp/rss/categories/world.xml"
+            };
+            cbLink.Items.Add(cData).ToString();
+
+            cData = new ChannelData {
+                Title = "Yahoo 経済ニュース",
+                Url = @"https://news.yahoo.co.jp/rss/categories/business.xml"
+            };
+            cbLink.Items.Add(cData).ToString();
+
+            cData = new ChannelData {
+                Title = "Yahoo ITニュース",
+                Url = @"https://news.yahoo.co.jp/rss/categories/it.xml"
+            };
+            cbLink.Items.Add(cData).ToString();
         }
     }
 }
