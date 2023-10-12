@@ -140,8 +140,11 @@ namespace Exercise01 {
                                     c => c.Id,
                                     b => b.CategoryId,
                                     (c, books) => new { Category = c.Name, Books = books }
-                                );
-
+                                )
+                                .Where(x => x.Books.Count() >= 4);
+            foreach (var item in groups) {
+                Console.WriteLine(item.Category);
+            }
         }
     }
 }
