@@ -112,6 +112,27 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_7() {
+            var pYears = Library.Books.OrderBy(p => p.PublishedYear).Select(p => p.PublishedYear).Distinct();
+            var lookup = Library.Books.Join(Library.Categories,
+                                        book => book.CategoryId,
+                                        category => category.Id,
+                                        (book, category) => new {
+                                            Title = book.Title,
+                                            Category = category.Name,
+                                            PublishedYear = book.PublishedYear
+                                        })
+                               .Where(b => b.Category == "Development")
+                               .ToLookup(b => b.PublishedYear);
+            foreach (var pYear in pYears) {
+                var key = lookup[pYear];
+                if (key.Count() == 0) {
+                    continue;
+                }
+                Console.WriteLine("#" + pYear);
+                foreach (var book in key) {
+                    Console.WriteLine("  " + book.Title);
+                }
+            }
         }
 
         private static void Exercise1_8() {
