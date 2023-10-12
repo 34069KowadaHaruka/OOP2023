@@ -41,17 +41,16 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_3() {
-            var groups = Library.Books
-                                .GroupBy(b => b.PublishedYear);
-            int count = 0;
-            foreach (var g in groups) {
-                Console.Write($"{g.Key}年：");
-                foreach (var book in g) {
-                    count++;
-                }
-                Console.WriteLine(count+"冊");
+            var query = Library.Books
+                                .GroupBy(b => b.PublishedYear)
+                                .Select(g => new {
+                                    PublishedYear = g.Key,
+                                    Count = g.Count()
+                                })
+                                .OrderBy(x => x.PublishedYear);
+            foreach (var q in query) {
+                Console.Write($"{0}年：{1}冊", q.PublishedYear, q.Count);
             }
-            //LINQを使おう
         }
 
         private static void Exercise1_4() {
@@ -136,6 +135,13 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_8() {
+            var groups = Library.Categories
+                                .GroupJoin(Library.Books,
+                                    c => c.Id,
+                                    b => b.CategoryId,
+                                    (c, books) => new { Category = c.Name, Books = books }
+                                );
+
         }
     }
 }
