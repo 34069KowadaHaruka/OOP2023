@@ -14,6 +14,7 @@ namespace RssReader {
     public partial class Form1 : Form {
 
         List<ItemData> nodes;
+        ChannelData cData;
 
         public Form1() {
             InitializeComponent();
@@ -69,20 +70,21 @@ namespace RssReader {
                 if (cbLink.FindStringExact(tbUrl.Text) < 0) {
                     var acn = new AddContentName();
                     acn.ShowDialog(); //モーダルダイアログとして表示
-                    ChannelData cData = new ChannelData {
-                        //Title = AddContentName.tbrRegisteredName.Text, //staticを探して外す
+                    cData = new ChannelData {
+                        Title = acn.tbrRegisteredName.Text,
                         Url = tbUrl.Text
                     };
-                    cbLink.Items.Add(tbUrl.Text);
+                    cbLink.Items.Add(cData);
                 }
             }
-            //ここ
-            //ChannelData型にTitle情報を入れて、登録コンボボックスでのみ使う　URL入力画面ではURLに戻る
         }
 
         private void cbLink_SelectedIndexChanged(object sender, EventArgs e) {
             tbUrl.Text = (string)cbLink.SelectedItem;
-            //ここも
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+            cbLink.Items.Add();
         }
     }
 }
