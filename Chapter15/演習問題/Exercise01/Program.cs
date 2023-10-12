@@ -49,7 +49,7 @@ namespace Exercise01 {
                                 })
                                 .OrderBy(x => x.PublishedYear);
             foreach (var q in query) {
-                Console.Write($"{0}年：{1}冊", q.PublishedYear, q.Count);
+                Console.WriteLine("{0}年：{1}冊", q.PublishedYear, q.Count);
             }
         }
 
