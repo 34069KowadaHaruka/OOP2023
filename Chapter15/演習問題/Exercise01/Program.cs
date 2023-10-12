@@ -68,6 +68,18 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_5() {
+            var books = Library.Books.Join
+                                    (Library.Categories,
+                                    book => book.CategoryId,
+                                    category => category.Id,
+                                    (book, category) => new {
+                                        Category = category.Name,
+                                        PublishedYear = book.PublishedYear
+                                    }).Distinct().Where(b => b.PublishedYear == 2016);
+            Console.WriteLine("2016年に発行された書籍のカテゴリ一覧");
+            foreach (var book in books) {
+                Console.WriteLine(book.Category);
+            }
         }
 
         private static void Exercise1_6() {
