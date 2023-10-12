@@ -26,9 +26,18 @@ namespace Exercise01 {
 
         private static void Exercise1_2() {
             var max = Library.Books.Max(b => b.Price);
+#if true
             var book = Library.Books
                               .First(b => b.Price == max);
             Console.WriteLine(book);
+#else
+            var books = Library.Books
+                              .Where(b => b.Price == max);
+            
+            foreach (var book in books) {
+                Console.WriteLine(book);
+            }
+#endif
         }
 
         private static void Exercise1_3() {
@@ -68,8 +77,8 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_5() {
-            var books = Library.Books.Join
-                                    (Library.Categories,
+            var books = Library.Books
+                               .Join(Library.Categories,
                                     book => book.CategoryId,
                                     category => category.Id,
                                     (book, category) => new {
@@ -83,6 +92,23 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_6() {
+            var categories = Library.Categories.GroupBy(c => c.Name).OrderBy(c => c.Key);
+            var books = Library.Books
+                               .Join(Library.Categories,
+                                        book => book.CategoryId,
+                                        category => category.Id,
+                                        (book, category) => new {
+                                            Title = book.Title,
+                                            Category = category.Name,
+                                         });
+            foreach (var category in categories) {
+                Console.WriteLine("#"+category.Key);
+                foreach (var book in books) {
+                    if (book.Category == category.Key) {
+                        Console.WriteLine("  " + book.Title);
+                    }
+                }
+            }
         }
 
         private static void Exercise1_7() {
