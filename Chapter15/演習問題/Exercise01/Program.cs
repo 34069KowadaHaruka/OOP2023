@@ -112,6 +112,19 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_7() {
+#if true //模範解答
+            var catid = Library.Categories.Single(c => c.Name == "Development").Id;
+            var groups = Library.Books
+                                .Where(b => b.CategoryId == catid)
+                                .GroupBy(b => b.PublishedYear)
+                                .OrderBy(b => b.Key);
+            foreach (var group in groups) {
+                Console.WriteLine("#{0}年", group.Key);
+                foreach (var book in group) {
+                    Console.WriteLine("  {0}", book.Title);
+                }
+            }
+#else 
             var pYears = Library.Books.OrderBy(p => p.PublishedYear).Select(p => p.PublishedYear).Distinct();
             var lookup = Library.Books.Join(Library.Categories,
                                         book => book.CategoryId,
@@ -133,16 +146,17 @@ namespace Exercise01 {
                     Console.WriteLine("  " + book.Title);
                 }
             }
+#endif
         }
 
         private static void Exercise1_8() {
             var groups = Library.Categories
                                 .GroupJoin(Library.Books,
-                                    c => c.Id,
-                                    b => b.CategoryId,
-                                    (c, books) => new { Category = c.Name, Books = books }
+                                    c => c.Id,//結合するキー1
+                                    b => b.CategoryId,//結合するキー2
+                                    (c, books) => new { Category = c.Name, Count = books.Count() }//つくるオブジェクト
                                 )
-                                .Where(x => x.Books.Count() >= 4);
+                                .Where(x => x.Count >= 4);
             foreach (var item in groups) {
                 Console.WriteLine(item.Category);
             }
