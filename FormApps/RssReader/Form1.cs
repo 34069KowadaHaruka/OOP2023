@@ -71,6 +71,7 @@ namespace RssReader {
                     var acn = new AddContentName();
                     acn.ShowDialog(); //モーダルダイアログとして表示
                     //acn.tbrRegisteredName.Text = cbLink.
+                    //cbLinkのsameDataにあるデータを更新
                 }else if (sameData < 0) {
                     var acn = new AddContentName();
                     acn.ShowDialog(); //モーダルダイアログとして表示
