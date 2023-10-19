@@ -12,6 +12,8 @@ namespace Exercise02 {
             new FeetConverter(),
             new YardConverter(),
             new InchConverter(),
+            new MileConverter(),
+            new KiloMeterConverter(),
         };
 
         public static ConverterBase GetInstance(string name) {

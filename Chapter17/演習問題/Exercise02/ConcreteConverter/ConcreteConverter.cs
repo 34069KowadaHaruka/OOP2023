@@ -45,4 +45,22 @@ namespace Exercise02 {
             return name.ToLower() == "yard" || name == UnitName;
         }
     }
+
+    public class MileConverter : ConverterBase {
+        protected override double Ratio { get { return 1609.344; } }
+        public override string UnitName { get { return "マイル"; } }
+
+        public override bool IsMyUnit(string name) {
+            return name.ToLower() == "mile" || name == UnitName;
+        }
+    }
+
+    public class KiloMeterConverter : ConverterBase {
+        protected override double Ratio { get { return 1000; } }
+        public override string UnitName { get { return "キロメートル"; } }
+
+        public override bool IsMyUnit(string name) {
+            return name.ToLower() == "kilometer" || name == UnitName;
+        }
+    }
 }
