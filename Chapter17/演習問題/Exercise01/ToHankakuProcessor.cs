@@ -14,19 +14,11 @@ namespace Exercise01 {
                 {'７', '7'},{'８', '8'},{'９', '9'},
             };
 
-        protected override void Initialize(string fname) {
-            
-        }
-
         protected override void Execute(string line) {
-            var pattern = @"[０-９]";
-            //var s = Regex.Replace(line, pattern,
-            //            _dictionary.Select(c => c.Key == line.).Value;
-            //Console.WriteLine(s);
-        }
-
-        protected override void Terminate() {
-            
+            var s = Regex.Replace(line, "[０-９]", c => _dictionary[c.Value[0]].ToString());
+            //c.Value[0]はlineから持ってきた全角数字か
+            //で、_dictionary[０].ToString()が0になる
+            Console.WriteLine(s);
         }
     }
 }
