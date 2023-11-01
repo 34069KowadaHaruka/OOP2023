@@ -34,6 +34,15 @@ namespace ColorChecker {
                 .Select(i => new MyColor() { Color = (Color)i.GetValue(null), Name = i.Name }).ToArray();
         }
 
+        private void GetSetColor(MyColor selectColor) {
+            var color = selectColor.Color;
+            var name = selectColor.Name;
+            rValue.Text = color.R.ToString();
+            gValue.Text = color.G.ToString();
+            bValue.Text = color.B.ToString();
+            colorArea.Background = new SolidColorBrush(color);
+        }
+
         //ColorSliderにあわせて、LabelのBackgroundの色を変える
         private void colorSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             colorArea.Background = new SolidColorBrush(
@@ -58,20 +67,13 @@ namespace ColorChecker {
         //stockList(ListBox)から色が選択された時の動作
         private void stockList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             selectColor = (MyColor)((ListBox)sender).SelectedItem;
-            var color = selectColor.Color;
-            var name = selectColor.Name;
-            colorArea.Background = new SolidColorBrush(color);
+            GetSetColor(selectColor);
         }
 
         //ComboBox(ListBox)から色が選択された時の動作
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             selectColor = (MyColor)((ComboBox)sender).SelectedItem;
-            var color = selectColor.Color;
-            var name = selectColor.Name;
-            rValue.Text = color.R.ToString();
-            gValue.Text = color.G.ToString();
-            bValue.Text = color.B.ToString();
-            colorArea.Background = new SolidColorBrush(color);
+            GetSetColor(selectColor);
         }
     }
 
