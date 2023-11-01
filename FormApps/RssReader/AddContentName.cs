@@ -13,5 +13,13 @@ namespace RssReader {
         public AddContentName() {
             InitializeComponent();
         }
+
+        private void btEnter_Click(object sender, EventArgs e) {
+            DialogResult = DialogResult.OK;
+        }
+
+        private void btCancel_Click(object sender, EventArgs e) {
+            DialogResult = DialogResult.Cancel;
+        }
     }
 }

@@ -26,6 +26,8 @@ namespace RssReader {
         private void InitializeComponent() {
             this.annotation = new System.Windows.Forms.Label();
             this.tbrRegisteredName = new System.Windows.Forms.TextBox();
+            this.btEnter = new System.Windows.Forms.Button();
+            this.btCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // annotation
@@ -46,11 +48,33 @@ namespace RssReader {
             this.tbrRegisteredName.Size = new System.Drawing.Size(265, 28);
             this.tbrRegisteredName.TabIndex = 1;
             // 
+            // btEnter
+            // 
+            this.btEnter.Location = new System.Drawing.Point(125, 83);
+            this.btEnter.Name = "btEnter";
+            this.btEnter.Size = new System.Drawing.Size(75, 23);
+            this.btEnter.TabIndex = 2;
+            this.btEnter.Text = "完了";
+            this.btEnter.UseVisualStyleBackColor = true;
+            this.btEnter.Click += new System.EventHandler(this.btEnter_Click);
+            // 
+            // btCancel
+            // 
+            this.btCancel.Location = new System.Drawing.Point(202, 83);
+            this.btCancel.Name = "btCancel";
+            this.btCancel.Size = new System.Drawing.Size(75, 23);
+            this.btCancel.TabIndex = 3;
+            this.btCancel.Text = "キャンセル";
+            this.btCancel.UseVisualStyleBackColor = true;
+            this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
+            // 
             // AddContentName
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(294, 93);
+            this.ClientSize = new System.Drawing.Size(287, 118);
+            this.Controls.Add(this.btCancel);
+            this.Controls.Add(this.btEnter);
             this.Controls.Add(this.tbrRegisteredName);
             this.Controls.Add(this.annotation);
             this.Name = "AddContentName";
@@ -65,5 +89,7 @@ namespace RssReader {
 
         private System.Windows.Forms.Label annotation;
         public System.Windows.Forms.TextBox tbrRegisteredName;
+        private System.Windows.Forms.Button btEnter;
+        private System.Windows.Forms.Button btCancel;
     }
 }
