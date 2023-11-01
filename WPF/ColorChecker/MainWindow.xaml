@@ -45,7 +45,7 @@
             <TextBox x:Name="bValue" Grid.Column="2" Grid.Row="2" Margin="0,30,4,5" 
                      Text="{Binding ElementName=bSlider, Path=Value,  UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
 
-            <ComboBox ItemsSource="{Binding}" SelectedValue="{Binding Color}" Grid.Column="1" Grid.Row="3" Margin="0,25,0,0" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBox x:Name="comboBox" ItemsSource="{Binding}" SelectedValue="{Binding Color}" Grid.Column="1" Grid.Row="3" Margin="0,25,0,0" SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
