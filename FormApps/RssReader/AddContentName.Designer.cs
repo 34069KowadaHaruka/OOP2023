@@ -47,6 +47,7 @@ namespace RssReader {
             this.tbrRegisteredName.Name = "tbrRegisteredName";
             this.tbrRegisteredName.Size = new System.Drawing.Size(265, 28);
             this.tbrRegisteredName.TabIndex = 1;
+            this.tbrRegisteredName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btEnter
             // 

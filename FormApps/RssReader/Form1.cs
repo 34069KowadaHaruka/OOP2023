@@ -65,22 +65,37 @@ namespace RssReader {
 
             if (tbUrl.Text == "")
                 return;
-            if (!tbUrl.Text.Contains(".xml") || tbUrl.Text.Contains("/feed")) {
-                var sameData = cbLink.FindStringExact(tbUrl.Text);
+            if (tbUrl.Text.Contains(".xml") || tbUrl.Text.Contains("/feed")) {
+                int sameData = -1;
+                foreach (ChannelData item in cbLink.Items) {
+                    if (item.Url == tbUrl.Text) {
+                        sameData = cbLink.SelectedIndex;
+                    }
+                }
+                
                 if (sameData >= 0) { //登録名の更新
                     var acn = new AddContentName();
-                    acn.ShowDialog(); //モーダルダイアログとして表示
-                    //acn.tbrRegisteredName.Text = cbLink.
-                    //cbLinkのsameDataにあるデータを更新
+                    DialogResult dr = acn.ShowDialog(); //モーダルダイアログとして表示
+                    cData = (ChannelData)cbLink.Items[sameData];
+                    if (dr == DialogResult.OK) {
+                        cData.Title = acn.tbrRegisteredName.Text;
+                        cbLink.Items[sameData] = cData;
+                    }
+                    //DialogResult.Cancel
+                    else {}
                 }else if (sameData < 0) {
                     var acn = new AddContentName();
-                    acn.ShowDialog(); //モーダルダイアログとして表示
-                    cData = new ChannelData {
-                        Title = acn.tbrRegisteredName.Text,
-                        Url = tbUrl.Text
-                    };
-                    cbLink.Items.Add(cData).ToString();
+                    DialogResult dr = acn.ShowDialog(); //モーダルダイアログとして表示
+                    if (dr == DialogResult.OK) {
+                        cData = new ChannelData {
+                            Title = acn.tbrRegisteredName.Text,
+                            Url = tbUrl.Text
+                        };
+                        cbLink.Items.Add(cData).ToString();
+                    }else { }
                 }
+                cbLink.SelectedIndex = sameData;
+                sameData = -1;
             }
         }
 
