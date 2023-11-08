@@ -81,8 +81,6 @@ namespace RssReader {
                         cData.Title = acn.tbrRegisteredName.Text;
                         cbLink.Items[sameData] = cData;
                     }
-                    //DialogResult.Cancel
-                    else {}
                 }else if (sameData < 0) {
                     var acn = new AddContentName();
                     DialogResult dr = acn.ShowDialog(); //モーダルダイアログとして表示
@@ -92,16 +90,14 @@ namespace RssReader {
                             Url = tbUrl.Text
                         };
                         cbLink.Items.Add(cData).ToString();
-                    }else { }
+                    }
                 }
-                cbLink.SelectedIndex = sameData;
-                sameData = -1;
             }
         }
 
         private void cbLink_SelectedIndexChanged(object sender, EventArgs e) {
-            var url = (ChannelData)cbLink.SelectedItem;
-            tbUrl.Text = url.Url;
+            var data = (ChannelData)cbLink.SelectedItem;
+            tbUrl.Text = data.Url;
         }
 
         private void Form1_Load(object sender, EventArgs e) {

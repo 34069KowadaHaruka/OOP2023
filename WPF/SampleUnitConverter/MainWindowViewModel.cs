@@ -8,6 +8,8 @@ using System.Windows.Input;
 namespace SampleUnitConverter {
     public class MainWindowViewModel : ViewModel {
         private double metricValue, imperialValue;
+
+        //プロパティ
         public double MetricValue {
             get { return this.metricValue; }
             set { this.metricValue = value; this.OnPropertyChanged(); }
