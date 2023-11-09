@@ -57,8 +57,10 @@
     </ApplicationDefinition>
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="DistanceUnit.cs" />
+    <Compile Include="ImperialMassUnit.cs" />
     <Compile Include="ImperialUnit.cs" />
     <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="MetricMassUnit.cs" />
     <Compile Include="MetricUnit.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="MainWindow.xaml">

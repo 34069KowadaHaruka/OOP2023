@@ -7,40 +7,40 @@ using System.Windows.Input;
 
 namespace SampleUnitConverter {
     public class MainWindowViewModel : ViewModel {
-        private double metricValue, imperialValue;
+        private double metricMassValue, imperialMassValue;
 
         //プロパティ
-        public double MetricValue {
-            get { return this.metricValue; }
-            set { this.metricValue = value; this.OnPropertyChanged(); }
+        public double MetricMassValue {
+            get { return this.metricMassValue; }
+            set { this.metricMassValue = value; this.OnPropertyChanged(); }
         }
-        public double ImperialValue {
-            get { return this.imperialValue; }
-            set { this.imperialValue = value; this.OnPropertyChanged(); }
+        public double ImperialMassValue {
+            get { return this.imperialMassValue; }
+            set { this.imperialMassValue = value; this.OnPropertyChanged(); }
         }
 
         //上のComboBoxで選択されている値(単位)
-        public MetricUnit CurrentMetricUnit { get; set; }
-        public ImperialUnit CurrentImperialUnit { get; set; }
+        public MetricMassUnit CurrentMetricMassUnit { get; set; }
+        public ImperialMassUnit CurrentImperialMassUnit { get; set; }
 
         //▲ボタンで呼ばれるコマンド
-        public ICommand MetricToImperialUnit { get; set; }
+        public ICommand MetricToImperialMassUnit { get; set; }
         //▼ボタンで呼ばれるコマンド
-        public ICommand ImperialToMetricUnit { get; set; }
+        public ICommand ImperialToMetricMassUnit { get; set; }
 
         //コンストラクタ
         public MainWindowViewModel() {
-            this.CurrentMetricUnit = MetricUnit.Units.First();
-            this.CurrentImperialUnit = ImperialUnit.Units.First();
+            this.CurrentMetricMassUnit = MetricMassUnit.Units.First();
+            this.CurrentImperialMassUnit = ImperialMassUnit.Units.First();
 
-            this.MetricToImperialUnit = new DelegateCommand(
-                () => this.ImperialValue = this.CurrentImperialUnit.FromMetricUnit(
-                    this.CurrentMetricUnit, this.MetricValue
+            this.MetricToImperialMassUnit = new DelegateCommand(
+                () => this.ImperialMassValue = this.CurrentImperialMassUnit.FromMetricMassUnit(
+                    this.CurrentMetricMassUnit, this.MetricMassValue
                 )
             );
-            this.ImperialToMetricUnit = new DelegateCommand(
-                () => this.MetricValue = this.CurrentMetricUnit.FromImperialUnit(
-                    this.CurrentImperialUnit, this.ImperialValue
+            this.ImperialToMetricMassUnit = new DelegateCommand(
+                () => this.MetricMassValue = this.CurrentMetricMassUnit.FromImperialMassUnit(
+                    this.CurrentImperialMassUnit, this.ImperialMassValue
                 )
             );
         }
