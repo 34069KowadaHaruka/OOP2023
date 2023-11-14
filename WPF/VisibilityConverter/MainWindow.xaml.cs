@@ -20,6 +20,7 @@ namespace VisibilityConverter {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+            cbColors.SelectedIndex = 0;//赤
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
