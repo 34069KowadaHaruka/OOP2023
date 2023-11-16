@@ -67,9 +67,12 @@ namespace RssReader {
                 return;
             if (tbUrl.Text.Contains(".xml") || tbUrl.Text.Contains("/feed")) {
                 int sameData = -1;
+                int count = -1;
                 foreach (ChannelData item in cbLink.Items) {
+                    count++;
                     if (item.Url == tbUrl.Text) {
-                        sameData = cbLink.SelectedIndex;
+                        sameData = count;
+                        break;
                     }
                 }
                 
@@ -80,6 +83,8 @@ namespace RssReader {
                     if (dr == DialogResult.OK) {
                         cData.Title = acn.tbrRegisteredName.Text;
                         cbLink.Items[sameData] = cData;
+                        cbLink.SelectedItem = cbLink.Items[sameData];
+                        tbUrl.Text = cData.Url;
                     }
                 }else if (sameData < 0) {
                     var acn = new AddContentName();
@@ -90,6 +95,8 @@ namespace RssReader {
                             Url = tbUrl.Text
                         };
                         cbLink.Items.Add(cData).ToString();
+                        cbLink.SelectedItem = cbLink.Items[cbLink.Items.Count - 1];
+                        tbUrl.Text = cData.Url;
                     }
                 }
             }
