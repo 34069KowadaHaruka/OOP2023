@@ -132,5 +132,18 @@ namespace RssReader {
             };
             cbLink.Items.Add(cData).ToString();
         }
+
+        private void cbLink_KeyUp(object sender, KeyEventArgs e){
+            if (e.KeyData == Keys.Enter) {
+                foreach (ChannelData item in cbLink.Items) {
+                    if (cbLink.Text == item.Title) {
+                        tbUrl.Text = item.Url;
+                        return;
+                    }
+                }
+                tbUrl.Text = "";
+            }
+            
+        }
     }
 }

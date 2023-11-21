@@ -75,7 +75,7 @@ namespace RssReader {
             // 
             // btAddComboBox
             // 
-            this.btAddComboBox.Location = new System.Drawing.Point(462, 12);
+            this.btAddComboBox.Location = new System.Drawing.Point(449, 12);
             this.btAddComboBox.Name = "btAddComboBox";
             this.btAddComboBox.Size = new System.Drawing.Size(75, 23);
             this.btAddComboBox.TabIndex = 4;
@@ -86,11 +86,12 @@ namespace RssReader {
             // cbLink
             // 
             this.cbLink.FormattingEnabled = true;
-            this.cbLink.Location = new System.Drawing.Point(543, 12);
+            this.cbLink.Location = new System.Drawing.Point(530, 12);
             this.cbLink.Name = "cbLink";
-            this.cbLink.Size = new System.Drawing.Size(280, 20);
+            this.cbLink.Size = new System.Drawing.Size(293, 20);
             this.cbLink.TabIndex = 5;
             this.cbLink.SelectedIndexChanged += new System.EventHandler(this.cbLink_SelectedIndexChanged);
+            this.cbLink.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbLink_KeyUp);
             // 
             // Form1
             // 
@@ -104,7 +105,7 @@ namespace RssReader {
             this.Controls.Add(this.btGet);
             this.Controls.Add(this.tbUrl);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "RSS_reader";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
