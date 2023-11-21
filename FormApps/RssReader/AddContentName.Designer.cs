@@ -51,6 +51,7 @@ namespace RssReader {
             // 
             // btEnter
             // 
+            this.btEnter.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btEnter.Location = new System.Drawing.Point(125, 83);
             this.btEnter.Name = "btEnter";
             this.btEnter.Size = new System.Drawing.Size(75, 23);
@@ -61,6 +62,7 @@ namespace RssReader {
             // 
             // btCancel
             // 
+            this.btCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btCancel.Location = new System.Drawing.Point(202, 83);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(75, 23);
@@ -73,11 +75,13 @@ namespace RssReader {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(287, 118);
+            this.ClientSize = new System.Drawing.Size(284, 121);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.btEnter);
             this.Controls.Add(this.tbrRegisteredName);
             this.Controls.Add(this.annotation);
+            this.MaximumSize = new System.Drawing.Size(300, 160);
+            this.MinimumSize = new System.Drawing.Size(300, 160);
             this.Name = "AddContentName";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "AddContentName";

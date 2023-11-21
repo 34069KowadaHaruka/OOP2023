@@ -41,6 +41,7 @@ namespace RssReader {
             // 
             // btGet
             // 
+            this.btGet.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btGet.Location = new System.Drawing.Point(352, 12);
             this.btGet.Name = "btGet";
             this.btGet.Size = new System.Drawing.Size(75, 23);
@@ -57,7 +58,7 @@ namespace RssReader {
             this.lbRssTitle.ItemHeight = 12;
             this.lbRssTitle.Location = new System.Drawing.Point(12, 37);
             this.lbRssTitle.Name = "lbRssTitle";
-            this.lbRssTitle.Size = new System.Drawing.Size(811, 112);
+            this.lbRssTitle.Size = new System.Drawing.Size(810, 112);
             this.lbRssTitle.TabIndex = 2;
             this.lbRssTitle.DoubleClick += new System.EventHandler(this.lbRssTitle_DoubleClick);
             // 
@@ -70,11 +71,12 @@ namespace RssReader {
             this.wbBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbBrowser.Name = "wbBrowser";
             this.wbBrowser.ScriptErrorsSuppressed = true;
-            this.wbBrowser.Size = new System.Drawing.Size(811, 311);
+            this.wbBrowser.Size = new System.Drawing.Size(810, 310);
             this.wbBrowser.TabIndex = 3;
             // 
             // btAddComboBox
             // 
+            this.btAddComboBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btAddComboBox.Location = new System.Drawing.Point(449, 12);
             this.btAddComboBox.Name = "btAddComboBox";
             this.btAddComboBox.Size = new System.Drawing.Size(75, 23);
@@ -97,13 +99,14 @@ namespace RssReader {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(835, 482);
+            this.ClientSize = new System.Drawing.Size(834, 481);
             this.Controls.Add(this.cbLink);
             this.Controls.Add(this.btAddComboBox);
             this.Controls.Add(this.wbBrowser);
             this.Controls.Add(this.lbRssTitle);
             this.Controls.Add(this.btGet);
             this.Controls.Add(this.tbUrl);
+            this.MinimumSize = new System.Drawing.Size(850, 0);
             this.Name = "Form1";
             this.Text = "RSS_reader";
             this.Load += new System.EventHandler(this.Form1_Load);
